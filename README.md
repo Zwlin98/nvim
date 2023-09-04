@@ -11,7 +11,7 @@
 ### clone the repo and prepare the enviroments
 ```bash
 # clone this repo
-git clone git@github.com:Zwlin98/nvim.git ~/.config/nvim
+git clone https://github.com/Zwlin98/nvim.git ~/.config/nvim
 # create a python enviroments for neovim (optional)
 cd ~/.config/nvim && python -m venv nvim-python
 cd $HOME && ./.config/nvim/nvim-python/bin/python3 -m pip install pynvim
