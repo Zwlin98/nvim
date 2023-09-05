@@ -1,6 +1,6 @@
 if vim.g.neovide then
-    rikka = require("rikka")
-    ts = require("telescope.builtin")
+    local rikka = require("rikka")
+    local ts = require("telescope.builtin")
     local defaultOptions = { noremap = true, silent = true }
 
     vim.opt.guifont = "FiraCode Nerd Font:h13"

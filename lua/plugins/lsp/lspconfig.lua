@@ -12,6 +12,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
+        "aznhe21/actions-preview.nvim"
     },
     config = function()
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -35,8 +36,8 @@ return {
                 rikka.setKeymap('n', 'gr', telescope.lsp_references, keyOpts)
                 rikka.setKeymap("n", "gd", telescope.lsp_definitions, keyOpts)
                 rikka.setKeymap("n", "gi", telescope.lsp_implementations, keyOpts)
+                rikka.setKeymap({ "v", "n" }, "ga", require("actions-preview").code_actions)
                 rikka.setKeymap("n", "K", vim.lsp.buf.hover, keyOpts)
-                rikka.setKeymap({ "n", "v" }, "ga", vim.lsp.buf.code_action, keyOpts)
                 rikka.setKeymap("n", "<space>r", vim.lsp.buf.rename, keyOpts)
                 rikka.setKeymap("n", "<space>f", function() vim.lsp.buf.format({ async = true }) end, keyOpts)
                 rikka.setKeymap("v", "<space>f", function() vim.lsp.buf.format({ async = true }) end, keyOpts)
