@@ -16,10 +16,11 @@ return {
             highlight = {
                 'RainbowDelimiterOrange',
                 'RainbowDelimiterYellow',
-                'RainbowDelimiterBlue',
-                'RainbowDelimiterGreen',
                 'RainbowDelimiterViolet',
+                'RainbowDelimiterGreen',
                 'RainbowDelimiterCyan',
+                'RainbowDelimiterBlue',
+                'RainbowDelimiterRed',
             },
             blacklist = { 'c', 'cpp' },
         }
