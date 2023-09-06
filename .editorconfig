@@ -1,0 +1,2 @@
+[*.lua]
+max_line_length = 360
