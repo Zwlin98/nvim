@@ -50,3 +50,5 @@ vim.o.updatetime = 300
 vim.o.timeoutlen = 400
 
 vim.g.python3_host_prog = "~/.config/nvim/nvim-python/bin/python3"
+-- this quick-scope config should be loaded before lazy-load plugin
+vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
