@@ -29,4 +29,5 @@ if vim.g.neovide then
     rikka.setKeymap("n", "<D-e>", ts.find_files, defaultOptions)
     rikka.setKeymap("n", "<D-p>", ts.builtin, defaultOptions)
     rikka.setKeymap("n", "<D-`>", ts.lsp_document_symbols, defaultOptions)
+    rikka.setKeymap("n", "<D-f>", ts.live_grep, defaultOptions)
 end
