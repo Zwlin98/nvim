@@ -28,9 +28,7 @@ rikka.setKeymap("n", "<M-`>", tsbuiltin.lsp_document_symbols, defaultOptions)
 
 -- fuzzy finding
 rikka.setKeymap("n", "<M-s>", tsbuiltin.current_buffer_fuzzy_find, defaultOptions)
-rikka.setKeymap("v", "<M-s>",
-    function() tsbuiltin.current_buffer_fuzzy_find({ default_text = rikka.getVisualSelection() }) end,
-    defaultOptions)
+rikka.setKeymap("v", "<M-s>", function() tsbuiltin.current_buffer_fuzzy_find({ default_text = rikka.getVisualSelection() }) end, defaultOptions)
 -- grep
 --
 local lga = require("telescope-live-grep-args.shortcuts")

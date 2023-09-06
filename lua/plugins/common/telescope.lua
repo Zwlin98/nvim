@@ -11,6 +11,13 @@ return {
             "nvim-telescope/telescope-live-grep-args.nvim",
             version = "^1.0.0",
         },
+        {
+            "nvim-telescope/telescope-frecency.nvim"
+        },
+        {
+            "kkharji/sqlite.lua"
+        }
+
     },
     config = function()
         local actions = require("telescope.actions")
@@ -55,5 +62,6 @@ return {
         require("telescope").setup(opts)
         require('telescope').load_extension('fzf')
         require("telescope").load_extension("live_grep_args")
+        require("telescope").load_extension("frecency")
     end
 }
