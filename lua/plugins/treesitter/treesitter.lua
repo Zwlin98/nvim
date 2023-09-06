@@ -32,6 +32,16 @@ return {
             },
 
             indent = { enable = true },
+
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "<CR>",
+                    node_incremental = "<CR>",
+                    scope_incremental = "grc",
+                    node_decremental = "<M-CR>",
+                },
+            },
         })
     end
 }
