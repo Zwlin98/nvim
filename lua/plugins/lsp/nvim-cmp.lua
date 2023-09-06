@@ -10,7 +10,6 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "onsails/lspkind-nvim",
-        "zbirenbaum/copilot-cmp",
         "windwp/nvim-autopairs",
     },
     event = {
@@ -58,7 +57,6 @@ return {
                 {
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
-                    { name = "copilot" },
                     { name = "buffer" },
                     { name = "path" },
                     { name = "calc" },
@@ -117,7 +115,6 @@ return {
                 format = lspkind.cmp_format({
                     mode = "symbol_text",
                     max_width = 50,
-                    symbol_map = { Copilot = "" },
                 }),
             },
         })
