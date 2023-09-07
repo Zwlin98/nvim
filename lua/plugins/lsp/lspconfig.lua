@@ -23,11 +23,12 @@ return {
             lspconfig = lspconfig
         }
 
-        luals = require("plugins.lsp.server.luals")
+        local servers = {
+            "luals",
+            "phpactor",
+        }
 
-        telescope = require("telescope.builtin")
-
-        luals.setup(lspOpts)
+        local telescope = require("telescope.builtin")
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -43,5 +44,10 @@ return {
                 rikka.setKeymap("v", "<space>f", function() vim.lsp.buf.format({ async = true }) end, keyOpts)
             end,
         })
+
+        for _, server in ipairs(servers) do
+            local serverModule = require("plugins.lsp.server." .. server)
+            serverModule.setup(lspOpts)
+        end
     end
 }

@@ -1,4 +1,4 @@
-Server = {}
+local Server = {}
 
 function Server.setup(opts)
 
