@@ -129,7 +129,59 @@ return {
 
         -- Use cmdline & path source for ':'.
         cmp.setup.cmdline(":", {
-            mapping = cmp.mapping.preset.cmdline(),
+            mapping = {
+                ['<C-z>'] = {
+                    c = function()
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        else
+                            cmp.complete()
+                        end
+                    end,
+                },
+                ['<Tab>'] = {
+                    c = function()
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        else
+                            cmp.complete()
+                        end
+                    end,
+                },
+                ['<S-Tab>'] = {
+                    c = function()
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        else
+                            cmp.complete()
+                        end
+                    end,
+                },
+                ['<Down>'] = {
+                    c = function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        else
+                            fallback()
+                        end
+                    end,
+                },
+                ['<Up>'] = {
+                    c = function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        else
+                            fallback()
+                        end
+                    end,
+                },
+                ['<C-e>'] = {
+                    c = cmp.mapping.abort(),
+                },
+                ['<C-y>'] = {
+                    c = cmp.mapping.confirm({ select = false }),
+                },
+            },
             sources = cmp.config.sources({
                 { name = "path" },
             }, {
