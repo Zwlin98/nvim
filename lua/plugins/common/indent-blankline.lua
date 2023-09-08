@@ -15,7 +15,8 @@ return {
     branch = "v3",
     opts = {
         indent = {
-            char = "¦"
+            char = "¦",
+            tab_char = "¦",
         },
         scope = {
             enabled = true,
