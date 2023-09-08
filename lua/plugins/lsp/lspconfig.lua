@@ -1,4 +1,4 @@
-rikka = require("rikka")
+local rikka = require("rikka")
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 ---@diagnostic disable-next-line: duplicate-set-field
@@ -12,23 +12,24 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        "aznhe21/actions-preview.nvim"
+        "aznhe21/actions-preview.nvim",
     },
     config = function()
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
+        local navic = require("nvim-navic")
+        local telescope = require("telescope.builtin")
+
 
         local lspOpts = {
             capabilities = capabilities,
-            lspconfig = lspconfig
+            lspconfig = lspconfig,
         }
 
         local servers = {
             "luals",
             "phpactor",
         }
-
-        local telescope = require("telescope.builtin")
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),

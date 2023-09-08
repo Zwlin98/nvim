@@ -1,7 +1,6 @@
 local Server = {}
 
 function Server.setup(opts)
-
     local capabilities = opts.capabilities
     local lspconfig = opts.lspconfig
 
