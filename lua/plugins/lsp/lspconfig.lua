@@ -29,6 +29,7 @@ return {
         local servers = {
             "luals",
             "phpactor",
+            "gopls",
         }
 
         vim.api.nvim_create_autocmd("LspAttach", {
