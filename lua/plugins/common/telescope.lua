@@ -23,6 +23,18 @@ return {
         local actions = require("telescope.actions")
         local lga_actions = require("telescope-live-grep-args.actions")
 
+        local dropdownConfig = {
+            theme = "dropdown",
+        }
+
+        local cursorConfig = {
+            theme = "cursor",
+            layout_config = {
+                width = 0.6,
+                height = 0.4,
+            },
+        }
+
         local opts = {
             defaults = {
                 mappings = {
@@ -32,12 +44,11 @@ return {
                 },
             },
             pickers = {
-                find_files = {
-                    theme = "dropdown",
-                },
-                buffers = {
-                    theme = "dropdown"
-                }
+                find_files = dropdownConfig,
+                buffers = dropdownConfig,
+                lsp_references = cursorConfig,
+                lsp_definitions = cursorConfig,
+                lsp_implementations = cursorConfig,
             },
             extensions = {
                 fzf = {

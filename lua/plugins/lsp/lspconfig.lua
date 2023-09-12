@@ -17,7 +17,6 @@ return {
     config = function()
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
-        local navic = require("nvim-navic")
         local telescope = require("telescope.builtin")
 
 
@@ -30,12 +29,19 @@ return {
             "luals",
             "phpactor",
             "gopls",
+            "rust_analyzer",
         }
+        vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+            callback = function(env) vim.lsp.inlay_hint(env.buf, false) end,
+        })
+        vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+            callback = function(env) vim.lsp.inlay_hint(env.buf, true) end,
+        })
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-            callback = function(ev)
-                local keyOpts = { buffer = ev.buf }
+            callback = function(env)
+                local keyOpts = { buffer = env.buf }
                 rikka.setKeymap('n', 'gr', telescope.lsp_references, keyOpts)
                 rikka.setKeymap("n", "gd", telescope.lsp_definitions, keyOpts)
                 rikka.setKeymap("n", "gi", telescope.lsp_implementations, keyOpts)

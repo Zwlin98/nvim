@@ -11,7 +11,6 @@ vim.o.conceallevel = 1
 vim.o.undofile = true
 
 vim.o.cursorline = true
-vim.o.cursorlinopt = "nubmer"
 
 vim.o.pumblend = 12
 

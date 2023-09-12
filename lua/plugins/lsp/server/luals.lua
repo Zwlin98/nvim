@@ -21,6 +21,9 @@ function Server.setup(opts)
                         -- Get the language server to recognize the `vim` global
                         globals = { "vim" },
                     },
+                    hint = {
+                        enable = true,
+                    },
                 })
 
                 client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })

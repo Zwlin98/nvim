@@ -18,6 +18,7 @@ return {
                 "rust",
                 "vim",
                 "yaml",
+                "php",
             },
             -- 启用代码高亮功能
             highlight = {
