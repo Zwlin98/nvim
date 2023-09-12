@@ -48,6 +48,9 @@ vim.g.mapleader = "\\"
 vim.o.updatetime = 300
 vim.o.timeoutlen = 400
 
-vim.g.python3_host_prog = "~/.config/nvim/nvim-python/bin/python3"
-
-vim.cmd[[set clipboard+=unnamedplus]]
+-- host specific settings
+local rikka = require("rikka")
+if rikka.localOnly() then
+    vim.g.python3_host_prog = "~/.config/nvim/nvim-python/bin/python3"
+    vim.cmd [[set clipboard+=unnamedplus]]
+end
