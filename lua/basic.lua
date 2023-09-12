@@ -37,7 +37,7 @@ vim.o.splitright = true
 vim.o.linebreak = true
 vim.o.signcolumn = "yes"
 vim.o.textwidth = 120
-vim.o.wrap = true
+vim.o.wrap = false
 vim.o.showbreak = ">>"
 
 vim.o.scrolloff = 2
