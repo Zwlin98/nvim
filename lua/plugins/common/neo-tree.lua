@@ -10,5 +10,11 @@ return {
     },
     opts = {
         popup_border_style = rikka.border,
+        filesystem = {
+            follow_current_file = {
+                enabled = true,
+                leave_dirs_open = false,
+            },
+        }
     }
 }
