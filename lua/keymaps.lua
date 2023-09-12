@@ -49,8 +49,5 @@ local trouble = require("trouble")
 rikka.setKeymap("n", "gq", function() trouble.open("document_diagnostics") end, defaultOptions)
 rikka.setKeymap("n", "gR", function() trouble.open("lsp_references") end)
 
--- hop
-rikka.setKeymap("n", "<M-w>", require("hop").hint_lines_skip_whitespace, defaultOptions)
-
 -- gitsigns
 rikka.setKeymap("n", "gp", ":Gitsigns preview_hunk<CR>", defaultOptions) -- git preview
