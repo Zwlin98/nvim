@@ -21,10 +21,18 @@ return {
         local telescope = require("telescope.builtin")
 
         vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
-            callback = function(env) vim.lsp.inlay_hint(env.buf, false) end,
+            callback = function(env)
+                if vim.lsp.inlay_hint then
+                    vim.lsp.inlay_hint(env.buf, false)
+                end
+            end,
         })
         vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
-            callback = function(env) vim.lsp.inlay_hint(env.buf, true) end,
+            callback = function(env)
+                if vim.lsp.inlay_hint then
+                    vim.lsp.inlay_hint(env.buf, true)
+                end
+            end,
         })
 
         vim.api.nvim_create_autocmd("LspAttach", {
