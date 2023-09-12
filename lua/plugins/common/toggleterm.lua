@@ -43,11 +43,11 @@ return {
             },
             on_open = function(term)
                 vim.cmd("startinsert!")
-                local _ = term
+                vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<M-\\>", "<cmd>close<CR>", { noremap = true, silent = true })
             end,
         })
 
-        rikka.setKeymap("n", "<M-t>", function() normalTerminal:toggle() end, { noremap = true, silent = true })
+        rikka.setKeymap("n", "<M-\\>", function() normalTerminal:toggle() end, { noremap = true, silent = true })
 
         local lazygit = Terminal:new({
             cmd = "lazygit",
