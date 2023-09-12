@@ -67,6 +67,6 @@ return {
             lazygit:toggle()
         end
 
-        rikka.createCommand("Lg", lazygit_toggle, {})
+        rikka.createCommand("Git", lazygit_toggle, {})
     end
 }
