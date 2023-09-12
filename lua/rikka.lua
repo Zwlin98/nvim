@@ -33,4 +33,8 @@ end
 
 Rikka.setKeymap = vim.keymap.set
 
+Rikka.createAutocmd = vim.api.nvim_create_autocmd
+
+Rikka.createCommand = vim.api.nvim_create_user_command
+
 return Rikka
