@@ -22,6 +22,15 @@ function Rikka.localOnly()
     return not os.getenv("SSH_CLIENT")
 end
 
+function Rikka.prequire(module)
+    local ok, result = pcall(require, module)
+    if ok then
+        return result
+    else
+        return nil
+    end
+end
+
 Rikka.setKeymap = vim.keymap.set
 
 return Rikka

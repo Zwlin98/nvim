@@ -2,7 +2,7 @@ local Server = {}
 
 function Server.setup(opts)
     local lspconfig = opts.lspconfig
-    lspconfig.phpactor.setup {}
+    lspconfig.intelephense.setup {}
 end
 
 return Server

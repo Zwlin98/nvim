@@ -13,24 +13,13 @@ return {
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
         "aznhe21/actions-preview.nvim",
+        "rcarriga/nvim-notify",
     },
     config = function()
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
         local telescope = require("telescope.builtin")
 
-
-        local lspOpts = {
-            capabilities = capabilities,
-            lspconfig = lspconfig,
-        }
-
-        local servers = {
-            "luals",
-            "phpactor",
-            "gopls",
-            "rust_analyzer",
-        }
         vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
             callback = function(env) vim.lsp.inlay_hint(env.buf, false) end,
         })
@@ -53,9 +42,25 @@ return {
             end,
         })
 
+        local lspOpts = {
+            capabilities = capabilities,
+            lspconfig = lspconfig,
+        }
+
+        local servers = {
+            "luals",
+            "intelephense",
+            "gopls",
+            "rust_analyzer",
+        }
+
         for _, server in ipairs(servers) do
-            local serverModule = require("plugins.lsp.server." .. server)
-            serverModule.setup(lspOpts)
+            local serverModule = rikka.prequire("plugins.lsp.server." .. server)
+            if serverModule then
+                serverModule.setup(lspOpts)
+            else
+                vim.notify("LSP server " .. server .. " not found", vim.log.levels.WARN)
+            end
         end
     end
 }
