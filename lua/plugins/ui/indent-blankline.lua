@@ -24,7 +24,22 @@ return {
         },
     },
     config = function(_, opts)
-        require("ibl").setup(opts)
+        local ibl = require("ibl")
+
+        ibl.setup(opts)
+
+        local rikka = require("rikka")
+
+        rikka.createAutocmd({ "BufEnter", "BufWinEnter" }, {
+            pattern = "*",
+            callback = function(ev)
+                if rikka.isBigFile(ev.buf) then
+                    ibl.update { enabled = false }
+                else
+                    ibl.update { enabled = true }
+                end
+            end
+        })
 
         local hooks = require "ibl.hooks"
         hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)

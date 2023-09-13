@@ -7,9 +7,6 @@ local defaultOptions = { noremap = true, silent = true }
 rikka.setKeymap("v", "<", "<gv", defaultOptions)
 rikka.setKeymap("v", ">", ">gv", defaultOptions)
 
-rikka.setKeymap("v", "J", ":move '>+1<CR>gv-gv", defaultOptions)
-rikka.setKeymap("v", "K", ":move '<-2<CR>gv-gv", defaultOptions)
-
 rikka.setKeymap("n", "<M-h>", ":nohlsearch<CR>", defaultOptions)
 rikka.setKeymap("v", "<M-h>", ":nohlsearch<CR>", defaultOptions)
 
@@ -48,6 +45,3 @@ rikka.setKeymap({ "n", "i" }, "<M-y>", ts.extensions.yank_history.yank_history, 
 local trouble = require("trouble")
 rikka.setKeymap("n", "gq", function() trouble.open("document_diagnostics") end, defaultOptions)
 rikka.setKeymap("n", "gR", function() trouble.open("lsp_references") end)
-
--- gitsigns
-rikka.setKeymap("n", "gp", ":Gitsigns preview_hunk<CR>", defaultOptions) -- git preview
