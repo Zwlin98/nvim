@@ -64,10 +64,10 @@ return {
 
         for _, server in ipairs(servers) do
             local serverModule = rikka.prequire("plugins.lsp.server." .. server)
-            if serverModule then
+            if serverModule and serverModule.checkOK() then
                 serverModule.setup(lspOpts)
             else
-                vim.notify("LSP server " .. server .. " not found", vim.log.levels.WARN)
+                vim.notify("LSP server " .. server .. " not OK", vim.log.levels.WARN)
             end
         end
     end

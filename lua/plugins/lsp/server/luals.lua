@@ -1,5 +1,9 @@
 local Server = {}
 
+function Server.checkOK()
+    return vim.fn.executable("lua-language-server") == 1
+end
+
 function Server.setup(opts)
     local capabilities = opts.capabilities
     local lspconfig = opts.lspconfig
