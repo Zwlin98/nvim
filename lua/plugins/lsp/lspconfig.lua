@@ -59,6 +59,7 @@ return {
             "intelephense",
             "gopls",
             "rust_analyzer",
+            "clangd",
         }
 
         for _, server in ipairs(servers) do
