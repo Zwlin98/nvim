@@ -1,7 +1,6 @@
 local rikka = require("rikka")
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
----@diagnostic disable-next-line: duplicate-set-field
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
     opts.border = opts.border or rikka.border
@@ -20,14 +19,14 @@ return {
         local lspconfig = require("lspconfig")
         local telescope = require("telescope.builtin")
 
-        vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+        rikka.createAutocmd({ 'InsertEnter' }, {
             callback = function(env)
                 if vim.lsp.inlay_hint then
                     vim.lsp.inlay_hint(env.buf, false)
                 end
             end,
         })
-        vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+        rikka.createAutocmd({ 'InsertLeave' }, {
             callback = function(env)
                 if vim.lsp.inlay_hint then
                     vim.lsp.inlay_hint(env.buf, true)
@@ -35,7 +34,7 @@ return {
             end,
         })
 
-        vim.api.nvim_create_autocmd("LspAttach", {
+        rikka.createAutocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(env)
                 local keyOpts = { buffer = env.buf }
