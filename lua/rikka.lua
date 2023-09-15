@@ -18,8 +18,12 @@ function Rikka.getVisualSelection()
     end
 end
 
-function Rikka.localOnly()
-    return not os.getenv("SSH_CLIENT")
+function Rikka.isLocal()
+    return not Rikka.isRemote()
+end
+
+function Rikka.isRemote()
+    return os.getenv("SSH_CLIENT") or os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION")
 end
 
 function Rikka.prequire(module)

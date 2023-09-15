@@ -50,7 +50,7 @@ vim.o.timeoutlen = 400
 
 -- host specific settings
 local rikka = require("rikka")
-if rikka.localOnly() then
+if rikka.isLocal() then
     vim.g.python3_host_prog = "~/.config/nvim/nvim-python/bin/python3"
     vim.cmd [[set clipboard+=unnamedplus]]
 end

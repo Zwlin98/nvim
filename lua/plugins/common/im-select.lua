@@ -2,7 +2,7 @@ local rikka = require("rikka")
 
 return {
     "keaising/im-select.nvim",
-    enabled = rikka.localOnly,
+    enabled = rikka.isLocal,
     config = function()
         require('im_select').setup {
 
