@@ -33,9 +33,11 @@ return {
         rikka.createAutocmd({ "BufEnter", "BufWinEnter" }, {
             pattern = "*",
             callback = function(ev)
-                if vim.api.nvim_win_get_config(0).relative ~= '' then
+                local cfg = vim.api.nvim_win_get_config(0)
+                if cfg and cfg.relative ~= '' then
                     ibl.update { enabled = false }
-                elseif rikka.isBigFile(ev.buf) then
+                end
+                if ev.buf and rikka.isBigFile(ev.buf) then
                     ibl.update { enabled = false }
                 else
                     ibl.update { enabled = true }

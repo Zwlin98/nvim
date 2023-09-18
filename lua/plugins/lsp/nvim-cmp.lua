@@ -17,6 +17,7 @@ return {
         "CmdlineEnter",
     },
     config = function()
+        vim.api.nvim_set_hl(0, "CmpNormal", { bg = "#2e3440" })
         -- gray
         vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
         -- blue
@@ -60,6 +61,7 @@ return {
             window = {
                 completion = {
                     border = rikka.border,
+                    winhighlight = "Normal:CmpNormal",
                     col_offset = -3,
                 },
                 documentation = {
@@ -122,7 +124,7 @@ return {
             },
             formatting = {
                 format = lspkind.cmp_format({
-                    mode = 'symbol_text',       -- show only symbol annotations
+                    mode = 'symbol_text',  -- show only symbol annotations
                     maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                     ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                 })
