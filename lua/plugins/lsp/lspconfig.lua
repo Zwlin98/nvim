@@ -19,20 +19,20 @@ return {
         local lspconfig = require("lspconfig")
         local telescope = require("telescope.builtin")
 
-        rikka.createAutocmd({ 'InsertEnter' }, {
-            callback = function(env)
-                if vim.lsp.inlay_hint then
-                    vim.lsp.inlay_hint(env.buf, false)
-                end
-            end,
-        })
-        rikka.createAutocmd({ 'InsertLeave' }, {
-            callback = function(env)
-                if vim.lsp.inlay_hint then
-                    vim.lsp.inlay_hint(env.buf, true)
-                end
-            end,
-        })
+        -- rikka.createAutocmd({ 'InsertEnter' }, {
+        --     callback = function(env)
+        --         if vim.lsp.inlay_hint then
+        --             vim.lsp.inlay_hint(env.buf, false)
+        --         end
+        --     end,
+        -- })
+        -- rikka.createAutocmd({ 'InsertLeave' }, {
+        --     callback = function(env)
+        --         if vim.lsp.inlay_hint then
+        --             vim.lsp.inlay_hint(env.buf, true)
+        --         end
+        --     end,
+        -- })
 
         rikka.createAutocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
