@@ -43,7 +43,7 @@ vim.o.showbreak = ">>"
 vim.o.scrolloff = 2
 vim.o.sidescrolloff = 5
 
-vim.g.mapleader = "\\"
+vim.g.mapleader = " "
 
 vim.o.updatetime = 300
 vim.o.timeoutlen = 400

@@ -1,7 +1,5 @@
 local rikka = require("rikka")
 
-vim.g.mapleader = "\\"
-
 local defaultOptions = { noremap = true, silent = true }
 
 rikka.setKeymap("v", "<", "<gv", defaultOptions)
@@ -45,3 +43,6 @@ rikka.setKeymap({ "n", "i" }, "<M-y>", ts.extensions.yank_history.yank_history, 
 local trouble = require("trouble")
 rikka.setKeymap("n", "gq", function() trouble.open("document_diagnostics") end, defaultOptions)
 rikka.setKeymap("n", "gR", function() trouble.open("lsp_references") end)
+
+-- outline
+rikka.setKeymap("n", "<M-o>", ":AerialToggle<CR>", defaultOptions)
