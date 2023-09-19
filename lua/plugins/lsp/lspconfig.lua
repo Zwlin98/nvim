@@ -67,7 +67,7 @@ return {
             if serverModule and serverModule.checkOK() then
                 serverModule.setup(lspOpts)
             else
-                vim.notify("LSP server " .. server .. " not OK", vim.log.levels.WARN)
+                vim.notify("The lsp server " .. server .. " not found", vim.log.levels.WARN, { title = "LSP ERROR" })
             end
         end
     end
