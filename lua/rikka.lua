@@ -51,6 +51,15 @@ function Rikka.isBigFile(bufnr)
     return false
 end
 
+Rikka.notify = function(msg, level, title)
+    local notify = Rikka.prequire("notify")
+    if notify then
+        notify(msg, level, { title = title, timeout = 1000 })
+    else
+        vim.notify(msg, level)
+    end
+end
+
 Rikka.setKeymap = vim.keymap.set
 
 Rikka.createAutocmd = vim.api.nvim_create_autocmd
