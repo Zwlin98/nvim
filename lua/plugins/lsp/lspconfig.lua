@@ -12,7 +12,6 @@ return {
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
         "aznhe21/actions-preview.nvim",
-        "rcarriga/nvim-notify",
     },
     config = function()
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -58,7 +57,8 @@ return {
             "luals",
             "intelephense",
             "gopls",
-            "rust_analyzer",
+            -- "rust_analyzer",
+            "rust_tools",
             "clangd",
         }
 
@@ -67,10 +67,7 @@ return {
             if serverModule and serverModule.checkOK() then
                 serverModule.setup(lspOpts)
             else
-                vim.notify("The lsp server " .. server .. " not found", vim.log.levels.WARN, {
-                    title = "LSP ERROR",
-                    timeout = 1000,
-                })
+                rikka.notify("The lsp server " .. server .. " not found", vim.log.levels.WARN,  "LSP ERROR")
             end
         end
     end
