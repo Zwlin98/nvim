@@ -59,7 +59,7 @@ return {
             "intelephense",
             "gopls",
             "rust_analyzer",
-            "clangd",
+            "cclangd",
         }
 
         for _, server in ipairs(servers) do
@@ -67,7 +67,10 @@ return {
             if serverModule and serverModule.checkOK() then
                 serverModule.setup(lspOpts)
             else
-                vim.notify("The lsp server " .. server .. " not found", vim.log.levels.WARN, { title = "LSP ERROR" })
+                vim.notify("The lsp server " .. server .. " not found", vim.log.levels.WARN, {
+                    title = "LSP ERROR",
+                    timeout = 1000,
+                })
             end
         end
     end
