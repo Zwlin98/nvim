@@ -57,8 +57,7 @@ return {
             "luals",
             "intelephense",
             "gopls",
-            -- "rust_analyzer",
-            "rust_tools",
+            "rust_analyzer",
             "clangd",
         }
 
