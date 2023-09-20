@@ -2,7 +2,10 @@ return {
     'stevearc/aerial.nvim',
     event = "VeryLazy",
     opts = {
-        autojump = true,
+        layout = {
+            min_width = 30,
+        },
+        -- autojump = true,
         lsp = {
             diagnostics_trigger_update = true,
 
