@@ -12,8 +12,7 @@ return {
                 component_separators = { left = '|', right = '|' },
                 section_separators = { left = ' ', right = ' ' },
                 disabled_filetypes = {
-                    statusline = {},
-                    winbar = {},
+                    statusline = { "neo-tree" },
                 },
                 ignore_focus = {},
                 always_divide_middle = true,
@@ -28,7 +27,7 @@ return {
                 lualine_a = { 'mode' },
                 lualine_b = { 'branch', 'diff', 'diagnostics' },
                 lualine_c = {
-                    "filename",
+                    { "filename", path = 1 },
                     {
                         function()
                             return navic.get_location()
@@ -46,7 +45,7 @@ return {
                 lualine_a = {},
                 lualine_b = {},
                 lualine_c = { 'filename' },
-                lualine_x = { 'location' },
+                lualine_x = {},
                 lualine_y = {},
                 lualine_z = {}
             },
