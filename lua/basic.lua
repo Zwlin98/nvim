@@ -54,3 +54,5 @@ if rikka.isLocal() then
     vim.g.python3_host_prog = "~/.config/nvim/nvim-python/bin/python3"
     vim.cmd [[set clipboard+=unnamedplus]]
 end
+
+vim.g.directory = "/tmp//"
