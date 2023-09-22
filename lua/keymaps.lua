@@ -27,7 +27,7 @@ rikka.setKeymap("v", "<M-s>", function() tsbuiltin.current_buffer_fuzzy_find({ d
 -- grep
 local lga = require("telescope-live-grep-args.shortcuts")
 
-rikka.setKeymap("n", "<M-g>", lga.grep_word_under_cursor, defaultOptions)
+rikka.setKeymap("n", "<M-g>", tsbuiltin.grep_string, defaultOptions)
 rikka.setKeymap("v", "<M-g>", lga.grep_visual_selection, defaultOptions)
 
 rikka.setKeymap("n", "<M-f>", ts.extensions.live_grep_args.live_grep_args, defaultOptions)
