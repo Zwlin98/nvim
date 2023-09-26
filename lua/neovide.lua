@@ -8,6 +8,9 @@ if vim.g.neovide then
 
     vim.g.neovide_input_macos_alt_is_meta = true
     vim.g.neovide_cursor_vfx_mode = "railgun"
+    vim.g.neovide_cursor_animate_command_line = false
+    vim.g.neovide_cursor_animate_in_insert_mode = false
+
     -- fix CMD+C and CMD + V
     vim.g.neovide_input_use_logo = 1
     vim.keymap.set("n", "<D-s>", ":w<CR>")      -- Save
