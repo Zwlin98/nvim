@@ -36,7 +36,7 @@ return {
         require("yanky").setup(opts)
         ts.load_extension("yank_history")
 
-        rikka.setKeymap("i", "<M-y>", ts.extensions.yank_history.yank_history, { noremap = true, silent = true })
-        rikka.setKeymap("n", "<M-y>", ts.extensions.yank_history.yank_history, { noremap = true, silent = true })
+        rikka.setKeymap("i", "<M-y>", ts.extensions.yank_history.yank_history, { desc = "Yank history" })
+        rikka.setKeymap("n", "<M-y>", ts.extensions.yank_history.yank_history, { desc = "Yank history" })
     end
 }

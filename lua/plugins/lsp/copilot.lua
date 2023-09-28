@@ -5,8 +5,7 @@ local config = function()
     }
 
     vim.g.copilot_no_tab_map = true
-    rikka.setKeymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, script = true, expr = true, replace_keycodes = false }
-    )
+    rikka.setKeymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, script = true, expr = true, replace_keycodes = false, desc = "Copilot Accept" })
 end
 
 return {

@@ -11,7 +11,7 @@ return {
             trim       = false, -- Trim surrounding whitespaces before copy
         }
 
-        rikka.setKeymap('n', '<C-y>', osc52.copy_operator, { expr = true })
-        rikka.setKeymap('v', '<C-y>', osc52.copy_visual)
+        rikka.setKeymap('n', '<C-y>', osc52.copy_operator, { expr = true, desc = 'OSC52 copy to clipboard' })
+        rikka.setKeymap('v', '<C-y>', osc52.copy_visual, { desc = 'OSC52 copy to clipboard' })
     end,
 }

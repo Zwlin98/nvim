@@ -79,24 +79,23 @@ return {
         telescope.load_extension("live_grep_args")
         telescope.load_extension("frecency")
 
-        rikka.setKeymap("n", "<M-p>", tsbuiltin.builtin)
+        rikka.setKeymap("n", "<M-p>", tsbuiltin.builtin, { desc = "Telescope Builtin" })
 
-        rikka.setKeymap("n", "<M-`>", tsbuiltin.lsp_document_symbols)
+        rikka.setKeymap("n", "<M-`>", tsbuiltin.lsp_document_symbols, { desc = "Telescope Document Symbols" })
 
-        rikka.setKeymap("n", "<M-s>", tsbuiltin.current_buffer_fuzzy_find)
+        rikka.setKeymap("n", "<M-s>", tsbuiltin.current_buffer_fuzzy_find, { desc = "Telescope Fuzzy Find" })
 
-        rikka.setKeymap("n", "<M-g>", tsbuiltin.grep_string)
-        rikka.setKeymap("v", "<M-g>", lga_shortcuts.grep_visual_selection)
+        rikka.setKeymap("n", "<M-g>", tsbuiltin.grep_string, { desc = "Telescope Grep String" })
+        rikka.setKeymap("v", "<M-g>", lga_shortcuts.grep_visual_selection, { desc = "Telescope Grep Visual Selection" })
 
-        rikka.setKeymap("n", "<M-e>", tsbuiltin.find_files)
+        rikka.setKeymap("n", "<M-e>", tsbuiltin.find_files, { desc = "Telescope Find Files" })
 
-        rikka.setKeymap("n", "<M-r>", tsbuiltin.buffers)
+        rikka.setKeymap("n", "<M-r>", tsbuiltin.buffers, { desc = "Telescope Buffers" })
 
-        rikka.setKeymap("n", "<M-z>", tsbuiltin.jumplist)
+        rikka.setKeymap("n", "<M-z>", tsbuiltin.jumplist, { desc = "Telescope Jumplist" })
 
-        rikka.setKeymap("v", "<M-s>", function() tsbuiltin.current_buffer_fuzzy_find({ default_text = rikka.getVisualSelection() }) end)
+        rikka.setKeymap("v", "<M-s>", function() tsbuiltin.current_buffer_fuzzy_find({ default_text = rikka.getVisualSelection() }) end, { desc = "Telescope Fuzzy Find (selection)" })
 
-        rikka.setKeymap("n", "<M-f>", telescope.extensions.live_grep_args.live_grep_args)
-
+        rikka.setKeymap("n", "<M-f>", telescope.extensions.live_grep_args.live_grep_args, { desc = "Telescope Live Grep Args" })
     end
 }
