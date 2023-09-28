@@ -22,6 +22,6 @@ return {
 
         neotree.setup(opts)
 
-        rikka.setKeymap("n", "<space>e", ":Neotree toggle<CR>")
+        rikka.setKeymap("n", "<space>e", ":Neotree toggle<CR>", { desc = "Open NeoTree" })
     end
 }

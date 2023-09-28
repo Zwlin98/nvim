@@ -17,18 +17,12 @@ return {
             },
         }
 
-
-        local function set_terminal_keymaps()
-            local opts = { buffer = 0 }
-            rikka.setKeymap('t', '<ESC>', [[<C-\><C-n>]], opts)
-            rikka.setKeymap('n', '<ESC>', "<CMD>close<CR>", opts)
-            rikka.setKeymap('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
-        end
-
         rikka.createAutocmd("TermOpen", {
             pattern = "*",
             callback = function()
-                set_terminal_keymaps()
+                rikka.setBufKeymap(0, 't', '<ESC>', [[<C-\><C-n>]], { desc = "Close Terminal" })
+                rikka.setBufKeymap(0, 'n', '<ESC>', "<CMD>close<CR>", { desc = "Clse Terminal" })
+                rikka.setBufKeymap(0, 't', '<C-w>', [[<C-\><C-n><C-w>]], { desc = "Terminal Mode Swich Window" })
             end
         })
 
@@ -43,11 +37,11 @@ return {
             },
             on_open = function(term)
                 vim.cmd("startinsert!")
-                vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<M-\\>", "<cmd>close<CR>", { noremap = true, silent = true })
+                rikka.setBufKeymap(term.bufnr, "t", "<M-\\>", "<cmd>close<CR>", { desc = "Close Terminal" })
             end,
         })
 
-        rikka.setKeymap("n", "<M-\\>", function() normalTerminal:toggle() end, { noremap = true, silent = true })
+        rikka.setKeymap("n", "<M-\\>", function() normalTerminal:toggle() end, { desc = "Toggle Terminal" })
 
         local lazygit = Terminal:new({
             cmd = "lazygit",
@@ -59,7 +53,7 @@ return {
 
             on_open = function(term)
                 vim.cmd("startinsert!")
-                vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+                rikka.setBufKeymap(term.bufnr, "n", "q", "<cmd>close<CR>", { desc = "Close Terminal" })
             end,
         })
 

@@ -74,6 +74,7 @@ end
 
 Rikka.setKeymap = function(mode, lhs, rhs, opts)
     opts = opts or {}
+
     if opts.noremap == nil then
         opts.noremap = true
     end
@@ -86,13 +87,7 @@ Rikka.setKeymap = function(mode, lhs, rhs, opts)
         rhs = ''
     end
 
-    if opts.buffer then
-        local buffer = opts.buffer
-        opts.buffer = nil
-        Rikka.setBufKeymap(buffer, mode, lhs, rhs, opts)
-    else
-        vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
-    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
 end
 
 Rikka.setBufKeymap = function(buffer, mode, lhs, rhs, opts)

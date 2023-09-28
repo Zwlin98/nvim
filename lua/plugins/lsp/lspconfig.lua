@@ -38,9 +38,9 @@ return {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(env)
                 local buffer = env.buf
-                rikka.setBufKeymap(buffer, "n", "gr", telescope.lsp_references, { desc = "References" })
-                rikka.setBufKeymap(buffer, "n", "gd", telescope.lsp_definitions, { desc = "Definitions" })
-                rikka.setBufKeymap(buffer, "n", "gi", telescope.lsp_implementations, { desc = "Implementations" })
+                rikka.setBufKeymap(buffer, "n", "gr", telescope.lsp_references, { desc = "Check references under cursor" })
+                rikka.setBufKeymap(buffer, "n", "gd", telescope.lsp_definitions, { desc = "Check definitions under cursor" })
+                rikka.setBufKeymap(buffer, "n", "gi", telescope.lsp_implementations, { desc = "Check implementations under cursor" })
                 rikka.setBufKeymap(buffer, "n", "K", vim.lsp.buf.hover, { desc = "Hover" })
                 rikka.setBufKeymap(buffer, "n", "ga", actions_preview.code_actions, { desc = "Code Actions" })
                 rikka.setBufKeymap(buffer, "n", "<space>r", vim.lsp.buf.rename, { desc = "Rename" })
