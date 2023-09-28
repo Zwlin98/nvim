@@ -20,9 +20,9 @@ return {
 
         local function set_terminal_keymaps()
             local opts = { buffer = 0 }
-            vim.keymap.set('t', '<ESC>', [[<C-\><C-n>]], opts)
-            vim.keymap.set('n', '<ESC>', "<CMD>close<CR>", opts)
-            vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+            rikka.setKeymap('t', '<ESC>', [[<C-\><C-n>]], opts)
+            rikka.setKeymap('n', '<ESC>', "<CMD>close<CR>", opts)
+            rikka.setKeymap('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
         end
 
         rikka.createAutocmd("TermOpen", {

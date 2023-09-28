@@ -73,8 +73,44 @@ Rikka.error = function(msg, title)
 end
 
 Rikka.setKeymap = function(mode, lhs, rhs, opts)
-    opts = opts or { noremap = true, silent = true }
-    vim.keymap.set(mode, lhs, rhs, opts)
+    opts = opts or {}
+    if opts.noremap == nil then
+        opts.noremap = true
+    end
+    if opts.silent == nil then
+        opts.silent = true
+    end
+
+    if type(rhs) == 'function' then
+        opts.callback = rhs
+        rhs = ''
+    end
+
+    if opts.buffer then
+        local buffer = opts.buffer
+        opts.buffer = nil
+        Rikka.setBufKeymap(buffer, mode, lhs, rhs, opts)
+    else
+        vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+    end
+end
+
+Rikka.setBufKeymap = function(buffer, mode, lhs, rhs, opts)
+    opts = opts or {}
+
+    if opts.noremap == nil then
+        opts.noremap = true
+    end
+    if opts.silent == nil then
+        opts.silent = true
+    end
+
+    if type(rhs) == 'function' then
+        opts.callback = rhs
+        rhs = ''
+    end
+
+    vim.api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, opts)
 end
 
 Rikka.createAutocmd = vim.api.nvim_create_autocmd

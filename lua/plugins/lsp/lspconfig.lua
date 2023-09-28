@@ -17,6 +17,7 @@ return {
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
         local telescope = require("telescope.builtin")
+        local actions_preview = require("actions-preview")
 
         -- rikka.createAutocmd({ 'InsertEnter' }, {
         --     callback = function(env)
@@ -36,15 +37,16 @@ return {
         rikka.createAutocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(env)
-                local keyOpts = { buffer = env.buf }
-                rikka.setKeymap('n', 'gr', telescope.lsp_references, keyOpts)
-                rikka.setKeymap("n", "gd", telescope.lsp_definitions, keyOpts)
-                rikka.setKeymap("n", "gi", telescope.lsp_implementations, keyOpts)
-                rikka.setKeymap({ "v", "n" }, "ga", require("actions-preview").code_actions)
-                rikka.setKeymap("n", "K", vim.lsp.buf.hover, keyOpts)
-                rikka.setKeymap("n", "<space>r", vim.lsp.buf.rename, keyOpts)
-                rikka.setKeymap("n", "<space>f", function() vim.lsp.buf.format({ async = true }) end, keyOpts)
-                rikka.setKeymap("v", "<space>f", function() vim.lsp.buf.format({ async = true }) end, keyOpts)
+                local buffer = env.buf
+                rikka.setBufKeymap(buffer, "n", "gr", telescope.lsp_references, { desc = "References" })
+                rikka.setBufKeymap(buffer, "n", "gd", telescope.lsp_definitions, { desc = "Definitions" })
+                rikka.setBufKeymap(buffer, "n", "gi", telescope.lsp_implementations, { desc = "Implementations" })
+                rikka.setBufKeymap(buffer, "n", "K", vim.lsp.buf.hover, { desc = "Hover" })
+                rikka.setBufKeymap(buffer, "n", "ga", actions_preview.code_actions, { desc = "Code Actions" })
+                rikka.setBufKeymap(buffer, "n", "<space>r", vim.lsp.buf.rename, { desc = "Rename" })
+
+                rikka.setBufKeymap(buffer, "n", "<space>f", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format Documents" })
+                rikka.setBufKeymap(buffer, "v", "<space>f", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format Selection" })
             end,
         })
 
