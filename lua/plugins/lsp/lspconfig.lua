@@ -66,7 +66,7 @@ return {
             if serverModule and serverModule.checkOK() then
                 serverModule.setup(lspOpts)
             else
-                rikka.notify("The lsp server " .. server .. " not found", vim.log.levels.WARN,  "LSP ERROR")
+                rikka.warn("The lsp server " .. server .. " not found", "LSP ERROR")
             end
         end
     end

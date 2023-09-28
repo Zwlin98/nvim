@@ -60,6 +60,18 @@ Rikka.notify = function(msg, level, title)
     end
 end
 
+Rikka.info = function(msg, title)
+    Rikka.notify(msg, vim.log.levels.INFO, title)
+end
+
+Rikka.warn = function(msg, title)
+    Rikka.notify(msg, vim.log.levels.WARN, title)
+end
+
+Rikka.error = function(msg, title)
+    Rikka.notify(msg, vim.log.levels.ERROR, title)
+end
+
 Rikka.setKeymap = vim.keymap.set
 
 Rikka.createAutocmd = vim.api.nvim_create_autocmd
