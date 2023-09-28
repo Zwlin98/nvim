@@ -8,13 +8,20 @@ return {
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
     },
-    opts = {
-        popup_border_style = rikka.border,
-        filesystem = {
-            follow_current_file = {
-                enabled = true,
-                leave_dirs_open = false,
-            },
+    config = function()
+        local opts = {
+            popup_border_style = rikka.border,
+            filesystem = {
+                follow_current_file = {
+                    enabled = true,
+                    leave_dirs_open = false,
+                },
+            }
         }
-    }
+        local neotree = require("neo-tree")
+
+        neotree.setup(opts)
+
+        rikka.setKeymap("n", "<space>e", ":Neotree toggle<CR>")
+    end
 }

@@ -72,7 +72,10 @@ Rikka.error = function(msg, title)
     Rikka.notify(msg, vim.log.levels.ERROR, title)
 end
 
-Rikka.setKeymap = vim.keymap.set
+Rikka.setKeymap = function(mode, lhs, rhs, opts)
+    opts = opts or { noremap = true, silent = true }
+    vim.keymap.set(mode, lhs, rhs, opts)
+end
 
 Rikka.createAutocmd = vim.api.nvim_create_autocmd
 

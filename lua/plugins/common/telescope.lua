@@ -20,8 +20,12 @@ return {
 
     },
     config = function()
+        local rikka = require("rikka")
+        local telescope = require("telescope")
+        local tsbuiltin = require("telescope.builtin")
         local actions = require("telescope.actions")
         local lga_actions = require("telescope-live-grep-args.actions")
+        local lga_shortcuts = require("telescope-live-grep-args.shortcuts")
 
         local dropdownConfig = {
             theme = "dropdown",
@@ -70,9 +74,29 @@ return {
             }
         }
 
-        require("telescope").setup(opts)
-        require('telescope').load_extension('fzf')
-        require("telescope").load_extension("live_grep_args")
-        require("telescope").load_extension("frecency")
+        telescope.setup(opts)
+        telescope.load_extension('fzf')
+        telescope.load_extension("live_grep_args")
+        telescope.load_extension("frecency")
+
+        rikka.setKeymap("n", "<M-p>", tsbuiltin.builtin)
+
+        rikka.setKeymap("n", "<M-`>", tsbuiltin.lsp_document_symbols)
+
+        rikka.setKeymap("n", "<M-s>", tsbuiltin.current_buffer_fuzzy_find)
+
+        rikka.setKeymap("n", "<M-g>", tsbuiltin.grep_string)
+        rikka.setKeymap("v", "<M-g>", lga_shortcuts.grep_visual_selection)
+
+        rikka.setKeymap("n", "<M-e>", tsbuiltin.find_files)
+
+        rikka.setKeymap("n", "<M-r>", tsbuiltin.buffers)
+
+        rikka.setKeymap("n", "<M-z>", tsbuiltin.jumplist)
+
+        rikka.setKeymap("v", "<M-s>", function() tsbuiltin.current_buffer_fuzzy_find({ default_text = rikka.getVisualSelection() }) end)
+
+        rikka.setKeymap("n", "<M-f>", telescope.extensions.live_grep_args.live_grep_args)
+
     end
 }
