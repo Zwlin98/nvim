@@ -20,6 +20,7 @@ return {
                 "vim",
                 "yaml",
                 "php",
+                "beancount",
             },
             -- 启用代码高亮功能
             highlight = {
