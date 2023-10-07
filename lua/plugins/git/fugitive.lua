@@ -5,6 +5,6 @@ return {
         local rikka = require("rikka")
         rikka.createCommand("Gb", function()
             vim.cmd("Git blame --date=human")
-        end, {})
+        end, { desc = "Git Blame" })
     end
 }
