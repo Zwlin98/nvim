@@ -5,6 +5,16 @@ Rikka = {}
 
 Rikka.border = "rounded"
 
+Rikka.color = {}
+
+Rikka.color.red = "#bf717a"
+Rikka.color.green = "#a3be8c"
+Rikka.color.yellow = "#ebcb8b"
+Rikka.color.blue = "#81a1c1"
+Rikka.color.violet = "#b48ead"
+Rikka.color.cyan = "#88c0d0"
+Rikka.color.orange = "#d08770"
+
 function Rikka.getVisualSelection()
     vim.cmd('noau normal! "vy"')
     local text = vim.fn.getreg('v')
