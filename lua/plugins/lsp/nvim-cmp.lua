@@ -134,8 +134,8 @@ return {
                 end, { "i", "s" }),
                 ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), { "i", "s" }),
                 ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "s" }),
-                ['PageUp'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s" }),
-                ['PageDown'] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "s" }),
+                ['<PageUp>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s" }),
+                ['<PageDown>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "s" }),
             },
             formatting = {
                 format = lspkind.cmp_format({
