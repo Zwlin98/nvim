@@ -6,6 +6,7 @@ return {
         local hooks = require("ibl.hooks")
         local rikka = require("rikka")
 
+        local exclude_ft = { "help", "git", "markdown", "snippets", "text", "gitconfig", "alpha", "dashboard" }
         local highlight = {
             "RainbowRed",
             "RainbowYellow",
@@ -32,6 +33,27 @@ return {
                 char = "¦",
                 tab_char = "¦",
             },
+            exclude = {
+                filetypes = exclude_ft,
+                buftypes = { "terminal" },
+            },
         }
+
+        local gid = vim.api.nvim_create_augroup("indent_blankline", { clear = true })
+        rikka.createAutocmd("InsertEnter", {
+            pattern = "*",
+            group = gid,
+            command = "IBLDisable",
+        })
+
+        rikka.createAutocmd("InsertLeave", {
+            pattern = "*",
+            group = gid,
+            callback = function()
+                if not vim.tbl_contains(exclude_ft, vim.bo.filetype) then
+                    vim.cmd("IBLEnable")
+                end
+            end,
+        })
     end,
 }
