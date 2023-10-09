@@ -5,5 +5,5 @@ rikka.createAutocmd({ "VimEnter" }, {
 })
 
 rikka.createAutocmd({ "FileType" }, {
-    command = "set formatoptions-=ro"
+    command = "set formatoptions-=ro",
 })

@@ -6,7 +6,7 @@ end
 
 function Server.setup(opts)
     local lspconfig = opts.lspconfig
-    lspconfig.clangd.setup {}
+    lspconfig.clangd.setup({})
 end
 
 return Server

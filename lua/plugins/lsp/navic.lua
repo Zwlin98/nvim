@@ -4,33 +4,33 @@ return {
     config = function()
         local navic = require("nvim-navic")
 
-        navic.setup {
+        navic.setup({
             icons = {
-                File          = "󰈙 ",
-                Module        = " ",
-                Namespace     = "󰌗 ",
-                Package       = " ",
-                Class         = "󰌗 ",
-                Method        = "󰆧 ",
-                Property      = " ",
-                Field         = " ",
-                Constructor   = " ",
-                Enum          = "󰕘",
-                Interface     = "󰕘",
-                Function      = "󰊕 ",
-                Variable      = "󰆧 ",
-                Constant      = "󰏿 ",
-                String        = "󰀬 ",
-                Number        = "󰎠 ",
-                Boolean       = "◩ ",
-                Array         = "󰅪 ",
-                Object        = "󰅩 ",
-                Key           = "󰌋 ",
-                Null          = "󰟢 ",
-                EnumMember    = " ",
-                Struct        = "󰌗 ",
-                Event         = " ",
-                Operator      = "󰆕 ",
+                File = "󰈙 ",
+                Module = " ",
+                Namespace = "󰌗 ",
+                Package = " ",
+                Class = "󰌗 ",
+                Method = "󰆧 ",
+                Property = " ",
+                Field = " ",
+                Constructor = " ",
+                Enum = "󰕘",
+                Interface = "󰕘",
+                Function = "󰊕 ",
+                Variable = "󰆧 ",
+                Constant = "󰏿 ",
+                String = "󰀬 ",
+                Number = "󰎠 ",
+                Boolean = "◩ ",
+                Array = "󰅪 ",
+                Object = "󰅩 ",
+                Key = "󰌋 ",
+                Null = "󰟢 ",
+                EnumMember = " ",
+                Struct = "󰌗 ",
+                Event = " ",
+                Operator = "󰆕 ",
                 TypeParameter = "󰊄 ",
             },
             lsp = {
@@ -43,7 +43,7 @@ return {
             depth_limit_indicator = "..",
             safe_output = true,
             lazy_update_context = false,
-            click = false
-        }
-    end
+            click = false,
+        })
+    end,
 }

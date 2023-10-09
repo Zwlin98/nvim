@@ -12,11 +12,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 -- start
-local rikka = require('rikka')
+local rikka = require("rikka")
 
-require('lazy').setup("plugins", {
+require("lazy").setup("plugins", {
     ui = {
         border = rikka.border,
     },

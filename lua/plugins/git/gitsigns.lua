@@ -16,22 +16,30 @@ return {
                 end
 
                 -- Navigation (diff)
-                map('n', ']d', function()
-                    if vim.wo.diff then return ']c' end
-                    vim.schedule(function() gs.next_hunk() end)
-                    return '<Ignore>'
+                map("n", "]d", function()
+                    if vim.wo.diff then
+                        return "]c"
+                    end
+                    vim.schedule(function()
+                        gs.next_hunk()
+                    end)
+                    return "<Ignore>"
                 end, { expr = true })
 
-                map('n', '[d', function()
-                    if vim.wo.diff then return '[c' end
-                    vim.schedule(function() gs.prev_hunk() end)
-                    return '<Ignore>'
+                map("n", "[d", function()
+                    if vim.wo.diff then
+                        return "[c"
+                    end
+                    vim.schedule(function()
+                        gs.prev_hunk()
+                    end)
+                    return "<Ignore>"
                 end, { expr = true })
-            end
+            end,
         })
 
-        rikka.createCommand('PreviewDiff', function()
+        rikka.createCommand("PreviewDiff", function()
             vim.cmd("Gitsigns preview_hunk")
         end, { desc = "Gitsigns Preview Hunk" })
-    end
+    end,
 }

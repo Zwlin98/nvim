@@ -1,13 +1,13 @@
 return {
-    'stevearc/aerial.nvim',
+    "stevearc/aerial.nvim",
     event = "VeryLazy",
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
-        "nvim-tree/nvim-web-devicons"
+        "nvim-tree/nvim-web-devicons",
     },
     config = function()
-        local aerial = require('aerial')
-        local rikka = require('rikka')
+        local aerial = require("aerial")
+        local rikka = require("rikka")
         local opts = {
             layout = {
                 min_width = 30,
@@ -34,7 +34,6 @@ return {
             vim.cmd("AerialToggle")
         end, { desc = "Toggle File Outline" })
 
-
         rikka.setKeymap("n", "<leader>o", "<CMD>AerialToggle<CR>", { desc = "Toggle File Outline" })
-    end
+    end,
 }

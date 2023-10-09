@@ -1,30 +1,29 @@
 --[[
 -- 一些辅助用的 Lua 函数及变量
 --]]
-Rikka              = {}
+Rikka = {}
 
-Rikka.border       = "rounded"
+Rikka.border = "rounded"
 
-Rikka.color        = {}
-Rikka.color.red    = "#bf717a"
-Rikka.color.green  = "#a3be8c"
+Rikka.color = {}
+Rikka.color.red = "#bf717a"
+Rikka.color.green = "#a3be8c"
 Rikka.color.yellow = "#ebcb8b"
-Rikka.color.blue   = "#81a1c1"
+Rikka.color.blue = "#81a1c1"
 Rikka.color.violet = "#b48ead"
-Rikka.color.cyan   = "#88c0d0"
+Rikka.color.cyan = "#88c0d0"
 Rikka.color.orange = "#d08770"
 
-
 function Rikka.getVisualSelection()
-    vim.cmd('noau normal! "vy"')
-    local text = vim.fn.getreg('v')
-    vim.fn.setreg('v', {})
+    vim.cmd([[noau normal! "vy"]])
+    local text = vim.fn.getreg("v")
+    vim.fn.setreg("v", {})
 
     text = string.gsub(text, "\n", "")
     if #text > 0 then
         return text
     else
-        return ''
+        return ""
     end
 end
 
@@ -92,9 +91,9 @@ Rikka.setKeymap = function(mode, lhs, rhs, opts)
         opts.silent = true
     end
 
-    if type(rhs) == 'function' then
+    if type(rhs) == "function" then
         opts.callback = rhs
-        rhs = ''
+        rhs = ""
     end
 
     vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
@@ -110,9 +109,9 @@ Rikka.setBufKeymap = function(buffer, mode, lhs, rhs, opts)
         opts.silent = true
     end
 
-    if type(rhs) == 'function' then
+    if type(rhs) == "function" then
         opts.callback = rhs
-        rhs = ''
+        rhs = ""
     end
 
     vim.api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, opts)

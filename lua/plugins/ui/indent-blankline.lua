@@ -27,7 +27,7 @@ return {
             vim.api.nvim_set_hl(0, "RainbowYellow", { fg = rikka.color.yellow })
         end)
 
-        ibl.setup {
+        ibl.setup({
             indent = {
                 highlight = highlight,
                 char = "¦",
@@ -37,7 +37,7 @@ return {
                 filetypes = exclude_ft,
                 buftypes = { "terminal" },
             },
-        }
+        })
 
         local gid = vim.api.nvim_create_augroup("indent_blankline", { clear = true })
         rikka.createAutocmd("InsertEnter", {

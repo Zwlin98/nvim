@@ -6,5 +6,5 @@ return {
         rikka.createCommand("His", function()
             vim.cmd("DiffviewFileHistory %")
         end, { desc = "File History (Using Diffview)" })
-    end
+    end,
 }

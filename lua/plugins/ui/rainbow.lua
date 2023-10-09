@@ -13,26 +13,25 @@ return {
         vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = rikka.color.cyan })
         vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = rikka.color.blue })
 
-
         vim.g.rainbow_delimiters = {
             strategy = {
-                [''] = rainbow_delimiters.strategy['global'],
-                commonlisp = rainbow_delimiters.strategy['local'],
+                [""] = rainbow_delimiters.strategy["global"],
+                commonlisp = rainbow_delimiters.strategy["local"],
             },
             query = {
-                [''] = 'rainbow-delimiters',
-                lua = 'rainbow-blocks',
+                [""] = "rainbow-delimiters",
+                lua = "rainbow-blocks",
             },
             highlight = {
-                'RainbowDelimiterOrange',
-                'RainbowDelimiterYellow',
-                'RainbowDelimiterViolet',
-                'RainbowDelimiterGreen',
-                'RainbowDelimiterCyan',
-                'RainbowDelimiterBlue',
-                'RainbowDelimiterRed',
+                "RainbowDelimiterOrange",
+                "RainbowDelimiterYellow",
+                "RainbowDelimiterViolet",
+                "RainbowDelimiterGreen",
+                "RainbowDelimiterCyan",
+                "RainbowDelimiterBlue",
+                "RainbowDelimiterRed",
             },
-            blacklist = { 'c', 'cpp' },
+            blacklist = { "c", "cpp" },
         }
-    end
+    end,
 }

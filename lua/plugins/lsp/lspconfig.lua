@@ -44,9 +44,6 @@ return {
                 rikka.setBufKeymap(buffer, "n", "K", vim.lsp.buf.hover, { desc = "Hover" })
                 rikka.setBufKeymap(buffer, "n", "ga", actions_preview.code_actions, { desc = "Code Actions" })
                 rikka.setBufKeymap(buffer, "n", "<space>r", vim.lsp.buf.rename, { desc = "Rename" })
-
-                rikka.setBufKeymap(buffer, "n", "<space>f", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format Documents" })
-                rikka.setBufKeymap(buffer, "v", "<space>f", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format Selection" })
             end,
         })
 
@@ -71,5 +68,5 @@ return {
                 rikka.warn("The lsp server " .. server .. " not found", "LSP ERROR")
             end
         end
-    end
+    end,
 }

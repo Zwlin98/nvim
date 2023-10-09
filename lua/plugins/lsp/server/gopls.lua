@@ -8,8 +8,7 @@ function Server.setup(opts)
     local lspconfig = opts.lspconfig
     local capabilities = opts.capabilities
 
-
-    lspconfig.gopls.setup {
+    lspconfig.gopls.setup({
         capabilities = capabilities,
         settings = {
             gopls = {
@@ -23,8 +22,8 @@ function Server.setup(opts)
         },
         init_options = {
             usePlaceholders = true,
-        }
-    }
+        },
+    })
 end
 
 return Server

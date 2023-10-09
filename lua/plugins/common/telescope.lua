@@ -1,23 +1,22 @@
 return {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.2',
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.2",
     dependencies = {
-        'nvim-lua/plenary.nvim',
+        "nvim-lua/plenary.nvim",
         {
-            'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'make'
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "make",
         },
         {
             "nvim-telescope/telescope-live-grep-args.nvim",
             version = "^1.0.0",
         },
         {
-            "nvim-telescope/telescope-frecency.nvim"
+            "nvim-telescope/telescope-frecency.nvim",
         },
         {
-            "kkharji/sqlite.lua"
-        }
-
+            "kkharji/sqlite.lua",
+        },
     },
     config = function()
         local rikka = require("rikka")
@@ -43,7 +42,7 @@ return {
             defaults = {
                 mappings = {
                     i = {
-                        ["<esc>"] = actions.close
+                        ["<esc>"] = actions.close,
                     },
                 },
             },
@@ -56,10 +55,10 @@ return {
             },
             extensions = {
                 fzf = {
-                    fuzzy = true,                   -- false will only do exact matching
+                    fuzzy = true, -- false will only do exact matching
                     override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true,    -- override the file sorter
-                    case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+                    override_file_sorter = true, -- override the file sorter
+                    case_mode = "smart_case", -- or "ignore_case" or "respect_case"
                     -- the default case_mode is "smart_case"
                 },
                 live_grep_args = {
@@ -70,12 +69,12 @@ return {
                             ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
                         },
                     },
-                }
-            }
+                },
+            },
         }
 
         telescope.setup(opts)
-        telescope.load_extension('fzf')
+        telescope.load_extension("fzf")
         telescope.load_extension("live_grep_args")
         telescope.load_extension("frecency")
 
@@ -94,8 +93,10 @@ return {
 
         rikka.setKeymap("n", "<M-z>", tsbuiltin.jumplist, { desc = "Telescope Jumplist" })
 
-        rikka.setKeymap("v", "<M-s>", function() tsbuiltin.current_buffer_fuzzy_find({ default_text = rikka.getVisualSelection() }) end, { desc = "Telescope Fuzzy Find (selection)" })
+        rikka.setKeymap("v", "<M-s>", function()
+            tsbuiltin.current_buffer_fuzzy_find({ default_text = rikka.getVisualSelection() })
+        end, { desc = "Telescope Fuzzy Find (selection)" })
 
         rikka.setKeymap("n", "<M-f>", telescope.extensions.live_grep_args.live_grep_args, { desc = "Telescope Live Grep Args" })
-    end
+    end,
 }

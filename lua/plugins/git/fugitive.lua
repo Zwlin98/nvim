@@ -6,5 +6,5 @@ return {
         rikka.createCommand("Gb", function()
             vim.cmd("Git blame --date=human")
         end, { desc = "Git Blame" })
-    end
+    end,
 }

@@ -5,7 +5,7 @@ return {
         { "nvim-treesitter/nvim-treesitter" },
     },
     config = function()
-        require("nvim-treesitter.configs").setup {
+        require("nvim-treesitter.configs").setup({
             textobjects = {
                 select = {
                     enable = true,
@@ -46,6 +46,6 @@ return {
                     },
                 },
             },
-        }
+        })
     end,
 }

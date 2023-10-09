@@ -13,11 +13,11 @@ if vim.g.neovide then
     -- fix CMD+C and CMD + V
     vim.g.neovide_input_use_logo = 1
 
-    rikka.setKeymap("n", "<D-s>", ":w<CR>")      -- Save
-    rikka.setKeymap("v", "<D-c>", '"+y')         -- Copy
-    rikka.setKeymap("n", "<D-v>", '"+P')         -- Paste normal mode
-    rikka.setKeymap("v", "<D-v>", '"+P')         -- Paste visual mode
-    rikka.setKeymap("c", "<D-v>", "<C-R>+")      -- Paste command mode
+    rikka.setKeymap("n", "<D-s>", ":w<CR>") -- Save
+    rikka.setKeymap("v", "<D-c>", '"+y') -- Copy
+    rikka.setKeymap("n", "<D-v>", '"+P') -- Paste normal mode
+    rikka.setKeymap("v", "<D-v>", '"+P') -- Paste visual mode
+    rikka.setKeymap("c", "<D-v>", "<C-R>+") -- Paste command mode
     rikka.setKeymap("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 
     -- Allow clipboard copy paste in neovim
@@ -25,7 +25,6 @@ if vim.g.neovide then
     rikka.setKeymap("!", "<D-v>", "<C-R>+")
     rikka.setKeymap("t", "<D-v>", "<C-R>+")
     rikka.setKeymap("v", "<D-v>", "<C-R>+")
-
 
     -- tmp solution for no opt
     rikka.setKeymap("n", "<D-e>", ts.find_files, { desc = "Telescope Find Files" })

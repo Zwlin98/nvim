@@ -1,5 +1,5 @@
 return {
-    'gbprod/yanky.nvim',
+    "gbprod/yanky.nvim",
     config = function()
         local rikka = require("rikka")
         local ts = require("telescope")
@@ -17,7 +17,7 @@ return {
                 },
                 telescope = {
                     use_default_mappings = true, -- if default mappings should be used
-                    mappings = nil,              -- nil to use default mappings or no mappings (see `use_default_mappings`)
+                    mappings = nil, -- nil to use default mappings or no mappings (see `use_default_mappings`)
                 },
             },
             system_clipboard = {
@@ -38,5 +38,5 @@ return {
 
         rikka.setKeymap("i", "<M-y>", ts.extensions.yank_history.yank_history, { desc = "Yank history" })
         rikka.setKeymap("n", "<M-y>", ts.extensions.yank_history.yank_history, { desc = "Yank history" })
-    end
+    end,
 }

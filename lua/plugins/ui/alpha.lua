@@ -1,8 +1,8 @@
 return {
-    'goolord/alpha-nvim',
+    "goolord/alpha-nvim",
     dependencies = {
-        'nvim-tree/nvim-web-devicons',
-        "nvim-telescope/telescope.nvim"
+        "nvim-tree/nvim-web-devicons",
+        "nvim-telescope/telescope.nvim",
     },
     config = function()
         local alpha = require("alpha")
@@ -50,5 +50,5 @@ return {
         }
 
         alpha.setup(dashboard.opts)
-    end
-};
+    end,
+}
