@@ -1,4 +1,3 @@
 return {
-    "kylechui/nvim-surround",
-    opts = true,
+    "tpope/vim-surround"
 }
