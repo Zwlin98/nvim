@@ -1,6 +1,7 @@
 return {
     "lewis6991/gitsigns.nvim",
     config = function()
+        local rikka = require("rikka")
         require("gitsigns").setup({
 
             current_line_blame = true,
@@ -28,5 +29,9 @@ return {
                 end, { expr = true })
             end
         })
+
+        rikka.createCommand('PreviewDiff', function()
+            vim.cmd("Gitsigns preview_hunk")
+        end, { desc = "Gitsigns Preview Hunk" })
     end
 }

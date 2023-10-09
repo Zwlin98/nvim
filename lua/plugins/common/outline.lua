@@ -32,6 +32,9 @@ return {
         aerial.setup(opts)
         rikka.createCommand("Outline", function()
             vim.cmd("AerialToggle")
-        end, { desc = "Open File Outline" })
+        end, { desc = "Toggle File Outline" })
+
+
+        rikka.setKeymap("n", "<leader>o", "<CMD>AerialToggle<CR>", { desc = "Toggle File Outline" })
     end
 }
