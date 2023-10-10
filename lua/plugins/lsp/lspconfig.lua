@@ -65,7 +65,9 @@ return {
             if serverModule and serverModule.checkOK() then
                 serverModule.setup(lspOpts)
             else
-                rikka.warn("The lsp server " .. server .. " not found", "LSP ERROR")
+                if rikka.notifyLSPError() then
+                    rikka.warn("The lsp server " .. server .. " not found", "LSP ERROR")
+                end
             end
         end
     end,

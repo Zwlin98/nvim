@@ -45,6 +45,10 @@ function Rikka.isRemote()
     return os.getenv("SSH_CLIENT") or os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION")
 end
 
+function Rikka.notifyLSPError()
+    return not os.getenv("NVIM_NOT_NOTIFY_LSP_ERROR")
+end
+
 function Rikka.prequire(module)
     local ok, result = pcall(require, module)
     if ok then
