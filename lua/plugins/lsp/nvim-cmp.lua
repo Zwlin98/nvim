@@ -17,21 +17,28 @@ return {
         "CmdlineEnter",
     },
     config = function()
-        vim.api.nvim_set_hl(0, "CmpNormal", { bg = "#2e3440" })
+        local rikka = require("rikka")
+        local luasnip = require("luasnip")
+        local lspkind = require("lspkind")
+
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+        local cmp = require("cmp")
+
+        vim.api.nvim_set_hl(0, "CmpNormal", { bg = rikka.color.black })
         -- gray
-        vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#808080" })
+        vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = rikka.color.gray })
         -- blue
-        vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#569CD6" })
+        vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = rikka.color.blue })
         vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpIntemAbbrMatch" })
         -- light blue
-        vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#9CDCFE" })
+        vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = rikka.color.cyan })
         vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
         vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "CmpItemKindVariable" })
         -- pink
-        vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "#C586C0" })
+        vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = rikka.color.violet })
         vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
         -- front
-        vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "#D4D4D4" })
+        vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = rikka.color.white })
         vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
         vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
 
@@ -41,16 +48,7 @@ return {
             return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
         end
 
-        local luasnip = require("luasnip")
-        local lspkind = require("lspkind")
-
-        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-        local cmp = require("cmp")
-
-        local rikka = require("rikka")
-
         require("nvim-autopairs").setup()
-
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
         cmp.setup({
@@ -140,15 +138,6 @@ return {
             },
         })
 
-        -- Use buffer source for `/` and '?'.
-        -- cmp.setup.cmdline({ "/", "?" }, {
-        --     mapping = cmp.mapping.preset.cmdline(),
-        --     sources = {
-        --         { name = "buffer" },
-        --     },
-        -- })
-
-        -- Use cmdline & path source for ':'.
         cmp.setup.cmdline(":", {
             mapping = {
                 ["<Tab>"] = {

@@ -14,6 +14,16 @@ Rikka.color.violet = "#b48ead"
 Rikka.color.cyan = "#88c0d0"
 Rikka.color.orange = "#d08770"
 
+Rikka.color.black = "#2e3440"
+Rikka.color.lightBlack = "#3b4252"
+
+Rikka.color.gray = "#434c5e"
+Rikka.color.lightGray = "#4c566a"
+
+Rikka.color.white = "#eceff4"
+Rikka.color.lightWhite = "#e5e9f0"
+Rikka.color.grayWhite = "#d8dee9"
+
 function Rikka.getVisualSelection()
     vim.cmd([[noau normal! "vy"]])
     local text = vim.fn.getreg("v")
