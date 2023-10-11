@@ -11,11 +11,6 @@ return {
 
         trouble.setup(opts)
 
-        rikka.setKeymap("n", "gq", function()
-            trouble.open("document_diagnostics")
-        end, { desc = "Trouble" })
-        rikka.setKeymap("n", "gR", function()
-            trouble.open("lsp_references")
-        end, { desc = "Trouble" })
+        rikka.setKeymap("n", "gq", function() trouble.open("document_diagnostics") end, { desc = "Trouble" })
     end,
 }

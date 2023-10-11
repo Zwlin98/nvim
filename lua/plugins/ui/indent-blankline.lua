@@ -33,6 +33,10 @@ return {
                 char = "¦",
                 tab_char = "¦",
             },
+            scope = {
+                show_start = false,
+                show_end = false,
+            },
             exclude = {
                 filetypes = exclude_ft,
                 buftypes = { "terminal" },
@@ -45,7 +49,6 @@ return {
             group = gid,
             command = "IBLDisable",
         })
-
         rikka.createAutocmd("InsertLeave", {
             pattern = "*",
             group = gid,

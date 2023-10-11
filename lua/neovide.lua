@@ -2,13 +2,12 @@ if vim.g.neovide then
     local rikka = require("rikka")
     local ts = require("telescope.builtin")
 
-    vim.opt.guifont = "FiraCode Nerd Font Mono:h13"
+    vim.opt.guifont = "FiraCode Nerd Font Mono:h14"
     vim.g.neovide_hide_mouse_when_typing = true
 
     vim.g.neovide_input_macos_alt_is_meta = true
     vim.g.neovide_cursor_vfx_mode = "railgun"
     vim.g.neovide_cursor_animate_command_line = false
-    vim.g.neovide_cursor_animate_in_insert_mode = false
 
     -- fix CMD+C and CMD + V
     vim.g.neovide_input_use_logo = 1
