@@ -21,11 +21,11 @@ return {
             on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
         })
 
-        rikka.createCommand("ContextOn", function()
+        rikka.createCommand("CtxOn", function()
             vim.cmd("TSContextEnable")
         end, { desc = "Context On" })
 
-        rikka.createCommand("ContextOff", function()
+        rikka.createCommand("CtxOff", function()
             vim.cmd("TSContextDisable")
         end, { desc = "Context Off" })
     end,
