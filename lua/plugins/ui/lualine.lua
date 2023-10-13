@@ -5,10 +5,53 @@ return {
     },
     config = function()
         local navic = require("nvim-navic")
+        local rikka = require("rikka")
+
+        local colors = {
+            gray = rikka.color.gray,
+            yellow = rikka.color.yellow,
+            blue = rikka.color.blue,
+            violet = rikka.color.violet,
+            black = rikka.color.lightBlack,
+            white = rikka.color.white,
+            green = rikka.color.green,
+        }
+
+        local theme = {
+            normal = {
+                b = { fg = colors.green, bg = colors.black },
+                a = { fg = colors.black, bg = colors.green, gui = "bold" },
+                c = { fg = colors.white, bg = colors.black },
+            },
+            visual = {
+                b = { fg = colors.violet, bg = colors.black },
+                a = { fg = colors.black, bg = colors.violet, gui = "bold" },
+            },
+            inactive = {
+                b = { fg = colors.black, bg = colors.blue },
+                a = { fg = colors.white, bg = colors.gray, gui = "bold" },
+            },
+            replace = {
+                b = { fg = colors.yellow, bg = colors.black },
+                a = { fg = colors.black, bg = colors.yellow, gui = "bold" },
+                c = { fg = colors.white, bg = colors.black },
+            },
+            command = {
+                a = { bg = colors.yellow, fg = colors.black, gui = "bold" },
+                b = { bg = colors.lightgray, fg = colors.white },
+                c = { bg = colors.inactivegray, fg = colors.black },
+            },
+            insert = {
+                b = { fg = colors.blue, bg = colors.black },
+                a = { fg = colors.black, bg = colors.blue, gui = "bold" },
+                c = { fg = colors.white, bg = colors.black },
+            },
+        }
+
         require("lualine").setup({
             options = {
                 icons_enabled = true,
-                theme = "codedark",
+                theme = theme,
                 component_separators = { left = "|", right = "|" },
                 section_separators = { left = " ", right = " " },
                 disabled_filetypes = {
