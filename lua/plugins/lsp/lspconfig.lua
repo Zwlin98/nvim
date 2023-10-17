@@ -53,11 +53,12 @@ return {
         }
 
         local servers = {
-            "luals",
-            "intelephense",
-            "gopls",
-            "rust_analyzer",
-            "clangd",
+            "c",
+            "go",
+            "lua",
+            "markdown",
+            "php",
+            "rust",
         }
 
         for _, server in ipairs(servers) do
