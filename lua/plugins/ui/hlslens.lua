@@ -1,5 +1,6 @@
 return {
     "kevinhwang91/nvim-hlslens",
+    event = "VeryLazy",
     config = function()
         local rikka = require("rikka")
         require("hlslens").setup()
