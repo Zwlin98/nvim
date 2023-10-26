@@ -28,6 +28,7 @@ return {
         end)
 
         ibl.setup({
+            enabled = false,
             indent = {
                 highlight = highlight,
                 char = "¦",
@@ -44,15 +45,35 @@ return {
         })
 
         local gid = vim.api.nvim_create_augroup("indent_blankline", { clear = true })
+
         rikka.createAutocmd("InsertEnter", {
             pattern = "*",
             group = gid,
             command = "IBLDisable",
         })
+
         rikka.createAutocmd("InsertLeave", {
             pattern = "*",
             group = gid,
             callback = function()
+                if rikka.isBigFile(0) then
+                    return
+                end
+
+                if not vim.tbl_contains(exclude_ft, vim.bo.filetype) then
+                    vim.cmd("IBLEnable")
+                end
+            end,
+        })
+
+        rikka.createAutocmd({ "InsertLeave" }, {
+            pattern = "*",
+            group = gid,
+            callback = function()
+                if rikka.isBigFile(0) then
+                    return
+                end
+
                 if not vim.tbl_contains(exclude_ft, vim.bo.filetype) then
                     vim.cmd("IBLEnable")
                 end
