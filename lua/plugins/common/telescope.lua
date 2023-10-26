@@ -23,8 +23,10 @@ return {
         local telescope = require("telescope")
         local tsbuiltin = require("telescope.builtin")
         local actions = require("telescope.actions")
+        local transform_mod = require("telescope.actions.mt").transform_mod
         local lga_actions = require("telescope-live-grep-args.actions")
         local lga_shortcuts = require("telescope-live-grep-args.shortcuts")
+        local trouble = require("trouble")
 
         local dropdownConfig = {
             theme = "dropdown",
@@ -38,11 +40,21 @@ return {
             },
         }
 
+        local openQuickfixList = {}
+        openQuickfixList.trouble = function(prompt_bufnr)
+            trouble.open("quickfix")
+        end
+        openQuickfixList = transform_mod(openQuickfixList)
+
         local opts = {
             defaults = {
                 mappings = {
                     i = {
                         ["<esc>"] = actions.close,
+                        ["<c-t>"] = actions.smart_send_to_qflist + openQuickfixList.trouble,
+                    },
+                    n = {
+                        ["<c-t>"] = actions.smart_send_to_qflist + openQuickfixList.trouble,
                     },
                 },
             },

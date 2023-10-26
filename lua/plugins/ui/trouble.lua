@@ -12,5 +12,6 @@ return {
         trouble.setup(opts)
 
         rikka.setKeymap("n", "gq", function() trouble.open("document_diagnostics") end, { desc = "Trouble" })
+        rikka.setKeymap("n", "<M-q>", function() trouble.toggle("quickfix") end, { desc = "Trouble Quickfix" })
     end,
 }
