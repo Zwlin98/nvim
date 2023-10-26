@@ -12,9 +12,6 @@ return {
             version = "^1.0.0",
         },
         {
-            "nvim-telescope/telescope-frecency.nvim",
-        },
-        {
             "kkharji/sqlite.lua",
         },
     },
@@ -50,11 +47,12 @@ return {
             defaults = {
                 mappings = {
                     i = {
-                        ["<esc>"] = actions.close,
-                        ["<c-t>"] = actions.smart_send_to_qflist + openQuickfixList.trouble,
+                        ["<M-q>"] = actions.smart_send_to_qflist + openQuickfixList.trouble,
+                        ["<Tab>"] = actions.toggle_selection,
                     },
                     n = {
-                        ["<c-t>"] = actions.smart_send_to_qflist + openQuickfixList.trouble,
+                        ["<M-q>"] = actions.smart_send_to_qflist + openQuickfixList.trouble,
+                        ["<Tab>"] = actions.toggle_selection,
                     },
                 },
             },
@@ -88,7 +86,6 @@ return {
         telescope.setup(opts)
         telescope.load_extension("fzf")
         telescope.load_extension("live_grep_args")
-        telescope.load_extension("frecency")
 
         rikka.setKeymap("n", "<M-p>", tsbuiltin.builtin, { desc = "Telescope Builtin" })
 
