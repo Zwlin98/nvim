@@ -60,7 +60,7 @@ end
 
 function Rikka.isBigFile(bufnr)
     local maxSize = 1024 * 1024 -- 1MB
-    local maxLine = 4096
+    local maxLine = 2048
     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
     local lineCount = vim.api.nvim_buf_line_count(bufnr)
     if ok and stats then
