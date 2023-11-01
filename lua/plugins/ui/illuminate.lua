@@ -4,7 +4,21 @@ return {
     config = function()
         local rikka = require("rikka")
         local illuminate = require("illuminate")
-        illuminate.configure({})
+        illuminate.configure({
+            filetypes_denylist = {
+                "aerial",
+                "help",
+                "git",
+                "markdown",
+                "snippets",
+                "text",
+                "gitconfig",
+                "alpha",
+                "dashboard",
+                "TelescopePrompt",
+            },
+            modes_allowlist = { "n" },
+        })
 
         -- Highlight on yank
         -- conflict with vim-illuminate
@@ -15,7 +29,7 @@ return {
             desc = "Briefly highlight yanked text",
             callback = function()
                 illuminate.pause()
-                vim.highlight.on_yank({higroup = "YankPost", timeout = 500 })
+                vim.highlight.on_yank({ higroup = "YankPost", timeout = 500 })
                 illuminate.resume()
             end,
         })
