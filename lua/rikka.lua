@@ -24,6 +24,9 @@ Rikka.color.white = "#eceff4"
 Rikka.color.lightWhite = "#e5e9f0"
 Rikka.color.grayWhite = "#d8dee9"
 
+Rikka.color.deepDark = "#1a1a1f"
+Rikka.color.cursorGray = "#444c5e"
+
 function Rikka.getVisualSelection()
     vim.cmd([[noau normal! "vy"]])
     local text = vim.fn.getreg("v")
