@@ -5,10 +5,16 @@ return {
         local opts = {
             formatters_by_ft = {
                 lua = { "stylua" },
+                json = { "jq" },
+                yaml = { "yamlfmt" },
             },
         }
         local rikka = require("rikka")
         local conform = require("conform")
+
+        conform.formatters.jq = {
+            prepend_args = { "--indent", "4" },
+        }
 
         conform.setup(opts)
 
