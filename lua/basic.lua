@@ -18,8 +18,6 @@ vim.o.ignorecase = true
 vim.o.incsearch = true
 vim.o.smartcase = true
 
-vim.o.list = true
-
 vim.o.number = true
 vim.o.relativenumber = true
 
