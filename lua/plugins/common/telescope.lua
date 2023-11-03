@@ -102,7 +102,7 @@ return {
 
         rikka.setKeymap("n", "<M-s>", tsbuiltin.current_buffer_fuzzy_find, { desc = "Telescope Fuzzy Find" })
 
-        rikka.setKeymap("n", "<M-g>", tsbuiltin.grep_string, { desc = "Telescope Grep String" })
+        rikka.setKeymap("n", "<M-g>", lga_shortcuts.grep_word_under_cursor, { desc = "Telescope Grep String" })
         rikka.setKeymap("v", "<M-g>", lga_shortcuts.grep_visual_selection, { desc = "Telescope Grep Visual Selection" })
 
         rikka.setKeymap("n", "<M-e>", tsbuiltin.find_files, { desc = "Telescope Find Files" })
