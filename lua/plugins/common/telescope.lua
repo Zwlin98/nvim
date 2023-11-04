@@ -11,9 +11,6 @@ return {
             "nvim-telescope/telescope-live-grep-args.nvim",
             version = "^1.0.0",
         },
-        {
-            "kkharji/sqlite.lua",
-        },
     },
     config = function()
         local rikka = require("rikka")
@@ -30,8 +27,8 @@ return {
             mappings = {
                 i = {
                     ["<ESC>"] = actions.close,
-                }
-            }
+                },
+            },
         }
 
         local cursorConfig = {
@@ -43,8 +40,8 @@ return {
             mappings = {
                 i = {
                     ["<ESC>"] = actions.close,
-                }
-            }
+                },
+            },
         }
 
         local openQuickfixList = {}
