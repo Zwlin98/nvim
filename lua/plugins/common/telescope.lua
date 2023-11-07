@@ -93,14 +93,19 @@ return {
         telescope.load_extension("fzf")
         telescope.load_extension("live_grep_args")
 
+        local function grep_word()
+            local text = rikka.getVisualSelection()
+            tsbuiltin.grep_string({ search = text })
+        end
+
         rikka.setKeymap("n", "<M-p>", tsbuiltin.builtin, { desc = "Telescope Builtin" })
 
         rikka.setKeymap("n", "<M-`>", tsbuiltin.lsp_document_symbols, { desc = "Telescope Document Symbols" })
 
         rikka.setKeymap("n", "<M-s>", tsbuiltin.current_buffer_fuzzy_find, { desc = "Telescope Fuzzy Find" })
 
-        rikka.setKeymap("n", "<M-g>", lga_shortcuts.grep_word_under_cursor, { desc = "Telescope Grep String" })
-        rikka.setKeymap("v", "<M-g>", lga_shortcuts.grep_visual_selection, { desc = "Telescope Grep Visual Selection" })
+        rikka.setKeymap("n", "<M-g>", tsbuiltin.grep_string, { desc = "Telescope Grep String" })
+        rikka.setKeymap("v", "<M-g>", grep_word, { desc = "Telescope Grep Visual Selection" })
 
         rikka.setKeymap("n", "<M-e>", tsbuiltin.find_files, { desc = "Telescope Find Files" })
 
