@@ -47,6 +47,8 @@ vim.g.mapleader = " "
 vim.o.updatetime = 300
 vim.o.timeoutlen = 400
 
+vim.cmd([[set diffopt+=vertical]])
+
 -- host specific settings
 local rikka = require("rikka")
 if rikka.isLocal() then
