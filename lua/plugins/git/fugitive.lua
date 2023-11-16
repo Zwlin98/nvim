@@ -7,6 +7,7 @@ return {
             vim.cmd("Git blame --date=short")
         end, { desc = "Git Blame" })
 
-        rikka.setKeymap("n", "<M-m>", ":Git blame  --date=short<CR>", { desc = "Git Blame" })
+        -- aka: who write this code? leader-w(ho)
+        rikka.setKeymap("n", "<leader>w", ":Git blame  --date=short<CR>", { desc = "Git Blame" })
     end,
 }
