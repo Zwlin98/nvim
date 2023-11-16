@@ -59,6 +59,7 @@ return {
             "markdown",
             "php",
             "rust",
+            "python",
         }
 
         for _, server in ipairs(servers) do
