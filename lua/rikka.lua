@@ -52,6 +52,29 @@ function Rikka.notifyLSPError()
     return not os.getenv("NVIM_NOT_NOTIFY_LSP_ERROR")
 end
 
+function Rikka.wrapMsg(msg, maxWidth)
+    maxWidth = maxWidth or 40
+    local words = {}
+    for word in msg:gmatch("%S+") do
+        table.insert(words, word)
+    end
+
+    local lines = {}
+    local currentLine = ""
+    for _, word in ipairs(words) do
+        local newLine = currentLine .. " " .. word
+        if #newLine > maxWidth then
+            table.insert(lines, currentLine)
+            currentLine = word
+        else
+            currentLine = newLine
+        end
+    end
+    table.insert(lines, currentLine)
+
+    return table.concat(lines, "\n")
+end
+
 function Rikka.prequire(module)
     local ok, result = pcall(require, module)
     if ok then
