@@ -60,6 +60,7 @@ return {
             "php",
             "rust",
             "python",
+            "rime",
         }
 
         for _, server in ipairs(servers) do
