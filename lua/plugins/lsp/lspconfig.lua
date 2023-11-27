@@ -35,7 +35,7 @@ return {
         -- })
 
         rikka.createAutocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+            group = vim.api.nvim_create_augroup("GlobalLSPAttach", {}),
             callback = function(env)
                 local buffer = env.buf
                 rikka.setBufKeymap(buffer, "n", "gr", telescope.lsp_references, { desc = "Check references under cursor" })

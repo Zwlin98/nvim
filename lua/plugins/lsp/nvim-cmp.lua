@@ -12,10 +12,12 @@ return {
         "saadparwaiz1/cmp_luasnip",
         "windwp/nvim-autopairs",
     },
+
     event = {
         "InsertEnter",
         "CmdlineEnter",
     },
+
     config = function()
         local rikka = require("rikka")
         local luasnip = require("luasnip")
@@ -23,6 +25,7 @@ return {
 
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         local cmp = require("cmp")
+        local compare = require("cmp.config.compare")
 
         vim.api.nvim_set_hl(0, "CmpNormal", { bg = rikka.color.black })
         -- gray
@@ -52,6 +55,18 @@ return {
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
         cmp.setup({
+            sorting = {
+                comparators = {
+                    compare.sort_text,
+                    compare.offset,
+                    compare.exact,
+                    compare.score,
+                    compare.recently_used,
+                    compare.kind,
+                    compare.length,
+                    compare.order,
+                },
+            },
             window = {
                 completion = {
                     border = rikka.border,
@@ -102,10 +117,21 @@ return {
                 end, { "i", "s" }),
                 ["<CR>"] = cmp.mapping({
                     i = function(fallback)
-                        if cmp.visible() then
-                            cmp.confirm({ select = true })
+                        local entry = cmp.get_selected_entry()
+                        if entry == nil then
+                            entry = cmp.core.view:get_first_entry()
+                        end
+                        if entry and entry.source.name == "nvim_lsp" and entry.source.source.client.name == "rime_ls" then
+                            cmp.abort()
                         else
-                            fallback()
+                            if entry ~= nil then
+                                cmp.confirm({
+                                    behavior = cmp.ConfirmBehavior.Replace,
+                                    select = true,
+                                })
+                            else
+                                fallback()
+                            end
                         end
                     end,
                     s = cmp.mapping.confirm({ select = true }),
@@ -128,6 +154,20 @@ return {
                 ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "s" }),
                 ["<PageUp>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s" }),
                 ["<PageDown>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "s" }),
+                ["<Space>"] = cmp.mapping(function(fallback)
+                    local entry = cmp.get_selected_entry()
+                    if entry == nil then
+                        entry = cmp.core.view:get_first_entry()
+                    end
+                    if entry and entry.source.name == "nvim_lsp" and entry.source.source.client.name == "rime_ls" then
+                        cmp.confirm({
+                            behavior = cmp.ConfirmBehavior.Replace,
+                            select = true,
+                        })
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
             },
             formatting = {
                 format = lspkind.cmp_format({
