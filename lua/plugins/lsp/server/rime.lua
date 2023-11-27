@@ -27,7 +27,7 @@ function Server.setup(opts)
     })
 
     local rime_on_attach = function(client, bufnr)
-        rikka.info("Rime LSP attached", "LSP")
+        -- rikka.info("Rime LSP attached", "LSP")
         local toggle_rime = function()
             client.request("workspace/executeCommand", { command = "rime-ls.toggle-rime" }, function(_, result, ctx, _)
                 if ctx.client_id == client.id then
@@ -63,8 +63,6 @@ function Server.setup(opts)
             trigger_characters = {},
             schema_trigger_character = "&", -- [since v0.2.0] 当输入此字符串时请求补全会触发 “方案选单”
             paging_characters = { ",", ".", "-", "=" },
-            max_tokens = 4,
-            always_incomplete = true,
         },
     })
 end

@@ -117,21 +117,10 @@ return {
                 end, { "i", "s" }),
                 ["<CR>"] = cmp.mapping({
                     i = function(fallback)
-                        local entry = cmp.get_selected_entry()
-                        if entry == nil then
-                            entry = cmp.core.view:get_first_entry()
-                        end
-                        if entry and entry.source.name == "nvim_lsp" and entry.source.source.client.name == "rime_ls" then
-                            cmp.abort()
+                        if cmp.visible() then
+                            cmp.confirm({ select = true })
                         else
-                            if entry ~= nil then
-                                cmp.confirm({
-                                    behavior = cmp.ConfirmBehavior.Replace,
-                                    select = true,
-                                })
-                            else
-                                fallback()
-                            end
+                            fallback()
                         end
                     end,
                     s = cmp.mapping.confirm({ select = true }),
