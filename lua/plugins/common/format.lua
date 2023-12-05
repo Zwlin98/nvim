@@ -7,6 +7,13 @@ return {
                 lua = { "stylua" },
                 json = { "jq" },
                 yaml = { "yamlfmt" },
+                python = function(bufnr)
+                    if require("conform").get_formatter_info("ruff_format", bufnr).available then
+                        return { "ruff_format" }
+                    else
+                        return { "isort", "black" }
+                    end
+                end,
             },
         }
         local rikka = require("rikka")
