@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     config = function()
         local rikka = require("rikka")
-        rikka.createCommand("His", function()
+        rikka.createCommand("Dhis", function()
             vim.cmd("DiffviewFileHistory %")
         end, { desc = "File History (Using Diffview)" })
     end,
