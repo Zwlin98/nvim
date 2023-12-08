@@ -1,5 +1,6 @@
 return {
     "lewis6991/gitsigns.nvim",
+    event = "VeryLazy",
     config = function()
         local rikka = require("rikka")
         require("gitsigns").setup({
