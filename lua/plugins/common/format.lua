@@ -2,6 +2,9 @@ return {
     "stevearc/conform.nvim",
     event = "VeryLazy",
     config = function()
+        local rikka = require("rikka")
+        local conform = require("conform")
+
         local opts = {
             formatters_by_ft = {
                 lua = { "stylua" },
@@ -16,8 +19,6 @@ return {
                 end,
             },
         }
-        local rikka = require("rikka")
-        local conform = require("conform")
 
         conform.formatters.jq = {
             prepend_args = { "--indent", "4" },

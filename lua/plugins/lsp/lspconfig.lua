@@ -1,12 +1,3 @@
-local rikka = require("rikka")
-
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = opts or {}
-    opts.border = opts.border or rikka.border
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -14,6 +5,7 @@ return {
         "aznhe21/actions-preview.nvim",
     },
     config = function()
+        local rikka = require("rikka")
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
         local telescope = require("telescope.builtin")
@@ -33,6 +25,13 @@ return {
         --         end
         --     end,
         -- })
+
+        local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+        function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+            opts = opts or {}
+            opts.border = opts.border or rikka.border
+            return orig_util_open_floating_preview(contents, syntax, opts, ...)
+        end
 
         rikka.createAutocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
