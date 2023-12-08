@@ -5,7 +5,6 @@ function Server.checkOK()
 end
 
 function Server.setup(opts)
-    local capabilities = opts.capabilities
     local lspconfig = opts.lspconfig
 
     lspconfig.lua_ls.setup({
@@ -34,7 +33,7 @@ function Server.setup(opts)
             end
             return true
         end,
-        capabilities = capabilities,
+        capabilities = opts.capabilities,
     })
 end
 

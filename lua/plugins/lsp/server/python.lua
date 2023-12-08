@@ -6,9 +6,10 @@ end
 
 function Server.setup(opts)
     local lspconfig = opts.lspconfig
-    local capabilities = opts.capabilities
 
-    lspconfig.pyright.setup({})
+    lspconfig.pyright.setup({
+        capabilities = opts.capabilities,
+    })
 end
 
 return Server

@@ -6,7 +6,9 @@ end
 
 function Server.setup(opts)
     local lspconfig = opts.lspconfig
-    lspconfig.marksman.setup({})
+    lspconfig.marksman.setup({
+        capabilities = opts.capabilities,
+    })
 end
 
 return Server

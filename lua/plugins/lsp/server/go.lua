@@ -6,10 +6,9 @@ end
 
 function Server.setup(opts)
     local lspconfig = opts.lspconfig
-    local capabilities = opts.capabilities
 
     lspconfig.gopls.setup({
-        capabilities = capabilities,
+        capabilities = opts.capabilities,
         settings = {
             gopls = {
                 experimentalPostfixCompletions = true,

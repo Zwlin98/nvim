@@ -6,7 +6,10 @@ end
 
 function Server.setup(opts)
     local lspconfig = opts.lspconfig
-    lspconfig.clangd.setup({})
+    lspconfig.clangd.setup({
+        capabilities = opts.capabilities,
+        filetypes = { "c", "cpp", "h" },
+    })
 end
 
 return Server

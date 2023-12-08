@@ -6,7 +6,9 @@ end
 
 function Server.setup(opts)
     local lspconfig = opts.lspconfig
-    lspconfig.rust_analyzer.setup({})
+    lspconfig.rust_analyzer.setup({
+        capabilities = opts.capabilities,
+    })
 end
 
 return Server
