@@ -47,6 +47,11 @@ return {
             end,
         })
 
+        capabilities.textDocument.foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+        }
+
         local lspOpts = {
             capabilities = capabilities,
             lspconfig = lspconfig,

@@ -10,22 +10,40 @@ return {
         vim.o.foldlevelstart = 99
         vim.o.foldenable = true
 
-        -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-        vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-        vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+        local ufo = require("ufo")
+        local promise = require("promise")
 
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities.textDocument.foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
+        Rikka.createCommand("OpenFoldsAll", ufo.openAllFolds, { desc = "Open All Folds" })
+        Rikka.createCommand("CloseFoldsAll", ufo.closeAllFolds, { desc = "Close All Folds" })
+
+        local ftMap = {
+            vim = "indent",
+            python = { "indent" },
+            git = "",
         }
-        local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
-        for _, ls in ipairs(language_servers) do
-            require("lspconfig")[ls].setup({
-                capabilities = capabilities,
-                -- you can add other fields for setting up lsp server in this table
-            })
+
+        local function customizeSelector(bufnr)
+            local function handleFallbackException(err, providerName)
+                if type(err) == "string" and err:match("UfoFallbackException") then
+                    return ufo.getFolds(bufnr, providerName)
+                else
+                    return promise.reject(err)
+                end
+            end
+
+            return ufo.getFolds(bufnr, "lsp")
+                :catch(function(err)
+                    return handleFallbackException(err, "treesitter")
+                end)
+                :catch(function(err)
+                    return handleFallbackException(err, "indent")
+                end)
         end
-        require("ufo").setup()
+
+        ufo.setup({
+            provider_selector = function(bufnr, filetype, buftype)
+                return ftMap[filetype] or customizeSelector
+            end,
+        })
     end,
 }
