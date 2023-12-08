@@ -18,9 +18,20 @@ return {
 
         local ftMap = {
             vim = "indent",
-            python = { "indent" },
             git = "",
         }
+
+        local suffixMap = {
+            ["lua.txt"] = "indent",
+        }
+
+        local function suffix(filename)
+            for k, v in pairs(suffixMap) do
+                if string.sub(filename, -string.len(k)) == k then
+                    return v
+                end
+            end
+        end
 
         local function customizeSelector(bufnr)
             local function handleFallbackException(err, providerName)
@@ -42,7 +53,8 @@ return {
 
         ufo.setup({
             provider_selector = function(bufnr, filetype, buftype)
-                return ftMap[filetype] or customizeSelector
+                local filename = vim.api.nvim_buf_get_name(bufnr)
+                return suffix(filename) or ftMap[filetype] or customizeSelector
             end,
         })
     end,
