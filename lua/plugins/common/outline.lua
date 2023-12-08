@@ -28,6 +28,8 @@ return {
             markdown = {
                 update_delay = 300,
             },
+
+            disable_max_lines = 20480,
         }
         aerial.setup(opts)
         rikka.createCommand("Outline", function()
