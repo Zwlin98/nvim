@@ -59,4 +59,3 @@ if rikka.isLocal() then
     vim.cmd([[set clipboard+=unnamedplus]])
 end
 
-vim.g.directory = "/tmp//"

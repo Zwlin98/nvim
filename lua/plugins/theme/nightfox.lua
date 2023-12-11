@@ -2,6 +2,7 @@ return {
     "EdenEast/nightfox.nvim",
     priority = 10000,
     config = function()
+        local rikka = require("rikka")
         local palettes = {
             nordfox = {
                 bg0 = "#2e3440", -- Dark bg (status line and float)
@@ -30,6 +31,7 @@ return {
                 modules = modules,
             },
         })
+        vim.api.nvim_set_hl(0, "WinSeparator", { fg = rikka.color.cursorGray })
         -- load the colorscheme here
         vim.cmd([[colorscheme nordfox]])
     end,
