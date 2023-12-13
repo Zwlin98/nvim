@@ -17,6 +17,23 @@ return {
                     leave_dirs_open = false,
                 },
             },
+            source_selector = {
+                winbar = true,
+                sources = {
+                    {
+                        source = "filesystem",
+                        display_name = "  Files ",
+                    },
+                    {
+                        source = "buffers",
+                        display_name = "  Buffers ",
+                    },
+                    {
+                        source = "git_status",
+                        display_name = "  Git ",
+                    },
+                },
+            },
         }
         local neotree = require("neo-tree")
 
