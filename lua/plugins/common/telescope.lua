@@ -19,7 +19,6 @@ return {
         local actions = require("telescope.actions")
         local transform_mod = require("telescope.actions.mt").transform_mod
         local lga_actions = require("telescope-live-grep-args.actions")
-        local lga_shortcuts = require("telescope-live-grep-args.shortcuts")
         local trouble = require("trouble")
 
         local dropdownConfig = {
@@ -92,6 +91,7 @@ return {
         telescope.setup(opts)
         telescope.load_extension("fzf")
         telescope.load_extension("live_grep_args")
+        telescope.load_extension("aerial")
 
         local function grep_word()
             local text = rikka.getVisualSelection()
@@ -101,6 +101,7 @@ return {
         rikka.setKeymap("n", "<M-p>", tsbuiltin.builtin, { desc = "Telescope Builtin" })
 
         rikka.setKeymap("n", "<M-`>", tsbuiltin.lsp_document_symbols, { desc = "Telescope Document Symbols" })
+        rikka.setKeymap("n", "<M-o>", telescope.extensions.aerial.aerial, { desc = "Telescope Aerial" })
 
         rikka.setKeymap("n", "<M-s>", tsbuiltin.current_buffer_fuzzy_find, { desc = "Telescope Fuzzy Find" })
 
