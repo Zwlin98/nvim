@@ -17,6 +17,19 @@ return {
                     leave_dirs_open = false,
                 },
             },
+            window = {
+                mappings = {
+                    ["1"] = function()
+                        vim.api.nvim_exec("Neotree focus filesystem left", true)
+                    end,
+                    ["2"] = function()
+                        vim.api.nvim_exec("Neotree focus buffers left", true)
+                    end,
+                    ["3"] = function()
+                        vim.api.nvim_exec("Neotree focus git_status left", true)
+                    end,
+                },
+            },
             source_selector = {
                 winbar = true,
                 sources = {
@@ -39,6 +52,6 @@ return {
 
         neotree.setup(opts)
 
-        rikka.setKeymap("n", "<space>e", ":Neotree toggle<CR>", { desc = "Open NeoTree" })
+        rikka.setKeymap("n", "<space>e", ":Neotree last toggle<CR>", { desc = "Open NeoTree" })
     end,
 }
