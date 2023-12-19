@@ -15,36 +15,39 @@ return {
             black = rikka.color.lightBlack,
             white = rikka.color.white,
             green = rikka.color.green,
+            trans = nil,
         }
 
         local theme = {
             normal = {
-                b = { fg = colors.green, bg = colors.black },
                 a = { fg = colors.black, bg = colors.green, gui = "bold" },
-                c = { fg = colors.white, bg = colors.black },
+                b = { fg = colors.green, bg = colors.trans },
+                c = { fg = colors.white, bg = colors.trans },
             },
             visual = {
-                b = { fg = colors.violet, bg = colors.black },
                 a = { fg = colors.black, bg = colors.violet, gui = "bold" },
-            },
-            inactive = {
-                b = { fg = colors.black, bg = colors.blue },
-                a = { fg = colors.white, bg = colors.gray, gui = "bold" },
-            },
-            replace = {
-                b = { fg = colors.yellow, bg = colors.black },
-                a = { fg = colors.black, bg = colors.yellow, gui = "bold" },
-                c = { fg = colors.white, bg = colors.black },
+                b = { fg = colors.violet, bg = colors.trans },
+                c = { fg = colors.white, bg = colors.trans },
             },
             command = {
                 a = { bg = colors.yellow, fg = colors.black, gui = "bold" },
-                b = { bg = colors.lightgray, fg = colors.white },
-                c = { bg = colors.inactivegray, fg = colors.black },
+                b = { fg = colors.white, bg = colors.trans },
+                c = { fg = colors.white, bg = colors.trans },
+            },
+            inactive = {
+                a = { fg = colors.white, bg = colors.gray, gui = "bold" },
+                b = { fg = colors.black, bg = colors.blue },
+                c = { fg = colors.white, bg = colors.trans },
+            },
+            replace = {
+                a = { fg = colors.black, bg = colors.yellow, gui = "bold" },
+                b = { fg = colors.yellow, bg = colors.trans },
+                c = { fg = colors.white, bg = colors.trans },
             },
             insert = {
-                b = { fg = colors.blue, bg = colors.black },
                 a = { fg = colors.black, bg = colors.blue, gui = "bold" },
-                c = { fg = colors.white, bg = colors.black },
+                b = { fg = colors.blue, bg = colors.trans },
+                c = { fg = colors.white, bg = colors.trans },
             },
         }
 

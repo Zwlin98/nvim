@@ -31,8 +31,10 @@ return {
                 modules = modules,
             },
         })
-        vim.api.nvim_set_hl(0, "WinSeparator", { fg = rikka.color.cursorGray })
         -- load the colorscheme here
         vim.cmd([[colorscheme nordfox]])
+
+        vim.api.nvim_set_hl(0, "WinSeparator", { fg = rikka.color.cursorGray })
+        vim.api.nvim_set_hl(0, "CursorLine", { bg = rikka.color.cursorGray, fg = nil })
     end,
 }
