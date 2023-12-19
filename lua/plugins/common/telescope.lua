@@ -43,22 +43,25 @@ return {
             },
         }
 
-        local openQuickfixList = {}
-        openQuickfixList.trouble = function(prompt_bufnr)
+        local enhanceMod = {}
+        enhanceMod.troubleOpenQuickFix = function()
             trouble.open("quickfix")
         end
-        openQuickfixList = transform_mod(openQuickfixList)
+
+        enhanceMod = transform_mod(enhanceMod)
 
         local opts = {
             defaults = {
                 mappings = {
                     i = {
-                        ["<M-q>"] = actions.smart_send_to_qflist + openQuickfixList.trouble,
+                        ["<M-q>"] = actions.smart_send_to_qflist + enhanceMod.troubleOpenQuickFix,
                         ["<Tab>"] = actions.toggle_selection,
+                        ["<M-d>"] = actions.to_fuzzy_refine, -- search deeper
                     },
                     n = {
-                        ["<M-q>"] = actions.smart_send_to_qflist + openQuickfixList.trouble,
+                        ["<M-q>"] = actions.smart_send_to_qflist + enhanceMod.troubleOpenQuickFix,
                         ["<Tab>"] = actions.toggle_selection,
+                        ["<M-d>"] = actions.to_fuzzy_refine, -- search deeper
                     },
                 },
             },
