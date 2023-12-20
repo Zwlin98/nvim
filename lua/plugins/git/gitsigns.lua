@@ -33,6 +33,8 @@ return {
             end,
         })
 
+        rikka.setHightlight("GitSignsCurrentLineBlame", { fg = "#777777" })
+
         rikka.createCommand("PreviewDiff", function()
             vim.cmd("Gitsigns preview_hunk")
         end, { desc = "Gitsigns Preview Hunk" })
