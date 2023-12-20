@@ -1,7 +1,7 @@
 --[[
 -- 一些辅助用的 Lua 函数及变量
 --]]
-Rikka = {}
+local Rikka = {}
 
 Rikka.border = "rounded"
 
@@ -26,6 +26,8 @@ Rikka.color.grayWhite = "#d8dee9"
 
 Rikka.color.deepDark = "#1a1a1f"
 Rikka.color.cursorGray = "#444c5e"
+
+Rikka.color.blameGray = "#777777"
 
 function Rikka.getVisualSelection()
     vim.cmd([[noau normal! "vy"]])

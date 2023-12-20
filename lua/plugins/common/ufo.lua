@@ -13,9 +13,7 @@ return {
 
         local ufo = require("ufo")
         local promise = require("promise")
-
-        Rikka.createCommand("OpenFoldsAll", ufo.openAllFolds, { desc = "Open All Folds" })
-        Rikka.createCommand("CloseFoldsAll", ufo.closeAllFolds, { desc = "Close All Folds" })
+        local rikka = require("rikka")
 
         local ftMap = {
             vim = "indent",
@@ -58,5 +56,10 @@ return {
                 return suffix(filename) or ftMap[filetype] or customizeSelector
             end,
         })
+
+        rikka.createCommand("OpenFoldsAll", ufo.openAllFolds, { desc = "Open All Folds" })
+        rikka.createCommand("CloseFoldsAll", ufo.closeAllFolds, { desc = "Close All Folds" })
+
+        rikka.setHightlight("UfoFoldedEllipsis", { fg = rikka.color.white })
     end,
 }

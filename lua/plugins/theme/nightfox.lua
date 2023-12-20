@@ -38,6 +38,8 @@ return {
         local customHighlightGroup = {
             WinSeparator = { fg = rikka.color.cursorGray },
 
+            Folded = { fg = nil, bg = nil },
+
             DiagnosticVirtualTextError = { fg = rikka.color.red, bg = nil },
             DiagnosticVirtualTextWarn = { fg = rikka.color.yellow, bg = nil },
             DiagnosticVirtualTextInfo = { fg = rikka.color.orange, bg = nil },

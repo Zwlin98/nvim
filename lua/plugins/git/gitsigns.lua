@@ -33,7 +33,7 @@ return {
             end,
         })
 
-        rikka.setHightlight("GitSignsCurrentLineBlame", { fg = "#777777" })
+        rikka.setHightlight("GitSignsCurrentLineBlame", { fg = rikka.color.blameGray })
 
         rikka.createCommand("PreviewDiff", function()
             vim.cmd("Gitsigns preview_hunk")
