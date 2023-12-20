@@ -161,4 +161,9 @@ Rikka.createAutocmd = vim.api.nvim_create_autocmd
 
 Rikka.createCommand = vim.api.nvim_create_user_command
 
+Rikka.setHightlight = function(group, opts)
+    opts = opts or {}
+    vim.api.nvim_set_hl(0, group, opts)
+end
+
 return Rikka

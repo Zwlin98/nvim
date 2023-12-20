@@ -20,27 +20,31 @@ return {
         local rikka = require("rikka")
         local luasnip = require("luasnip")
         local lspkind = require("lspkind")
+        local autopairs = require("nvim-autopairs")
 
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         local cmp = require("cmp")
 
-        vim.api.nvim_set_hl(0, "CmpNormal", { bg = rikka.color.black })
-        -- gray
-        vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = rikka.color.gray })
-        -- blue
-        vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = rikka.color.blue })
-        vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpIntemAbbrMatch" })
-        -- light blue
-        vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = rikka.color.cyan })
-        vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
-        vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "CmpItemKindVariable" })
-        -- pink
-        vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = rikka.color.violet })
-        vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
-        -- front
-        vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = rikka.color.white })
-        vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
-        vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
+        local cmpHighlight = {
+            CmpNormal = { bg = rikka.color.black },
+
+            CmpItemAbbrDeprecated = { bg = nil, strikethrough = true, fg = rikka.color.gray },
+            CmpItemAbbrMatch = { bg = nil, fg = rikka.color.blue },
+            CmpItemAbbrMatchFuzzy = { link = "CmpItemAbbrMatch" },
+
+            CmpItemKindVariable = { bg = nil, fg = rikka.color.cyan },
+            CmpItemKindInterface = { link = "CmpItemKindVariable" },
+            CmpItemKindText = { link = "CmpItemKindVariable" },
+            CmpItemKindFunction = { bg = nil, fg = rikka.color.blue },
+            CmpItemKindMethod = { link = "CmpItemKindFunction" },
+            CmpItemKindKeyword = { bg = nil, fg = rikka.color.purple },
+            CmpItemKindProperty = { link = "CmpItemKindKeyword" },
+            CmpItemKindUnit = { link = "CmpItemKindKeyword" },
+        }
+
+        for group, opts in pairs(cmpHighlight) do
+            rikka.setHightlight(group, opts)
+        end
 
         local has_words_before = function()
             unpack = unpack or table.unpack
@@ -48,7 +52,7 @@ return {
             return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
         end
 
-        require("nvim-autopairs").setup()
+        autopairs.setup()
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
         cmp.setup({

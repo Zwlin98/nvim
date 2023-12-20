@@ -5,8 +5,8 @@ return {
         local rikka = require("rikka")
         local palettes = {
             nordfox = {
-                bg0 = "#2e3440", -- Dark bg (status line and float)
-                bg1 = "#2e3440", -- Default bg
+                bg0 = rikka.color.black,
+                bg1 = rikka.color.black,
                 bg2 = "#39404f", -- Lighter bg (colorcolm folds)
                 bg3 = "#444c5e", -- Lighter bg (cursor line)
                 bg4 = "#5a657d", -- Conceal, border fg
@@ -31,10 +31,22 @@ return {
                 modules = modules,
             },
         })
+
         -- load the colorscheme here
         vim.cmd([[colorscheme nordfox]])
 
-        vim.api.nvim_set_hl(0, "WinSeparator", { fg = rikka.color.cursorGray })
-        vim.api.nvim_set_hl(0, "CursorLine", { bg = rikka.color.cursorGray, fg = nil })
+        local customHighlightGroup = {
+            WinSeparator = { fg = rikka.color.cursorGray },
+
+            DiagnosticVirtualTextError = { fg = rikka.color.red, bg = nil },
+            DiagnosticVirtualTextWarn = { fg = rikka.color.yellow, bg = nil },
+            DiagnosticVirtualTextInfo = { fg = rikka.color.orange, bg = nil },
+            DiagnosticVirtualTextHint = { fg = rikka.color.green, bg = nil },
+            DiagnosticVirtualTextOk = { fg = rikka.color.blue, bg = nil },
+        }
+
+        for group, opts in pairs(customHighlightGroup) do
+            rikka.setHightlight(group, opts)
+        end
     end,
 }
