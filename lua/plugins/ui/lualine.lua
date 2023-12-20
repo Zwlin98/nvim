@@ -51,6 +51,16 @@ return {
             },
         }
 
+        local curTime = function()
+            return os.date("%H:%M:%S", os.time())
+        end
+
+        local curInput = function()
+            if vim.fn.executable("im-select") == 1 then
+                return vim.fn.system("im-select")
+            end
+        end
+
         require("lualine").setup({
             options = {
                 icons_enabled = true,
@@ -84,7 +94,7 @@ return {
                     },
                 },
                 lualine_x = { "encoding", "fileformat", "filetype" },
-                lualine_y = { "progress" },
+                lualine_y = { { curTime } },
                 lualine_z = { "location" },
             },
             inactive_sections = {
