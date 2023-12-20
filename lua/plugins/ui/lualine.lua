@@ -55,12 +55,6 @@ return {
             return os.date("%H:%M:%S", os.time())
         end
 
-        local curInput = function()
-            if vim.fn.executable("im-select") == 1 then
-                return vim.fn.system("im-select")
-            end
-        end
-
         require("lualine").setup({
             options = {
                 icons_enabled = true,

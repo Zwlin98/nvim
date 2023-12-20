@@ -1,3 +1,0 @@
-return {
-    "andymass/vim-matchup",
-}
