@@ -6,7 +6,6 @@ return {
         local rikka = require("rikka")
         local trouble = require("trouble")
         local opts = {
-            height = 15,
             padding = false,
             action_keys = {
                 close_folds = { "zc" },
@@ -17,16 +16,36 @@ return {
 
         trouble.setup(opts)
 
+        rikka.setKeymap("n", "]q", function()
+            if trouble.is_open() then
+                trouble.next({ skip_groups = true, jump = true })
+            else
+                vim.diagnostic.goto_next()
+            end
+        end, { desc = "Next Diagnostic or Quickfix item" })
+
+        rikka.setKeymap("n", "[q", function()
+            if trouble.is_open() then
+                trouble.previous({ skip_groups = true, jump = true })
+            else
+                vim.diagnostic.goto_prev()
+            end
+        end, { desc = "Previous Diagnostic or Quickfix item" })
+
         rikka.setKeymap("n", "gq", function()
-            trouble.open("document_diagnostics")
-        end, { desc = "Trouble" })
+            if trouble.is_open() then
+                trouble.close()
+            else
+                trouble.open("document_diagnostics")
+            end
+        end, { desc = "Toggle Trouble Document Diagnostics" })
 
         rikka.setKeymap("n", "<M-q>", function()
             if trouble.is_open() then
                 trouble.close()
-                return
+            else
+                trouble.open("quickfix")
             end
-            trouble.toggle("quickfix")
-        end, { desc = "Trouble Quickfix" })
+        end, { desc = "Toggle Trouble Quickfix" })
     end,
 }

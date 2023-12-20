@@ -10,14 +10,8 @@ return {
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
 
-                local function map(mode, l, r, opts)
-                    opts = opts or {}
-                    opts.buffer = bufnr
-                    vim.keymap.set(mode, l, r, opts)
-                end
-
                 -- Navigation (diff)
-                map("n", "]d", function()
+                rikka.setBufKeymap(bufnr, "n", "]d", function()
                     if vim.wo.diff then
                         return "]c"
                     end
@@ -25,9 +19,9 @@ return {
                         gs.next_hunk()
                     end)
                     return "<Ignore>"
-                end, { expr = true })
+                end, { expr = true, desc = "Gitsigns Next Hunk" })
 
-                map("n", "[d", function()
+                rikka.setBufKeymap(bufnr, "n", "[d", function()
                     if vim.wo.diff then
                         return "[c"
                     end
@@ -35,7 +29,7 @@ return {
                         gs.prev_hunk()
                     end)
                     return "<Ignore>"
-                end, { expr = true })
+                end, { expr = true, desc = "Gitsigns Prev Hunk" })
             end,
         })
 
