@@ -22,6 +22,10 @@ return {
         end, { desc = "Trouble" })
 
         rikka.setKeymap("n", "<M-q>", function()
+            if trouble.is_open() then
+                trouble.close()
+                return
+            end
             trouble.toggle("quickfix")
         end, { desc = "Trouble Quickfix" })
     end,
