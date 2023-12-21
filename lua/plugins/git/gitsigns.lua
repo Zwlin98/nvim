@@ -6,30 +6,31 @@ return {
         require("gitsigns").setup({
 
             current_line_blame = true,
+            current_line_blame_opts = {
+                virt_text = true,
+                virt_text_pos = "eol",
+                delay = 500,
+                ignore_whitespace = true,
+                virt_text_priority = 100,
+            },
+
+            preview_config = {
+                -- Options passed to nvim_open_win
+                border = rikka.border,
+                style = "minimal",
+                relative = "cursor",
+                row = 0,
+                col = 1,
+            },
 
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
 
-                -- Navigation (diff)
-                rikka.setBufKeymap(bufnr, "n", "]d", function()
-                    if vim.wo.diff then
-                        return "]c"
-                    end
-                    vim.schedule(function()
-                        gs.next_hunk()
-                    end)
-                    return "<Ignore>"
-                end, { expr = true, desc = "Gitsigns Next Hunk" })
+                rikka.setBufKeymap(bufnr, "n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, desc = "Next change" })
 
-                rikka.setBufKeymap(bufnr, "n", "[d", function()
-                    if vim.wo.diff then
-                        return "[c"
-                    end
-                    vim.schedule(function()
-                        gs.prev_hunk()
-                    end)
-                    return "<Ignore>"
-                end, { expr = true, desc = "Gitsigns Prev Hunk" })
+                rikka.setBufKeymap(bufnr, "n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, desc = "Previous change" })
+
+                rikka.setBufKeymap(bufnr, "n", "K", gs.preview_hunk, { desc = "Preview Hunk" })
             end,
         })
 
