@@ -30,7 +30,10 @@ return {
         function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
             opts = opts or {}
             opts.border = opts.border or rikka.border
-            return orig_util_open_floating_preview(contents, syntax, opts, ...)
+            local bufnr, winnr = orig_util_open_floating_preview(contents, syntax, opts, ...)
+            if bufnr then
+                vim.api.nvim_win_set_option(winnr, "winblend", 20)
+            end
         end
 
         rikka.createAutocmd("LspAttach", {
@@ -40,7 +43,7 @@ return {
                 rikka.setBufKeymap(buffer, "n", "gr", telescope.lsp_references, { desc = "Check references under cursor" })
                 rikka.setBufKeymap(buffer, "n", "gd", telescope.lsp_definitions, { desc = "Check definitions under cursor" })
                 rikka.setBufKeymap(buffer, "n", "gi", telescope.lsp_implementations, { desc = "Check implementations under cursor" })
-                rikka.setBufKeymap(buffer, "n", "K", vim.lsp.buf.hover, { desc = "Hover" })
+                rikka.setBufKeymap(buffer, "n", "H", vim.lsp.buf.hover, { desc = "Lsp Hover" })
                 rikka.setBufKeymap(buffer, "n", "ga", actions_preview.code_actions, { desc = "Code Actions" })
                 rikka.setBufKeymap(buffer, "n", "<space>r", vim.lsp.buf.rename, { desc = "Rename" })
             end,
