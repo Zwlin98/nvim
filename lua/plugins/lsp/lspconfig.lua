@@ -11,26 +11,19 @@ return {
         local telescope = require("telescope.builtin")
         local actions_preview = require("actions-preview")
 
-        -- rikka.createAutocmd({ 'InsertEnter' }, {
-        --     callback = function(env)
-        --         if vim.lsp.inlay_hint then
-        --             vim.lsp.inlay_hint(env.buf, false)
-        --         end
-        --     end,
-        -- })
-        -- rikka.createAutocmd({ 'InsertLeave' }, {
-        --     callback = function(env)
-        --         if vim.lsp.inlay_hint then
-        --             vim.lsp.inlay_hint(env.buf, true)
-        --         end
-        --     end,
-        -- })
+        -- Change diagnostic symbols in the sign column (gutter)
+        local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+        for type, icon in pairs(signs) do
+            local hl = "DiagnosticSign" .. type
+            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+        end
 
-        local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+        -- Override floating window settings
+        local lspUtilOpenFloatingPreview = vim.lsp.util.open_floating_preview
         function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
             opts = opts or {}
             opts.border = opts.border or rikka.border
-            local bufnr, winnr = orig_util_open_floating_preview(contents, syntax, opts, ...)
+            local bufnr, winnr = lspUtilOpenFloatingPreview(contents, syntax, opts, ...)
             if bufnr then
                 vim.api.nvim_win_set_option(winnr, "winblend", 20)
             end
@@ -46,6 +39,13 @@ return {
                 rikka.setBufKeymap(buffer, "n", "H", vim.lsp.buf.hover, { desc = "Lsp Hover" })
                 rikka.setBufKeymap(buffer, "n", "ga", actions_preview.code_actions, { desc = "Code Actions" })
                 rikka.setBufKeymap(buffer, "n", "<space>r", vim.lsp.buf.rename, { desc = "Rename" })
+
+                rikka.setBufKeymap(buffer, "n", "[d", function()
+                    vim.diagnostic.goto_prev({ float = false })
+                end, { desc = "Previous Diagnostic" })
+                rikka.setBufKeymap(buffer, "n", "]d", function()
+                    vim.diagnostic.goto_next({ float = false })
+                end, { desc = "Next Diagnostic" })
             end,
         })
 
