@@ -126,12 +126,10 @@ end
 Rikka.setKeymap = function(mode, lhs, rhs, opts)
     opts = opts or {}
 
-    if opts.noremap == nil then
-        opts.noremap = true
-    end
-    if opts.silent == nil then
-        opts.silent = true
-    end
+    vim.tbl_extend("keep", opts, {
+        noremap = true,
+        silent = true,
+    })
 
     if type(rhs) == "function" then
         opts.callback = rhs
@@ -144,12 +142,10 @@ end
 Rikka.setBufKeymap = function(buffer, mode, lhs, rhs, opts)
     opts = opts or {}
 
-    if opts.noremap == nil then
-        opts.noremap = true
-    end
-    if opts.silent == nil then
-        opts.silent = true
-    end
+    vim.tbl_extend("keep", opts, {
+        noremap = true,
+        silent = true,
+    })
 
     if type(rhs) == "function" then
         opts.callback = rhs
