@@ -36,7 +36,7 @@ return {
             },
             inactive = {
                 a = { fg = colors.white, bg = colors.gray, gui = "bold" },
-                b = { fg = colors.black, bg = colors.blue },
+                b = { fg = colors.green, bg = colors.blue },
                 c = { fg = colors.white, bg = colors.trans },
             },
             replace = {
@@ -92,9 +92,9 @@ return {
                 lualine_z = { "location" },
             },
             inactive_sections = {
-                lualine_a = {},
+                lualine_a = { "mode" },
                 lualine_b = {},
-                lualine_c = { "filename" },
+                lualine_c = { "filetype" },
                 lualine_x = {},
                 lualine_y = {},
                 lualine_z = {},
