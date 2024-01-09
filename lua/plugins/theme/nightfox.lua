@@ -8,7 +8,7 @@ return {
                 bg0 = rikka.color.black,
                 bg1 = rikka.color.black,
                 bg2 = "#39404f", -- Lighter bg (colorcolm folds)
-                bg3 = "#444c5e", -- Lighter bg (cursor line)
+                bg3 = "#373E4F", -- Lighter bg (cursor line)
                 bg4 = "#5a657d", -- Conceal, border fg
 
                 fg0 = "#c7cdd9", -- Lighter fg

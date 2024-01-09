@@ -22,7 +22,16 @@ return {
 
         -- Highlight on yank
         -- conflict with vim-illuminate
-        rikka.setHightlight("YankPost", { bg = rikka.color.green, fg = rikka.color.black })
+        local customHighlightGroup = {
+            YankPost = { bg = "#7480A1", fg = nil },
+            IlluminatedWordText = { bg = rikka.color.noVisualGray },
+            IlluminatedWordRead = { bg = rikka.color.gray },
+            IlluminatedWordWrite = { bg = rikka.color.lightGray },
+        }
+
+        for group, opts in pairs(customHighlightGroup) do
+            rikka.setHightlight(group, opts)
+        end
 
         rikka.createAutocmd("TextYankPost", {
             group = vim.api.nvim_create_augroup("highlight_on_yank", {}),
