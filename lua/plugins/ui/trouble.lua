@@ -20,7 +20,7 @@ return {
             if trouble.is_open() then
                 trouble.next({ skip_groups = true, jump = true })
             else
-                vim.diagnostic.goto_next()
+                vim.diagnostic.goto_next({ float = false })
             end
         end, { desc = "Next Diagnostic or Quickfix item" })
 
@@ -28,7 +28,7 @@ return {
             if trouble.is_open() then
                 trouble.previous({ skip_groups = true, jump = true })
             else
-                vim.diagnostic.goto_prev()
+                vim.diagnostic.goto_prev({ float = false })
             end
         end, { desc = "Previous Diagnostic or Quickfix item" })
 

@@ -44,6 +44,13 @@ function Rikka.getVisualSelection()
     end
 end
 
+function Rikka.getCurrrentWord()
+    local ok, word = pcall(vim.fn.expand, "<cword>")
+    if ok then
+        return word
+    end
+end
+
 function Rikka.isLocal()
     return not Rikka.isRemote()
 end
