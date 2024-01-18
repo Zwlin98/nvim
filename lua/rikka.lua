@@ -59,6 +59,24 @@ function Rikka.isRemote()
     return os.getenv("SSH_CLIENT") or os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION")
 end
 
+function Rikka.gitStatus(path)
+    local statusCmd = { "git", "status", "--porcelain", path }
+    local ok, res = pcall(vim.fn.system, statusCmd)
+    if not ok then
+        return
+    end
+    return string.sub(res, 1, 2)
+end
+
+function Rikka.isStaged(path)
+    local status = Rikka.gitStatus(path)
+    if not status then
+        return false
+    end
+    local X = string.sub(status, 1, 1)
+    return X ~= " "
+end
+
 function Rikka.notifyLSPError()
     return not os.getenv("NVIM_NOT_NOTIFY_LSP_ERROR")
 end

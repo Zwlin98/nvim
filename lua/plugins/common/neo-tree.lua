@@ -9,6 +9,8 @@ return {
         "MunifTanjim/nui.nvim",
     },
     config = function()
+        local events = require("neo-tree.events")
+
         local opts = {
             popup_border_style = rikka.border,
             filesystem = {
@@ -19,15 +21,58 @@ return {
             },
             window = {
                 mappings = {
-                    ["1"] = function()
-                        vim.api.nvim_exec("Neotree focus filesystem left", true)
-                    end,
-                    ["2"] = function()
-                        vim.api.nvim_exec("Neotree focus buffers left", true)
-                    end,
-                    ["3"] = function()
-                        vim.api.nvim_exec("Neotree focus git_status left", true)
-                    end,
+                    ["1"] = {
+                        function()
+                            vim.api.nvim_exec("Neotree focus filesystem left", true)
+                        end,
+                        desc = "Switch: Filesystem",
+                    },
+                    ["2"] = {
+                        function()
+                            vim.api.nvim_exec("Neotree focus buffers left", true)
+                        end,
+                        desc = "Switch: Buffers",
+                    },
+                    ["3"] = {
+                        function()
+                            vim.api.nvim_exec("Neotree focus git_status left", true)
+                        end,
+                        desc = "Switch: Git status",
+                    },
+                    ["<C-v>"] = "open_vsplit",
+                },
+            },
+            buffers = {
+                window = {
+                    mappings = {
+                        ["x"] = "buffer_delete",
+                    },
+                },
+            },
+            git_status = {
+                window = {
+                    mappings = {
+                        ["<space>"] = {
+                            function(state)
+                                local node = state.tree:get_node()
+                                if node.type == "message" then
+                                    return
+                                end
+                                local path = node:get_id()
+
+                                if rikka.isStaged(path) then
+                                    local cmd = { "git", "reset", "--", path }
+                                    vim.fn.system(cmd)
+                                else
+                                    local cmd = { "git", "add", path }
+                                    vim.fn.system(cmd)
+                                end
+
+                                events.fire_event(events.GIT_EVENT)
+                            end,
+                            desc = "Toggle staged",
+                        },
+                    },
                 },
             },
             source_selector = {
@@ -45,6 +90,14 @@ return {
                         source = "git_status",
                         display_name = "  Git ",
                     },
+                },
+            },
+            event_handlers = {
+                {
+                    event = "file_opened",
+                    handler = function()
+                        vim.api.nvim_exec("Neotree close", true)
+                    end,
                 },
             },
         }
