@@ -17,7 +17,6 @@ return {
                 "proto",
                 "regex",
                 "rust",
-                "vim",
                 "yaml",
                 "php",
                 "beancount",
