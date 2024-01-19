@@ -111,6 +111,9 @@ return {
         rikka.setKeymap("v", "<M-g>", grep_word, { desc = "Telescope Grep Visual Selection" })
 
         rikka.setKeymap("n", "<M-e>", tsbuiltin.find_files, { desc = "Telescope Find Files" })
+        rikka.setKeymap("n", "gf", function()
+            tsbuiltin.find_files({ default_text = rikka.getCurrrentWord() })
+        end, { desc = "Telescope Goto file" })
 
         rikka.setKeymap("n", "<M-r>", tsbuiltin.buffers, { desc = "Telescope Buffers" })
 
