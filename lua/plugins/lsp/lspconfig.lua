@@ -10,6 +10,9 @@ return {
         local lspconfig = require("lspconfig")
         local telescope = require("telescope.builtin")
         local actions_preview = require("actions-preview")
+        local win = require("lspconfig.ui.windows")
+
+        win.default_options.border = rikka.border
 
         -- Change diagnostic symbols in the sign column (gutter)
         local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
