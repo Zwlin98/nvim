@@ -9,6 +9,11 @@ return {
         local aerial = require("aerial")
         local rikka = require("rikka")
         local opts = {
+            backends = {
+                ["_"] = { "lsp", "treesitter", "markdown" },
+                ["c"] = { "lsp" },
+            },
+
             layout = {
                 min_width = 30,
             },
