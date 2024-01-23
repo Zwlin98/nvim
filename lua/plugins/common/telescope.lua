@@ -123,7 +123,7 @@ return {
             tsbuiltin.current_buffer_fuzzy_find({ default_text = rikka.getCurrrentWord() })
         end, { desc = "Telescope Fuzzy Find (selection)" })
 
-        rikka.setKeymap("v", "<M-s>", function()
+        rikka.setKeymap("v", "?", function()
             tsbuiltin.current_buffer_fuzzy_find({ default_text = rikka.getVisualSelection() })
         end, { desc = "Telescope Fuzzy Find (selection)" })
 
