@@ -55,6 +55,18 @@ return {
             return os.date("%H:%M:%S", os.time())
         end
 
+        local hostname = function()
+            local cache
+            return function()
+                if cache then
+                    return cache
+                end
+                local data = vim.loop.os_gethostname()
+                cache = string.gsub(data, "%.%w+$", "")
+                return cache
+            end
+        end
+
         require("lualine").setup({
             options = {
                 icons_enabled = true,
@@ -88,7 +100,7 @@ return {
                     },
                 },
                 lualine_x = { "encoding", "fileformat", "filetype" },
-                lualine_y = { { curTime } },
+                lualine_y = { { hostname() }, { curTime } },
                 lualine_z = { "location" },
             },
             inactive_sections = {
