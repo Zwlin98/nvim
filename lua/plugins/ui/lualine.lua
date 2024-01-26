@@ -2,6 +2,7 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
         "SmiteshP/nvim-navic",
+        "ofseed/copilot-status.nvim",
     },
     config = function()
         local navic = require("nvim-navic")
@@ -100,7 +101,7 @@ return {
                     },
                 },
                 lualine_x = { "encoding", "fileformat", "filetype" },
-                lualine_y = { { hostname() }, { curTime } },
+                lualine_y = { "copilot", { hostname() }, { curTime } },
                 lualine_z = { "location" },
             },
             inactive_sections = {
