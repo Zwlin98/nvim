@@ -6,8 +6,10 @@ end
 
 function Server.setup(opts)
     local lspconfig = opts.lspconfig
+    local capabilities = vim.deepcopy(opts.capabilities)
+    capabilities.offsetEncoding = "utf-8"
     lspconfig.clangd.setup({
-        capabilities = opts.capabilities,
+        capabilities = capabilities,
         filetypes = { "c", "cpp", "h" },
     })
 end
