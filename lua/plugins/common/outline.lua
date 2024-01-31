@@ -10,8 +10,8 @@ return {
         local rikka = require("rikka")
         local opts = {
             backends = {
-                ["_"] = { "lsp", "treesitter", "markdown" },
-                ["c"] = { "lsp" },
+                ["_"] = { "treesitter", "lsp", "markdown" },
+                ["c"] = { "treesitter" },
             },
 
             layout = {
