@@ -49,6 +49,7 @@ vim.o.timeoutlen = 400
 
 vim.o.list = true
 vim.opt.listchars = { leadmultispace = "│ ", multispace = "│ ", tab = "│ " }
+vim.o.exrc = true
 
 vim.cmd([[set diffopt+=vertical]])
 
