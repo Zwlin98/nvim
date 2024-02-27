@@ -11,5 +11,8 @@
   },
   "diagnostics.disable": [
     "missing-fields"
-  ]
+  ],
+    "diagnostics.globals": [
+        "DISABLE_COPILOT"
+    ]
 }
