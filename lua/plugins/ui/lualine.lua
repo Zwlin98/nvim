@@ -105,7 +105,7 @@ return {
                     },
                 },
                 lualine_x = { "encoding", "fileformat", "filetype" },
-                lualine_y = { "copilot", { hostname() }, { curTime } },
+                lualine_y = { "copilot", { curTime } },
                 -- lualine_z = { "location" },
                 lualine_z = { {
                     "progress",
