@@ -52,11 +52,9 @@ vim.opt.listchars = { leadmultispace = "│ ", multispace = "│ ", tab = "│ "
 vim.o.exrc = true
 
 vim.cmd([[set diffopt+=vertical]])
-
+vim.cmd([[set clipboard+=unnamedplus]])
 -- host specific settings
 local rikka = require("rikka")
 if rikka.isLocal() then
     vim.g.python3_host_prog = "~/.config/nvim/nvim-python/bin/python3"
-    vim.cmd([[set clipboard+=unnamedplus]])
 end
-
