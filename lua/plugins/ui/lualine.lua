@@ -72,8 +72,8 @@ return {
             options = {
                 icons_enabled = true,
                 theme = theme,
-                component_separators = { left = "|", right = "|" },
-                section_separators = { left = " ", right = " " },
+                component_separators = { left = "", right = "" },
+                section_separators = { left = "", right = "" },
                 disabled_filetypes = {
                     statusline = { "neo-tree" },
                 },
@@ -87,7 +87,11 @@ return {
                 },
             },
             sections = {
-                lualine_a = { "mode" },
+                lualine_a = { {
+                    "mode",
+                    separator = { left = "", right = "" },
+                    padding = { left = 0, right = 1 },
+                } },
                 lualine_b = { "branch", "diff", "diagnostics" },
                 lualine_c = {
                     { "filename", path = 1 },
@@ -102,10 +106,20 @@ return {
                 },
                 lualine_x = { "encoding", "fileformat", "filetype" },
                 lualine_y = { "copilot", { hostname() }, { curTime } },
-                lualine_z = { "location" },
+                -- lualine_z = { "location" },
+                lualine_z = { {
+                    "progress",
+                    separator = { left = "", right = "" },
+                    icon = { "󰇽", align = "left" },
+                    padding = { left = 0, right = 1 },
+                } },
             },
             inactive_sections = {
-                lualine_a = { "mode" },
+                lualine_a = { {
+                    "mode",
+                    separator = { left = "", right = "" },
+                    padding = { left = 0, right = 1 },
+                } },
                 lualine_b = {},
                 lualine_c = { "filetype" },
                 lualine_x = {},
