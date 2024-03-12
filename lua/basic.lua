@@ -6,8 +6,6 @@ vim.o.hidden = true
 
 vim.o.title = true
 
-vim.o.conceallevel = 1
-
 vim.o.undofile = true
 
 vim.o.cursorline = true
