@@ -25,6 +25,7 @@ return {
             mappings = {
                 i = {
                     ["<ESC>"] = actions.close,
+                    ["<C-d>"] = actions.delete_buffer,
                 },
             },
         }
