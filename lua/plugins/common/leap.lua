@@ -4,6 +4,8 @@ return {
         "tpope/vim-repeat",
     },
     config = function()
-        require("leap").add_default_mappings()
+        local rikka = require("rikka")
+        rikka.setKeymap("n", "s", "<Plug>(leap)", { desc = "Leap" })
+        rikka.setKeymap("n", "S", "<Plug>(leap-krom-window)", { desc = "Leap from window" })
     end,
 }
