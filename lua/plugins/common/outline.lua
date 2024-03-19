@@ -11,7 +11,7 @@ return {
         local opts = {
             backends = {
                 ["_"] = { "treesitter", "lsp", "markdown" },
-                ["c"] = { "treesitter" },
+                ["c"] = { "lsp", "treesitter" },
             },
 
             layout = {
