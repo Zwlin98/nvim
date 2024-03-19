@@ -43,6 +43,8 @@ return {
                 rikka.setBufKeymap(buffer, "n", "ga", actions_preview.code_actions, { desc = "Code Actions" })
                 rikka.setBufKeymap(buffer, "n", "<space>r", vim.lsp.buf.rename, { desc = "Rename" })
 
+                rikka.setBufKeymap(buffer, "n", "gs", telescope.lsp_document_symbols, { desc = "Document Symbols" })
+
                 rikka.setBufKeymap(buffer, "n", "[d", function()
                     vim.diagnostic.goto_prev({ float = false })
                 end, { desc = "Previous Diagnostic" })
