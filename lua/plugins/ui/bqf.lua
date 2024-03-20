@@ -11,6 +11,7 @@ return {
     },
     config = function()
         local rikka = require("rikka")
+        local trouble = require("trouble")
         local opts = {
             auto_resize_height = true,
             preview = {
@@ -32,11 +33,32 @@ return {
             -- make `drop` and `tab drop` to become preferred
             func_map = {
                 fzffilter = "?",
-                filter = "<C-q>",
                 pscrollup = "<C-u>",
                 pscrolldown = "<C-d>",
             },
         }
+
+        local function quickfixToggle()
+            local found = false
+            for _, winid in ipairs(vim.api.nvim_list_wins()) do
+                local bufnr = vim.api.nvim_win_get_buf(winid)
+                local filetype = vim.bo[bufnr].filetype
+                if filetype == "qf" then
+                    vim.api.nvim_win_close(winid, true)
+                    found = true
+                    break
+                end
+            end
+            if trouble.is_open() then
+                trouble.close()
+                found = true
+            end
+            if not found then
+                vim.cmd("copen")
+            end
+        end
+
+        rikka.setKeymap("n", "<C-q>", quickfixToggle, { desc = "Quickfix Toggle" })
 
         require("bqf").setup(opts)
     end,
