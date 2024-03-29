@@ -18,5 +18,6 @@ local rikka = require("rikka")
 require("lazy").setup("plugins", {
     ui = {
         border = rikka.border,
+        backdrop = 100,
     },
 })
