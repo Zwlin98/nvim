@@ -92,7 +92,11 @@ return {
                     separator = { left = "", right = "" },
                     padding = { left = 0, right = 1 },
                 } },
-                lualine_b = { "branch", "diff", "diagnostics" },
+                lualine_b = {
+                    "branch",
+                    "diff",
+                    "diagnostics",
+                },
                 lualine_c = {
                     { "filename", path = 1 },
                     {
@@ -104,8 +108,12 @@ return {
                         end,
                     },
                 },
-                lualine_x = { "encoding", "fileformat", "filetype" },
-                lualine_y = { "copilot", { curTime } },
+                lualine_x = {
+                    "encoding",
+                    "fileformat",
+                    "filetype",
+                },
+                lualine_y = { "grapple", "copilot", { curTime } },
                 -- lualine_z = { "location" },
                 lualine_z = { {
                     "progress",
