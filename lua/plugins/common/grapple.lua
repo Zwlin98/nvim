@@ -14,11 +14,15 @@ return {
 
         rikka.setKeymap("n", "<M-a>", function()
             grapple.tag()
-            rikka.info("Add to Pinned Buffers", "Grapple")
+            rikka.info("Add to pinned buffers", "Pin Buffer")
         end, { desc = "Grapple tag" })
 
         rikka.setKeymap("n", "<M-w>", function()
             grapple.toggle_tags()
-        end, { desc = "Grapple toggle tags" })
+        end, { desc = "Show pinned buffers" })
+
+        rikka.setKeymap("n", "<M-;>", function()
+            grapple.cycle_forward()
+        end, { desc = "Cycle next pinned buffer" })
     end,
 }
