@@ -29,8 +29,6 @@ return {
                 rikka.setBufKeymap(bufnr, "n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, desc = "Next change" })
 
                 rikka.setBufKeymap(bufnr, "n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, desc = "Previous change" })
-
-                rikka.setBufKeymap(bufnr, "n", "K", gs.preview_hunk, { desc = "Preview Hunk" })
             end,
         })
 
