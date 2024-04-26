@@ -1,6 +1,7 @@
 return {
     "folke/which-key.nvim",
     event = "VeryLazy",
+    enabled = false,
     config = function()
         local rikka = require("rikka")
         local opts = {
