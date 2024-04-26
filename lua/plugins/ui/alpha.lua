@@ -31,11 +31,16 @@ return {
             [[                                                                  ]],
             [[                                                                  ]],
             [[                                                                  ]],
+            [[                                                                  ]],
+            [[                                                                  ]],
             [[     Consider everything deeply but still remain fearless.        ]],
             [[                                                                  ]],
             [[                                                                  ]],
             [[                                                                  ]],
             [[                         Zwlin's NVIM                             ]],
+            [[                                                                  ]],
+            [[                                                                  ]],
+            [[                                                                  ]],
         }
 
         dashboard.section.buttons.val = {
