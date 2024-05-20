@@ -45,6 +45,8 @@ return {
             DiagnosticVirtualTextInfo = { fg = rikka.color.orange, bg = nil },
             DiagnosticVirtualTextHint = { fg = rikka.color.green, bg = nil },
             DiagnosticVirtualTextOk = { fg = rikka.color.blue, bg = nil },
+
+            LspInlayHint = { fg = rikka.color.lightGray, bg = nil },
         }
 
         for group, opts in pairs(customHighlightGroup) do
