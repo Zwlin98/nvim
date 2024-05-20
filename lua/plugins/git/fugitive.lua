@@ -16,13 +16,15 @@ return {
                 end
             end
             if not found then
-                vim.cmd("Git blame --date=short")
+                rikka.vimCmd("Git blame --date=short")
             end
         end
 
         -- aka: who write this code? leader-w(ho)
         rikka.setKeymap("n", "<leader>w", blameToggle, { desc = "Git Blame Toggle" })
 
-        rikka.createCommand("His", function() vim.cmd("Git log %") end, {desc = "Open git log(history) of current buffer"})
+        rikka.createCommand("His", function()
+            rikka.vimCmd("Git log %")
+        end, { desc = "Open git log(history) of current buffer" })
     end,
 }

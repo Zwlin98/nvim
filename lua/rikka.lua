@@ -195,4 +195,9 @@ Rikka.setHightlight = function(group, opts)
     vim.api.nvim_set_hl(0, group, opts)
 end
 
+--- @param cmd string Vimscript code
+Rikka.vimCmd = function(cmd)
+    vim.api.nvim_exec2(cmd, { output = false })
+end
+
 return Rikka

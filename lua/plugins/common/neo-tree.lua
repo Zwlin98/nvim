@@ -23,19 +23,19 @@ return {
                 mappings = {
                     ["1"] = {
                         function()
-                            vim.api.nvim_exec2("Neotree focus filesystem left", { output = false })
+                            rikka.vimCmd("Neotree focus filesystem left")
                         end,
                         desc = "Switch: Filesystem",
                     },
                     ["2"] = {
                         function()
-                            vim.api.nvim_exec2("Neotree focus buffers left", { output = false })
+                            rikka.vimCmd("Neotree focus buffers left")
                         end,
                         desc = "Switch: Buffers",
                     },
                     ["3"] = {
                         function()
-                            vim.api.nvim_exec2("Neotree focus git_status left", { output = false })
+                            rikka.vimCmd("Neotree focus git_status left")
                         end,
                         desc = "Switch: Git status",
                     },
@@ -96,7 +96,7 @@ return {
                 {
                     event = "file_opened",
                     handler = function()
-                        vim.api.nvim_exec2("Neotree close", { output = false })
+                        rikka.vimCmd("Neotree close")
                     end,
                 },
             },
