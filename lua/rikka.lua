@@ -59,6 +59,10 @@ function Rikka.isRemote()
     return os.getenv("SSH_CLIENT") or os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION")
 end
 
+function Rikka.isTmux()
+    return os.getenv("TMUX")
+end
+
 function Rikka.gitStatus(path)
     local statusCmd = { "git", "status", "--porcelain", path }
     local ok, res = pcall(vim.fn.system, statusCmd)
