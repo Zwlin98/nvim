@@ -62,10 +62,10 @@ return {
 
                                 if rikka.isStaged(path) then
                                     local cmd = { "git", "reset", "--", path }
-                                    vim.fn.system(cmd)
+                                    vim.system(cmd)
                                 else
                                     local cmd = { "git", "add", path }
-                                    vim.fn.system(cmd)
+                                    vim.system(cmd)
                                 end
 
                                 events.fire_event(events.GIT_EVENT)
