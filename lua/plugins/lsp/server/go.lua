@@ -18,7 +18,7 @@ function Server.setup(opts)
                 },
                 staticcheck = true,
                 hints = {
-                    assignVariableTypes = true,
+                    assignVariableTypes = false,
                     compositeLiteralFields = true,
                     compositeLiteralTypes = true,
                     constantValues = true,
