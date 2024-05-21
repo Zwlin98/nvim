@@ -59,16 +59,22 @@ return {
                                     return
                                 end
                                 local path = node:get_id()
+                                local statusCmd = { "git", "status", "--porcelain", path }
 
-                                if rikka.isStaged(path) then
-                                    local cmd = { "git", "reset", "--", path }
-                                    vim.system(cmd)
-                                else
-                                    local cmd = { "git", "add", path }
-                                    vim.system(cmd)
+                                local function statusCallback(obj)
+                                    local status = string.sub(obj.stdout, 1, 1)
+                                    if status == " " then
+                                        vim.system({ "git", "add", path }, nil, function()
+                                            events.fire_event(events.GIT_EVENT)
+                                        end)
+                                    else
+                                        vim.system({ "git", "reset", path }, nil, function()
+                                            events.fire_event(events.GIT_EVENT)
+                                        end)
+                                    end
                                 end
 
-                                events.fire_event(events.GIT_EVENT)
+                                vim.system(statusCmd, { text = true }, statusCallback)
                             end,
                             desc = "Toggle staged",
                         },
