@@ -45,6 +45,10 @@ return {
             normalTerminal:toggle()
         end, { desc = "Toggle Terminal" })
 
+        rikka.setKeymap("n", "<M-t>", function()
+            normalTerminal:toggle()
+        end, { desc = "Toggle Terminal" })
+
         local lazygit = Terminal:new({
             cmd = "lazygit",
             dir = "git_dir",
