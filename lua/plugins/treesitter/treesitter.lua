@@ -20,6 +20,7 @@ return {
                 "yaml",
                 "php",
                 "beancount",
+                "comment",
             },
             -- 启用代码高亮功能
             highlight = {
