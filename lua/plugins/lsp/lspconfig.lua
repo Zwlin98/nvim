@@ -48,11 +48,6 @@ return {
 
                 local buffer = args.buf
 
-                rikka.createAutocmd({ "CursorHold", "InsertLeave" }, {
-                    buffer = buffer,
-                    callback = vim.lsp.codelens.refresh,
-                })
-
                 rikka.setBufKeymap(buffer, "n", "gr", telescope.lsp_references, { desc = "Check references under cursor" })
                 rikka.setBufKeymap(buffer, "n", "gd", telescope.lsp_definitions, { desc = "Check definitions under cursor" })
                 rikka.setBufKeymap(buffer, "n", "gi", telescope.lsp_implementations, { desc = "Check implementations under cursor" })
