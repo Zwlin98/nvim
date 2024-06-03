@@ -54,14 +54,12 @@ return {
             defaults = {
                 mappings = {
                     i = {
-                        ["<M-q>"] = actions.smart_send_to_qflist + enhanceMod.troubleOpenQuickFix,
-                        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                        ["<C-q>"] = actions.smart_send_to_qflist + enhanceMod.troubleOpenQuickFix,
                         ["<Tab>"] = actions.toggle_selection,
                         ["<M-d>"] = actions.to_fuzzy_refine, -- search deeper
                     },
                     n = {
-                        ["<M-q>"] = actions.smart_send_to_qflist + enhanceMod.troubleOpenQuickFix,
-                        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                        ["<C-q>"] = actions.smart_send_to_qflist + enhanceMod.troubleOpenQuickFix,
                         ["<Tab>"] = actions.toggle_selection,
                         ["<M-d>"] = actions.to_fuzzy_refine, -- search deeper
                     },

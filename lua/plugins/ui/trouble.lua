@@ -5,16 +5,8 @@ return {
     config = function()
         local rikka = require("rikka")
         local trouble = require("trouble")
-        local opts = {
-            padding = false,
-            action_keys = {
-                close_folds = { "zc" },
-                open_folds = { "zo" },
-            },
-            win_config = { border = rikka.border },
-        }
 
-        trouble.setup(opts)
+        trouble.setup()
 
         rikka.setKeymap("n", "]q", function()
             if trouble.is_open() then
@@ -36,11 +28,14 @@ return {
             if trouble.is_open() then
                 trouble.close()
             else
-                trouble.open("document_diagnostics")
+                trouble.open({
+                    mode = "diagnostics", -- inherit from diagnostics mode
+                    filter = { buf = 0 }, -- filter diagnostics to the current buffer
+                })
             end
         end, { desc = "Toggle Trouble Document Diagnostics" })
 
-        rikka.setKeymap("n", "<M-q>", function()
+        rikka.setKeymap("n", "<C-q>", function()
             if trouble.is_open() then
                 trouble.close()
             else
