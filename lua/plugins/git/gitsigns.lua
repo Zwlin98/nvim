@@ -24,11 +24,24 @@ return {
             },
 
             on_attach = function(bufnr)
-                local gs = package.loaded.gitsigns
+                local gitsigns = require("gitsigns")
 
-                rikka.setBufKeymap(bufnr, "n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, desc = "Next change" })
+                -- Navigation
+                rikka.setBufKeymap(bufnr, "n", "]c", function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ "]c", bang = true })
+                    else
+                        gitsigns.nav_hunk("next")
+                    end
+                end, { desc = "Next change" })
 
-                rikka.setBufKeymap(bufnr, "n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, desc = "Previous change" })
+                rikka.setBufKeymap(bufnr, "n", "[c", function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ "[c", bang = true })
+                    else
+                        gitsigns.nav_hunk("prev")
+                    end
+                end)
             end,
         })
 
