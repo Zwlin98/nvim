@@ -21,6 +21,9 @@ return {
                 "php",
                 "beancount",
                 "comment",
+                "vim",
+                "vimdoc",
+                "html",
             },
             -- 启用代码高亮功能
             highlight = {
