@@ -3,7 +3,8 @@ return {
     event = "VeryLazy",
     config = function()
         local rikka = require("rikka")
-        require("gitsigns").setup({
+        local gitsigns = require("gitsigns")
+        gitsigns.setup({
 
             current_line_blame = true,
             current_line_blame_opts = {
@@ -24,14 +25,12 @@ return {
             },
 
             on_attach = function(bufnr)
-                local gitsigns = require("gitsigns")
-
                 -- Navigation
                 rikka.setBufKeymap(bufnr, "n", "]c", function()
                     if vim.wo.diff then
                         vim.cmd.normal({ "]c", bang = true })
                     else
-                        gitsigns.nav_hunk("next")
+                        gitsigns.nav_hunk("next", { target = "all" })
                     end
                 end, { desc = "Next change" })
 
@@ -39,7 +38,7 @@ return {
                     if vim.wo.diff then
                         vim.cmd.normal({ "[c", bang = true })
                     else
-                        gitsigns.nav_hunk("prev")
+                        gitsigns.nav_hunk("prev", { target = "all" })
                     end
                 end)
             end,
@@ -48,7 +47,7 @@ return {
         rikka.setHightlight("GitSignsCurrentLineBlame", { fg = rikka.color.blameGray })
 
         rikka.createCommand("PreviewDiff", function()
-            vim.cmd("Gitsigns preview_hunk")
+            gitsigns.preview_hunk()
         end, { desc = "Gitsigns Preview Hunk" })
     end,
 }
