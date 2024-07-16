@@ -2,14 +2,12 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        "aznhe21/actions-preview.nvim",
     },
     config = function()
         local rikka = require("rikka")
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
-        local telescope = require("telescope.builtin")
-        local actions_preview = require("actions-preview")
+        local fzf = require("fzf-lua")
         local win = require("lspconfig.ui.windows")
 
         win.default_options.border = rikka.border
@@ -34,6 +32,19 @@ return {
             -- end
         end
 
+        local function lspReferences()
+            fzf.lsp_references({
+                ignore_current_line = true,
+            })
+        end
+
+        local function lspDefinitions()
+            fzf.lsp_definitions({
+                sync = true,
+                jump_to_single_result = true,
+            })
+        end
+
         rikka.createAutocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(args)
@@ -48,13 +59,13 @@ return {
 
                 local buffer = args.buf
 
-                rikka.setBufKeymap(buffer, "n", "gr", telescope.lsp_references, { desc = "Check references under cursor" })
-                rikka.setBufKeymap(buffer, "n", "gd", telescope.lsp_definitions, { desc = "Check definitions under cursor" })
-                rikka.setBufKeymap(buffer, "n", "gi", telescope.lsp_implementations, { desc = "Check implementations under cursor" })
-                rikka.setBufKeymap(buffer, "n", "ga", actions_preview.code_actions, { desc = "Code Actions" })
+                rikka.setBufKeymap(buffer, "n", "gr", lspReferences, { desc = "Check references under cursor" })
+                rikka.setBufKeymap(buffer, "n", "gd", lspDefinitions, { desc = "Check definitions under cursor" })
+                rikka.setBufKeymap(buffer, "n", "gi", fzf.lsp_implementations, { desc = "Check implementations under cursor" })
+                rikka.setBufKeymap(buffer, "n", "ga", fzf.lsp_code_actions, { desc = "Code Actions" })
                 rikka.setBufKeymap(buffer, "n", "<space>r", vim.lsp.buf.rename, { desc = "Rename" })
 
-                rikka.setBufKeymap(buffer, "n", "gs", telescope.lsp_document_symbols, { desc = "Document Symbols" })
+                rikka.setBufKeymap(buffer, "n", "gs", fzf.lsp_document_symbols, { desc = "Document Symbols" })
             end,
         })
 

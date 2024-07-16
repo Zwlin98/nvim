@@ -63,7 +63,6 @@ function Rikka.isTmux()
     return os.getenv("TMUX")
 end
 
-
 function Rikka.notifyLSPError()
     return not os.getenv("NVIM_NOT_NOTIFY_LSP_ERROR")
 end
@@ -137,7 +136,7 @@ Rikka.error = function(msg, title)
     Rikka.notify(msg, vim.log.levels.ERROR, title)
 end
 
-Rikka.setKeymap = function(mode, lhs, rhs, opts)
+function Rikka.setKeymap(mode, lhs, rhs, opts)
     opts = opts or {}
 
     vim.tbl_extend("keep", opts, {
@@ -153,7 +152,7 @@ Rikka.setKeymap = function(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
 end
 
-Rikka.setBufKeymap = function(buffer, mode, lhs, rhs, opts)
+function Rikka.setBufKeymap(buffer, mode, lhs, rhs, opts)
     opts = opts or {}
 
     vim.tbl_extend("keep", opts, {

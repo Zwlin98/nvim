@@ -15,7 +15,6 @@ return {
                 "gitconfig",
                 "alpha",
                 "dashboard",
-                "TelescopePrompt",
             },
             modes_allowlist = { "n" },
         })
