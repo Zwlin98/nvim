@@ -1,10 +1,10 @@
 return {
     "ibhagwan/fzf-lua",
-    -- optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-        -- calling `setup` is optional for customization
         local fzf = require("fzf-lua")
+        local actions = require("trouble.sources.fzf").actions
+
         local rikka = require("rikka")
 
         local cfgSmall = {
@@ -24,15 +24,53 @@ return {
             },
         }
 
+        local rgOpts = {
+            "--color=always",
+            "--colors=match:fg:0xD0,0x87,0x70",
+            "--column",
+            "--line-number",
+            "--no-heading",
+            "--smart-case",
+            "--max-columns=4096",
+            "-e",
+        }
+
         fzf.setup({
             files = cfgSmall,
             buffers = cfgSmall,
             fzf_opts = {
                 ["--layout"] = "default",
             },
+
             fzf_colors = {
+                ["fg"] = { "fg", "Normal" },
+                ["bg"] = { "bg", "Normal" },
+                ["fg+"] = { "fg", "CursorLine" },
                 ["bg+"] = { "bg", "CursorLine" },
+                ["hl+"] = { "fg", "Statement" },
+                ["info"] = { "fg", "PreProc" },
+                ["border"] = { "fg", "Ignore" },
+                ["prompt"] = { "fg", "Conditional" },
+                ["pointer"] = { "fg", "Exception" },
+                ["marker"] = { "fg", "Keyword" },
+                ["spinner"] = { "fg", "Label" },
+                ["header"] = { "fg", "Comment" },
                 ["gutter"] = { "bg", "Normal" },
+            },
+            hls = {
+                header_text = "DiagnosticError",
+            },
+            keymap = {
+                builtin = {
+                    ["<C-d>"] = "preview-page-down",
+                    ["<C-u>"] = "preview-page-up",
+                },
+            },
+            grep = {
+                rg_opts = table.concat(rgOpts, " "),
+                actions = {
+                    ["ctrl-q"] = actions.open,
+                },
             },
         })
 
@@ -45,11 +83,11 @@ return {
         rikka.setKeymap("n", "<M-s>", fzf.lgrep_curbuf, { desc = "Fzf " })
 
         rikka.setKeymap("n", "?", function()
-            fzf.lgrep_curbuf({ search = rikka.getCurrrentWord() })
+            fzf.grep_curbuf({ search = rikka.getCurrrentWord() })
         end, { desc = "Grep word in current buffer" })
 
         rikka.setKeymap("v", "?", function()
-            fzf.lgrep_curbuf({ search = rikka.getVisualSelection() })
+            fzf.grep_curbuf({ search = rikka.getVisualSelection() })
         end, { desc = "Grep visual selection in current buffer" })
 
         rikka.setKeymap("n", "<M-g>", fzf.grep_cword, { desc = "Grep Cword" })

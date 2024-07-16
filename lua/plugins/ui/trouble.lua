@@ -39,7 +39,7 @@ return {
             if trouble.is_open() then
                 trouble.close()
             else
-                trouble.open("quickfix")
+                trouble.open("fzf")
             end
         end, { desc = "Toggle Trouble Quickfix" })
     end,
