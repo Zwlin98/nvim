@@ -74,13 +74,15 @@ return {
             },
         })
 
+        fzf.register_ui_select()
+
         rikka.setKeymap("n", "<M-p>", fzf.builtin, { desc = "FzfLua builtin" })
         rikka.setKeymap("n", "<M-e>", fzf.files, { desc = "Find Files with fzf" })
         rikka.setKeymap("n", "<M-r>", fzf.buffers, { desc = "Find Buffers with fzf" })
 
         rikka.setKeymap("n", "<M-`>", fzf.lsp_document_symbols, { desc = "Document Symbols(FzfLua)" })
 
-        rikka.setKeymap("n", "<M-s>", fzf.lgrep_curbuf, { desc = "Fzf " })
+        rikka.setKeymap("n", "<M-s>", fzf.blines, { desc = "Fzf current buffer lines" })
 
         rikka.setKeymap("n", "?", function()
             fzf.grep_curbuf({ search = rikka.getCurrrentWord() })
@@ -95,7 +97,7 @@ return {
         rikka.setKeymap("v", "<M-g>", fzf.grep_visual, { desc = "Grep visual selection" })
 
         rikka.setKeymap("n", "gf", function()
-            fzf.files({ search = rikka.getCurrrentWord() })
+            fzf.files({ query = rikka.getCurrrentWord() })
         end, { desc = "FzfLua Goto file" })
 
         rikka.setKeymap("n", "<M-z>", fzf.jumps, { desc = "FzfLua Jumplist" })
