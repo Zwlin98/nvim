@@ -1,15 +1,18 @@
 return {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    enabled = false,
     config = function()
         local rikka = require("rikka")
         local opts = {
-            window = {
+            win = {
                 border = rikka.border,
             },
             layout = {
                 height = { min = 10, max = 25 },
+            },
+            triggers = {
+                { "<leader>", mode = "n", "v" },
+                { "<C-r>", mode = "i", "v" },
             },
         }
         local wk = require("which-key")
