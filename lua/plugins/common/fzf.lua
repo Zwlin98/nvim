@@ -18,6 +18,7 @@ return {
                     layout = "vertical",
                     vertical = "up:60%",
                 },
+                backdrop = 100,
             },
             fzf_opts = {
                 ["--layout"] = "reverse",
@@ -40,6 +41,10 @@ return {
             buffers = cfgSmall,
             fzf_opts = {
                 ["--layout"] = "default",
+            },
+
+            winopts = {
+                backdrop = 100,
             },
 
             fzf_colors = {
