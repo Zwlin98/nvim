@@ -142,7 +142,7 @@ return {
 
         rikka.setKeymap("v", "<M-g>", fzf.grep_visual, { desc = "Grep visual selection" })
 
-        rikka.setKeymap("n", "<C-g>", fzf.git_bcommits, { desc = "FzfLua Git file Commits" })
+        rikka.setKeymap("n", "<C-h>", fzf.git_bcommits, { desc = "FzfLua Git file Commits history" })
 
         rikka.setKeymap("n", "gf", function()
             fzf.files({ query = rikka.getCurrrentWord() })
