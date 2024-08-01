@@ -94,6 +94,12 @@ return {
             },
             keymap = {
                 builtin = {
+                    true,
+                    ["ctrl-d"] = "preview-page-down",
+                    ["ctrl-u"] = "preview-page-up",
+                },
+                fzf = {
+                    true,
                     ["ctrl-d"] = "preview-page-down",
                     ["ctrl-u"] = "preview-page-up",
                 },
