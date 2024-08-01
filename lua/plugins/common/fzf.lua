@@ -3,9 +3,32 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         local fzf = require("fzf-lua")
-        local actions = require("trouble.sources.fzf").actions
-
+        local troubleFzfActions = require("trouble.sources.fzf").actions
+        local fzfPath = require("fzf-lua.path")
         local rikka = require("rikka")
+
+        local customActions = {}
+
+        function customActions.startReview(selected)
+            local line = selected[1]
+            local commitHash = line:match("[^ ]+")
+            local diffCmd = string.format("DiffviewOpen %s -- %s", commitHash, vim.fn.expand("%"))
+            vim.cmd(diffCmd)
+        end
+
+        function customActions.openWithCode(selected)
+            if rikka.isRemote() then
+                return
+            end
+            local entry = fzfPath.entry_to_file(selected[1])
+            if entry.path == "<none>" then
+                return
+            end
+            local line = entry.line or 1
+            local col = entry.col or 1
+            local vscodePathFormat = string.format("%s:%s:%s", entry.path, line, col)
+            vim.system({ "code", "--goto", vscodePathFormat })
+        end
 
         local cfgSmall = {
             -- previewer = false,
@@ -22,6 +45,10 @@ return {
             },
             fzf_opts = {
                 ["--layout"] = "reverse",
+            },
+
+            actions = {
+                ["ctrl-o"] = customActions.openWithCode,
             },
         }
 
@@ -67,14 +94,22 @@ return {
             },
             keymap = {
                 builtin = {
-                    ["<C-d>"] = "preview-page-down",
-                    ["<C-u>"] = "preview-page-up",
+                    ["ctrl-d"] = "preview-page-down",
+                    ["ctrl-u"] = "preview-page-up",
                 },
             },
             grep = {
                 rg_opts = table.concat(rgOpts, " "),
                 actions = {
-                    ["ctrl-q"] = actions.open,
+                    ["ctrl-q"] = troubleFzfActions.open,
+                    ["ctrl-o"] = customActions.openWithCode,
+                },
+            },
+            git = {
+                bcommits = {
+                    actions = {
+                        ["ctrl-o"] = customActions.startReview,
+                    },
                 },
             },
         })
@@ -100,6 +135,8 @@ return {
         rikka.setKeymap("n", "<M-g>", fzf.grep_cword, { desc = "Grep Cword" })
 
         rikka.setKeymap("v", "<M-g>", fzf.grep_visual, { desc = "Grep visual selection" })
+
+        rikka.setKeymap("n", "<C-g>", fzf.git_bcommits, { desc = "FzfLua Git file Commits" })
 
         rikka.setKeymap("n", "gf", function()
             fzf.files({ query = rikka.getCurrrentWord() })
