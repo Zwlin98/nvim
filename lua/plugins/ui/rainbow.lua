@@ -2,7 +2,7 @@ return {
     "HiPhish/rainbow-delimiters.nvim",
     event = "VeryLazy",
     config = function()
-        local rainbow_delimiters = require("rainbow-delimiters")
+        local rainbow = require("rainbow-delimiters")
         local rikka = require("rikka")
 
         local rainbowHighlight = {
@@ -21,8 +21,12 @@ return {
 
         vim.g.rainbow_delimiters = {
             strategy = {
-                [""] = rainbow_delimiters.strategy["global"],
-                commonlisp = rainbow_delimiters.strategy["local"],
+                [""] = function(bufnr)
+                    if rikka.isBigFile(bufnr) then
+                        return nil
+                    end
+                    return rainbow.strategy["global"]
+                end,
             },
             query = {
                 [""] = "rainbow-delimiters",

@@ -1,4 +1,9 @@
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+local rikka = require("rikka")
+rikka.createAutocmd({ "BufNewFile", "BufRead" }, {
     pattern = "*.lua.txt",
-    command = "set filetype=lua",
+    callback = function(args)
+        if not rikka.isBigFile(args.buf) then
+            vim.cmd("setlocal filetype=lua")
+        end
+    end,
 })

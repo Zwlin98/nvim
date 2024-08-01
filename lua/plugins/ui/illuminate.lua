@@ -17,6 +17,8 @@ return {
                 "dashboard",
             },
             modes_allowlist = { "n" },
+
+            large_file_cutoff = 10240,
         })
 
         -- Highlight on yank
