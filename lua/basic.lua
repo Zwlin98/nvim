@@ -50,16 +50,3 @@ vim.opt.listchars = { leadmultispace = "│ ", multispace = "│ ", tab = "│ "
 vim.o.exrc = true
 
 vim.cmd([[set diffopt+=vertical]])
-vim.cmd([[set clipboard+=unnamedplus]])
-
-local rikka = require("rikka")
-
-if rikka.isRemote() and not rikka.isTmux() then
-    vim.g.clipboard = {
-        name = "OSC 52",
-        copy = {
-            ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-            ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-        },
-    }
-end

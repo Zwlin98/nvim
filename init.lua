@@ -7,3 +7,5 @@ require("keymaps")
 require("neovide")
 
 require("autocmds")
+
+require("clipboard")
