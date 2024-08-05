@@ -1,15 +1,28 @@
 local rikka = require("rikka")
-local osc52 = require("vim.ui.clipboard.osc52")
 
 if rikka.isRemote() and not rikka.isTmux() then
-    local copy = osc52.copy("+")
-    rikka.createAutocmd("TextYankPost", {
-        callback = function()
-            if vim.v.event.operator == "y" then
-                copy(vim.v.event.regcontents)
-            end
-        end,
-    })
+    local osc52 = require("vim.ui.clipboard.osc52")
+
+    vim.o.clipboard = "unnamedplus"
+
+    local function paste()
+        return {
+            vim.fn.split(vim.fn.getreg(""), "\n"),
+            vim.fn.getregtype(""),
+        }
+    end
+
+    vim.g.clipboard = {
+        name = "OSC 52",
+        copy = {
+            ["+"] = osc52.copy("+"),
+            ["*"] = osc52.copy("*"),
+        },
+        paste = {
+            ["+"] = paste,
+            ["*"] = paste,
+        },
+    }
 else
-    vim.cmd([[set clipboard+=unnamedplus]])
+    vim.o.clipboard = "unnamedplus"
 end
