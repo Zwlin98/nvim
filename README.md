@@ -26,7 +26,7 @@ nvim
 
 ## dependencies
 
-### language servers
+### language servers preconfigured
 
 + [clangd](https://clangd.llvm.org/) for c/c++
 + [gopls](https://github.com/golang/go) for go
@@ -34,8 +34,14 @@ nvim
 + [marksman](https://github.com/artempyanykh/marksman) for markdown
 + [rust-analyzer](https://github.com/rust-lang/rust-analyzer) for lua
 
-### formatters
+### formatters preconfigured
 
 + [stylua](https://github.com/JohnnyMorganz/StyLua)
 + [jq](https://jqlang.github.io/jq/)
 + [yamlfmt](https://github.com/google/yamlfmt)
+
+## articles
+
++ [My nvim config in 2023 | Zwlin's Blog](https://blog.zwlin.io/post/2023-nvim/)
++ [2022 年的 neovim 配置方案 | Zwlin's Blog](https://blog.zwlin.io/post/2022-nvim/)
+
