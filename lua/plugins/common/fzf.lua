@@ -66,6 +66,7 @@ return {
         fzf.setup({
             files = cfgSmall,
             buffers = cfgSmall,
+            tabs = cfgSmall,
             fzf_opts = {
                 ["--layout"] = "default",
             },
@@ -125,6 +126,7 @@ return {
         rikka.setKeymap("n", "<M-p>", fzf.builtin, { desc = "FzfLua builtin" })
         rikka.setKeymap("n", "<M-e>", fzf.files, { desc = "Find Files with fzf" })
         rikka.setKeymap("n", "<M-r>", fzf.buffers, { desc = "Find Buffers with fzf" })
+        rikka.setKeymap("n", "<M-t>", fzf.tabs, { desc = "Find Tabs with fzf" })
 
         rikka.setKeymap("n", "<M-`>", fzf.lsp_document_symbols, { desc = "Document Symbols(FzfLua)" })
 
