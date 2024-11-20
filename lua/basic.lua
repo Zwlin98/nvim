@@ -24,7 +24,6 @@ vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftround = true
 vim.o.shiftwidth = 4
-vim.o.smartindent = true
 vim.o.autoindent = true
 
 vim.o.splitbelow = true
