@@ -41,7 +41,7 @@ return {
         local function lspDefinitions()
             fzf.lsp_definitions({
                 sync = true,
-                jump_to_single_result = true,
+                jump1 = true,
             })
         end
 
