@@ -83,7 +83,6 @@ return {
             "c",
             "go",
             "lua",
-            "markdown",
             "rust",
             "python",
         }
