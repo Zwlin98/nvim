@@ -45,9 +45,5 @@ return {
         })
 
         rikka.setHightlight("GitSignsCurrentLineBlame", { fg = rikka.color.blameGray })
-
-        rikka.createCommand("PreviewDiff", function()
-            gitsigns.preview_hunk()
-        end, { desc = "Gitsigns Preview Hunk" })
     end,
 }

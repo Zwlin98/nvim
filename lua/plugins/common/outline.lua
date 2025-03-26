@@ -37,9 +37,6 @@ return {
             disable_max_lines = 20480,
         }
         aerial.setup(opts)
-        rikka.createCommand("Outline", function()
-            vim.cmd("AerialToggle")
-        end, { desc = "Toggle File Outline" })
 
         rikka.setKeymap("n", "<leader>o", "<CMD>AerialToggle<CR>", { desc = "Toggle File Outline" })
     end,

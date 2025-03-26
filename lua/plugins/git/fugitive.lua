@@ -22,9 +22,5 @@ return {
 
         -- aka: who write this code? leader-w(ho)
         rikka.setKeymap("n", "<leader>w", blameToggle, { desc = "Git Blame Toggle" })
-
-        rikka.createCommand("His", function()
-            rikka.vimCmd("Git log %")
-        end, { desc = "Open git log(history) of current buffer" })
     end,
 }

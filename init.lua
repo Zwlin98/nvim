@@ -6,4 +6,6 @@ require("keymaps")
 
 require("autocmds")
 
+require("commands")
+
 require("clipboard")

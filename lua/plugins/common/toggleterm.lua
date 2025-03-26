@@ -63,7 +63,5 @@ return {
         end
 
         rikka.setKeymap("n", "<C-g>", lazygit_toggle, { desc = "Lazygit" })
-
-        rikka.createCommand("Lg", lazygit_toggle, { desc = "Lazygit" })
     end,
 }

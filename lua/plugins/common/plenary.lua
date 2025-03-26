@@ -4,11 +4,11 @@ return {
         local profile = require("plenary.profile")
         local rikka = require("rikka")
 
-        rikka.createCommand("StartProfile", function()
+        rikka.createCommand("ProfileStart", function()
             profile.start("profile.log", { flame = true })
         end, { desc = "Start profiling" })
 
-        rikka.createCommand("StopProfile", function()
+        rikka.createCommand("ProfileStop", function()
             profile.stop()
         end, { desc = "Stop profiling" })
     end,
