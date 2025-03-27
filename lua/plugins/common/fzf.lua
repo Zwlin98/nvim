@@ -9,13 +9,6 @@ return {
 
         local customActions = {}
 
-        function customActions.startReview(selected)
-            local line = selected[1]
-            local commitHash = line:match("[^ ]+")
-            local diffCmd = string.format("DiffviewOpen %s -- %s", commitHash, vim.fn.expand("%"))
-            vim.cmd(diffCmd)
-        end
-
         function customActions.openWithCode(selected)
             if rikka.isRemote() then
                 return

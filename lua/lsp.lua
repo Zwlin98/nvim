@@ -42,8 +42,9 @@ else
             if client:supports_method("textDocument/inlayHints") then
                 vim.lsp.inlay_hint.enable()
             end
-
             local buffer = args.buf
+            -- Unset 'omnifunc'
+            vim.bo[buffer].omnifunc = nil
 
             rikka.setBufKeymap(buffer, "n", "gr", lspReferences, { desc = "Check references under cursor" })
             rikka.setBufKeymap(buffer, "n", "gd", lspDefinitions, { desc = "Check definitions under cursor" })
