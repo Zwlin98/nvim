@@ -47,6 +47,9 @@ return {
             DiagnosticVirtualTextOk = { fg = rikka.color.blue, bg = nil },
 
             LspInlayHint = { fg = rikka.color.lightGray, bg = nil },
+
+            Pmenu = { bg = rikka.color.black },
+            PmenuThumb = { bg = rikka.color.cursorGray },
         }
 
         for group, opts in pairs(customHighlightGroup) do
