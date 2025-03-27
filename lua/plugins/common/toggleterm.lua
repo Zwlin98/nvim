@@ -12,9 +12,6 @@ return {
                     return vim.o.columns * 0.4
                 end
             end,
-            float_opts = {
-                border = rikka.border,
-            },
         })
 
         rikka.createAutocmd("TermOpen", {
@@ -31,9 +28,6 @@ return {
             cmd = vim.o.shell,
             dir = vim.fn.expand("%:p:h"),
             direction = "float",
-            float_opts = {
-                border = rikka.border,
-            },
             on_open = function(term)
                 vim.cmd("startinsert!")
                 rikka.setBufKeymap(0, "t", "<ESC>", [[<C-\><C-n>]], { desc = "Close Terminal" })
@@ -49,10 +43,6 @@ return {
             cmd = "lazygit",
             dir = "git_dir",
             direction = "float",
-            float_opts = {
-                border = rikka.border,
-            },
-
             on_open = function(term)
                 vim.cmd("startinsert!")
             end,

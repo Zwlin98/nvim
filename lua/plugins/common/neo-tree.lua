@@ -12,7 +12,6 @@ return {
         local events = require("neo-tree.events")
 
         local opts = {
-            popup_border_style = rikka.border,
             filesystem = {
                 follow_current_file = {
                     enabled = true,

@@ -44,6 +44,8 @@ vim.g.mapleader = " "
 vim.o.updatetime = 300
 vim.o.timeoutlen = 400
 
+vim.o.winborder = "rounded"
+
 vim.o.list = true
 vim.opt.listchars = { leadmultispace = "│ ", multispace = "│ ", tab = "│ " }
 vim.o.exrc = true

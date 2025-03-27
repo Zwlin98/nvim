@@ -8,28 +8,12 @@ return {
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
         local fzf = require("fzf-lua")
-        local win = require("lspconfig.ui.windows")
-
-        win.default_options.border = rikka.border
 
         -- Change diagnostic symbols in the sign column (gutter)
         local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
         for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-        end
-
-        -- Override floating window settings
-        local lspUtilOpenFloatingPreview = vim.lsp.util.open_floating_preview
-        ---@diagnostic disable-next-line: duplicate-set-field
-        function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-            opts = opts or {}
-            opts.border = opts.border or rikka.border
-            lspUtilOpenFloatingPreview(contents, syntax, opts, ...)
-            -- local bufnr, winnr = lspUtilOpenFloatingPreview(contents, syntax, opts, ...)
-            -- if bufnr then
-            --     vim.api.nvim_win_set_var(winnr, "winblend", 10)
-            -- end
         end
 
         local function lspReferences()
@@ -53,7 +37,7 @@ return {
                     return
                 end
 
-                if client.supports_method("textDocument/inlayHints") then
+                if client:supports_method("textDocument/inlayHints") then
                     vim.lsp.inlay_hint.enable()
                 end
 

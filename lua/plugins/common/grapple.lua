@@ -6,11 +6,7 @@ return {
     config = function()
         local grapple = require("grapple")
         local rikka = require("rikka")
-        grapple.setup({
-            win_opts = {
-                border = rikka.border,
-            },
-        })
+        grapple.setup()
 
         rikka.setKeymap("n", "<M-a>", function()
             grapple.tag()

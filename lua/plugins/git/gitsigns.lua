@@ -17,7 +17,6 @@ return {
 
             preview_config = {
                 -- Options passed to nvim_open_win
-                border = rikka.border,
                 style = "minimal",
                 relative = "cursor",
                 row = 0,

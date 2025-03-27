@@ -27,10 +27,6 @@ return {
                     hide_footer = false,
                     -- integer? The winblend setting of the window, see :help winblend
                     winblend = 0,
-                    -- KsbWinOptsOverride? Paste float window overrides, see nvim_open_win() for configuration
-                    winopts_overrides = {
-                        border = rikka.border,
-                    },
                     -- KsbFooterWinOptsOverride? Paste footer window overrides, see nvim_open_win() for configuration
                     footer_winopts_overrides = nil,
                     -- string? register used during yanks to paste window, see :h registers
