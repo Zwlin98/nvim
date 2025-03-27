@@ -2,6 +2,8 @@ require("basic")
 
 require("plugin")
 
+require("lsp")
+
 require("keymaps")
 
 require("autocmds")

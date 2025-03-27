@@ -1,18 +1,12 @@
 {
-  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-  "runtime": {
-    "version": "LuaJIT"
-  },
-  "workspace": {
-    "library": [
-      "$VIMRUNTIME",
-      "${3rd}/luv/library"
-    ]
-  },
-  "diagnostics.disable": [
-    "missing-fields"
-  ],
-    "diagnostics.globals": [
-        "DISABLE_COPILOT"
-    ]
+    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "runtime": {
+        "version": "LuaJIT"
+    },
+    "workspace": {
+        "library": [
+            "$VIMRUNTIME",
+            "${3rd}/luv/library"
+        ]
+    },
 }

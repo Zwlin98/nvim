@@ -5,7 +5,6 @@ return {
     },
     config = function()
         local rikka = require("rikka")
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
         local fzf = require("fzf-lua")
 
@@ -50,23 +49,19 @@ return {
                 rikka.setBufKeymap(buffer, "n", "<space>r", vim.lsp.buf.rename, { desc = "Rename" })
 
                 rikka.setBufKeymap(buffer, "n", "gs", fzf.lsp_document_symbols, { desc = "Document Symbols" })
+
+                vim.cmd([[nnoremap <nowait> gr gr]])
             end,
         })
 
-        capabilities.textDocument.foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-        }
-
         local lspOpts = {
-            capabilities = capabilities,
             lspconfig = lspconfig,
         }
 
         local servers = {
             "c",
-            "go",
-            "lua",
+            -- "go",
+            -- "lua",
             "rust",
             "python",
         }
