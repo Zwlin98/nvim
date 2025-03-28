@@ -29,9 +29,9 @@ return {
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
-                disable = function(lang, buf)
-                    return rikka.isBigFile(buf)
-                end,
+                -- disable = function(lang, buf)
+                --     return rikka.isBigFile(buf)
+                -- end,
             },
 
             indent = { enable = true },

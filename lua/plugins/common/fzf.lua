@@ -3,7 +3,6 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         local fzf = require("fzf-lua")
-        local troubleFzfActions = require("trouble.sources.fzf").actions
         local fzfPath = require("fzf-lua.path")
         local rikka = require("rikka")
 
@@ -101,7 +100,6 @@ return {
             grep = {
                 rg_opts = table.concat(rgOpts, " "),
                 actions = {
-                    ["ctrl-q"] = troubleFzfActions.open,
                     ["ctrl-o"] = customActions.openWithCode,
                 },
             },
