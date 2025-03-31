@@ -38,9 +38,6 @@ else
                 })
             end, { desc = "Check definitions under cursor" })
         end,
-        ["textDocument/hover"] = function(args)
-            rikka.setBufKeymap(args.buf, "n", "K", vim.lsp.buf.hover, { desc = "Hover" })
-        end,
         ["textDocument/inlayHints"] = function(args)
             vim.lsp.inlay_hint.enable()
         end,
@@ -75,11 +72,6 @@ else
             if not client then
                 return
             end
-            vim.cmd([[nnoremap <nowait> gr gr]])
-
-            -- Unset 'omnifunc'
-            vim.bo[args.buf].omnifunc = nil
-
             for method, func in pairs(supportMethodSetups) do
                 if client:supports_method(method) then
                     func(args)
@@ -91,6 +83,7 @@ else
     local languages = {
         "lua",
         "go",
+        "c",
     }
 
     for _, language in ipairs(languages) do
