@@ -141,6 +141,8 @@ return {
             fzf.files({ query = rikka.getCurrrentWord() })
         end, { desc = "FzfLua Goto file" })
 
+        rikka.setKeymap("n", "ge", fzf.diagnostics_document, { desc = "FzfLua Document Diagnostics" }) -- goto error
+
         rikka.setKeymap("n", "<M-z>", fzf.jumps, { desc = "FzfLua Jumplist" })
 
         rikka.setKeymap("n", "<M-f>", fzf.live_grep_native, { desc = "FzfLua Live Grep" })
