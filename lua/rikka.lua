@@ -44,6 +44,18 @@ function Rikka.getVisualSelection()
     end
 end
 
+function Rikka.getCurrentSelectionRange()
+    local line1 = vim.fn.getpos(".")[2]
+    local line2 = vim.fn.getpos("v")[2]
+
+    local vstart, vend = line1, line2
+    if line1 > line2 then
+        vstart, vend = line2, line1
+    end
+
+    return vstart, vend
+end
+
 function Rikka.getCurrrentWord()
     local ok, word = pcall(vim.fn.expand, "<cword>")
     if ok then

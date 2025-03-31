@@ -1,5 +1,5 @@
 return {
-    "ibhagwan/fzf-lua",
+    "Zwlin98/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         local fzf = require("fzf-lua")
@@ -122,6 +122,11 @@ return {
         rikka.setKeymap("n", "<M-`>", fzf.lsp_document_symbols, { desc = "Document Symbols(FzfLua)" })
 
         rikka.setKeymap("n", "<M-s>", fzf.blines, { desc = "Fzf current buffer lines" })
+
+        rikka.setKeymap("v", "<M-s>", function()
+            local vstart, vend = rikka.getCurrentSelectionRange()
+            fzf.blines({ start_line = vstart, end_line = vend })
+        end, { desc = "Fzf current buffer lines" })
 
         rikka.setKeymap("n", "?", function()
             fzf.grep_curbuf({ search = rikka.getCurrrentWord() })
