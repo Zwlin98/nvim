@@ -10,8 +10,6 @@ vim.o.undofile = true
 
 vim.o.cursorline = true
 
-vim.o.pumblend = 12
-
 vim.o.ignorecase = true
 vim.o.incsearch = true
 vim.o.smartcase = true
