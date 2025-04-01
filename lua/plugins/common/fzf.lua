@@ -1,5 +1,5 @@
 return {
-    "Zwlin98/fzf-lua",
+    "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         local fzf = require("fzf-lua")
