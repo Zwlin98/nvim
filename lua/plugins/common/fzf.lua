@@ -104,11 +104,7 @@ return {
                 },
             },
             git = {
-                bcommits = {
-                    actions = {
-                        ["ctrl-o"] = customActions.startReview,
-                    },
-                },
+                bcommits = {},
             },
         })
 
@@ -140,7 +136,17 @@ return {
 
         rikka.setKeymap("v", "<M-g>", fzf.grep_visual, { desc = "Grep visual selection" })
 
-        rikka.setKeymap("n", "<C-h>", fzf.git_bcommits, { desc = "FzfLua Git file Commits history" })
+        rikka.setKeymap("n", "<C-h>", function()
+            fzf.git_bcommits({
+                winopts = {
+                    height = 0.9,
+                    preview = {
+                        layout = "vertical",
+                        vertical = "up:70%",
+                    },
+                },
+            })
+        end, { desc = "FzfLua Git file Commits history" })
 
         rikka.setKeymap("n", "gf", function()
             fzf.files({ query = rikka.getCurrrentWord() })
@@ -151,5 +157,7 @@ return {
         rikka.setKeymap("n", "<M-z>", fzf.jumps, { desc = "FzfLua Jumplist" })
 
         rikka.setKeymap("n", "<M-f>", fzf.live_grep_native, { desc = "FzfLua Live Grep" })
+
+        rikka.setKeymap("n", "<C-.>", fzf.resume, { desc = "Fzflua resume last command/query" })
     end,
 }
