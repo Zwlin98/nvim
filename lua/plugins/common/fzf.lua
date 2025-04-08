@@ -5,6 +5,7 @@ return {
         local fzf = require("fzf-lua")
         local fzfPath = require("fzf-lua.path")
         local rikka = require("rikka")
+        local fzfActions = require("fzf-lua.actions")
 
         local customActions = {}
 
@@ -20,6 +21,46 @@ return {
             local col = entry.col or 1
             local vscodePathFormat = string.format("%s:%s:%s", entry.path, line, col)
             vim.system({ "code", "--goto", vscodePathFormat })
+        end
+
+        function customActions.smartVsplit(selected, opts)
+            if #selected ~= 1 then
+                return
+            end
+
+            local sourceWin = tonumber(opts.__CTX.winid)
+            if not sourceWin or not vim.api.nvim_win_is_valid(sourceWin) then
+                return
+            end
+
+            local wins = vim.api.nvim_tabpage_list_wins(vim.api.nvim_get_current_tabpage())
+
+            -- using vim.fn.winlayout() seems better, but a bit complicated
+            local targetWins = {}
+            for _, win in ipairs(wins) do
+                local cfg = vim.api.nvim_win_get_config(win)
+                if win ~= sourceWin and cfg.relative == "" then
+                    table.insert(targetWins, win)
+                end
+            end
+
+            -- if there are no other windows or multiple other windows
+            if #targetWins ~= 1 then
+                return fzfActions.file_vsplit(selected, opts) -- fallback to vsplit if ambiguous
+            end
+
+            local targetWin = targetWins[1]
+
+            local entry = fzfPath.entry_to_file(selected[1])
+
+            -- open the file in the target window
+            vim.api.nvim_set_current_win(targetWin)
+            vim.cmd("edit " .. vim.fn.fnameescape(entry.path))
+
+            -- set the cursor position
+            if entry.line > 0 or entry.col > 0 then
+                vim.api.nvim_win_set_cursor(targetWin, { entry.line, entry.col - 1 })
+            end
         end
 
         local cfgSmall = {
@@ -88,8 +129,8 @@ return {
             keymap = {
                 builtin = {
                     true,
-                    ["ctrl-d"] = "preview-page-down",
-                    ["ctrl-u"] = "preview-page-up",
+                    ["<C-d>"] = "preview-page-down",
+                    ["<C-u>"] = "preview-page-up",
                 },
                 fzf = {
                     true,
@@ -103,8 +144,14 @@ return {
                     ["ctrl-o"] = customActions.openWithCode,
                 },
             },
-            git = {
-                bcommits = {},
+            actions = {
+                files = {
+                    ["default"] = fzfActions.file_edit_or_qf,
+                    ["ctrl-s"] = fzfActions.file_split,
+                    ["ctrl-v"] = customActions.smartVsplit,
+                    ["ctrl-t"] = fzfActions.file_tabedit,
+                    ["alt-q"] = fzfActions.file_sel_to_qf,
+                },
             },
         })
 
