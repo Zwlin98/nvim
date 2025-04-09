@@ -18,7 +18,7 @@ return {
                         return { "isort", "black" }
                     end
                 end,
-                proto = { "buf" },
+                proto = { "clang-format" },
             },
         }
 
