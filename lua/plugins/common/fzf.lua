@@ -58,8 +58,10 @@ return {
             vim.cmd("edit " .. vim.fn.fnameescape(entry.path))
 
             -- set the cursor position
-            if entry.line > 0 or entry.col > 0 then
-                vim.api.nvim_win_set_cursor(targetWin, { entry.line, entry.col - 1 })
+            local line = entry.line or 1
+            local col = entry.col or 1
+            if line > 0 or col > 0 then
+                vim.api.nvim_win_set_cursor(targetWin, { line, col })
             end
         end
 

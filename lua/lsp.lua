@@ -28,7 +28,7 @@ else
             vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
         end,
         ["textDocument/codeAction"] = function(args)
-            rikka.setBufKeymap(args.buf, "n", "ga", fzf.lsp_code_actions, { desc = "Code Actions" })
+            rikka.setBufKeymap(args.buf, "n", "gca", fzf.lsp_code_actions, { desc = "Code Actions" })
         end,
         ["textDocument/definition"] = function(args)
             rikka.setBufKeymap(args.buf, "n", "gd", function()
