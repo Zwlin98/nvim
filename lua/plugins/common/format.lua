@@ -19,6 +19,8 @@ return {
                     end
                 end,
                 proto = { "clang-format" },
+                zsh = { "shfmt" },
+                bash = { "shfmt" },
             },
         }
 
