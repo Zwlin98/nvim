@@ -1,6 +1,5 @@
 return {
     "stevearc/conform.nvim",
-    event = "VeryLazy",
     config = function()
         local rikka = require("rikka")
         local conform = require("conform")
