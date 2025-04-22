@@ -23,43 +23,68 @@ return {
             vim.system({ "code", "--goto", vscodePathFormat })
         end
 
-        function customActions.smartVsplit(selected, opts)
-            if #selected ~= 1 then
-                return
-            end
+        function customActions.makeSmartVsplit(options)
+            -- options.ignored_filetypes should be a set/table, eg { aerial=true, NvimTree=true, ... }
 
-            local sourceWin = tonumber(opts.__CTX.winid)
-            if not sourceWin or not vim.api.nvim_win_is_valid(sourceWin) then
-                return
-            end
+            local ignored_filetypes = options and options.ignored_filetypes or {
+                aerial = true,
+            }
 
-            local wins = vim.api.nvim_tabpage_list_wins(vim.api.nvim_get_current_tabpage())
-
-            -- using vim.fn.winlayout() seems better, but a bit complicated
-            local targetWins = {}
-            for _, win in ipairs(wins) do
-                local cfg = vim.api.nvim_win_get_config(win)
-                if win ~= sourceWin and cfg.relative == "" then
-                    table.insert(targetWins, win)
+            -- helper: 获取所有可见窗口
+            local function get_visible_windows()
+                local visible = {}
+                local function traverse(layout)
+                    if type(layout) ~= "table" then
+                        return
+                    end
+                    if layout[1] == "leaf" then
+                        table.insert(visible, layout[2])
+                    else
+                        for i = 2, #layout do
+                            traverse(layout[i])
+                        end
+                    end
                 end
+                traverse(vim.fn.winlayout())
+                return visible
             end
 
-            -- if there are no other windows or multiple other windows
-            if #targetWins ~= 1 then
-                return fzfActions.file_vsplit(selected, opts) -- fallback to vsplit if ambiguous
-            end
+            -- 这是闭包函数
+            return function(selected, opts)
+                if #selected ~= 1 then
+                    return
+                end
 
-            local targetWin = targetWins[1]
+                local sourceWin = tonumber(opts.__CTX.winid)
+                if not sourceWin or not vim.api.nvim_win_is_valid(sourceWin) then
+                    return
+                end
 
-            local entry = fzfPath.entry_to_file(selected[1])
+                local wins = get_visible_windows()
+                local targetWins = {}
+                for _, win in ipairs(wins) do
+                    local cfg = vim.api.nvim_win_get_config(win)
+                    if win ~= sourceWin and cfg.relative == "" then
+                        local bufnr = vim.api.nvim_win_get_buf(win)
+                        local ft = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+                        if not ignored_filetypes[ft] then
+                            table.insert(targetWins, win)
+                        end
+                    end
+                end
 
-            -- open the file in the target window
-            vim.api.nvim_set_current_win(targetWin)
-            vim.cmd("edit " .. vim.fn.fnameescape(entry.path))
+                if #targetWins ~= 1 then
+                    return fzfActions.file_vsplit(selected, opts)
+                end
 
-            -- set the cursor position
-            if entry.line > 0 or entry.col > 0 then
-                vim.api.nvim_win_set_cursor(targetWin, { entry.line, entry.col - 1 })
+                local targetWin = targetWins[1]
+                local entry = fzfPath.entry_to_file(selected[1])
+
+                vim.api.nvim_set_current_win(targetWin)
+                vim.cmd("edit " .. vim.fn.fnameescape(entry.path))
+                if entry.line and entry.line > 0 then
+                    vim.api.nvim_win_set_cursor(targetWin, { math.max(1, entry.line), math.max(0, (entry.col or 1) - 1) })
+                end
             end
         end
 
@@ -148,7 +173,7 @@ return {
                 files = {
                     ["default"] = fzfActions.file_edit_or_qf,
                     ["ctrl-s"] = fzfActions.file_split,
-                    ["ctrl-v"] = customActions.smartVsplit,
+                    ["ctrl-v"] = customActions.makeSmartVsplit(),
                     ["ctrl-t"] = fzfActions.file_tabedit,
                     ["alt-q"] = fzfActions.file_sel_to_qf,
                 },
