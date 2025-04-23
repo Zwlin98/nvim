@@ -50,6 +50,8 @@ return {
 
             Pmenu = { bg = rikka.color.black },
             PmenuThumb = { bg = rikka.color.cursorGray },
+
+            YankPost = { bg = "#7480A1", fg = nil },
         }
 
         for group, opts in pairs(customHighlightGroup) do

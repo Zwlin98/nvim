@@ -1,6 +1,7 @@
 return {
     "RRethy/vim-illuminate",
     event = "VeryLazy",
+    cond = false,
     config = function()
         local rikka = require("rikka")
         local illuminate = require("illuminate")
@@ -34,15 +35,6 @@ return {
             rikka.setHightlight(group, opts)
         end
 
-        rikka.createAutocmd("TextYankPost", {
-            group = vim.api.nvim_create_augroup("highlight_on_yank", {}),
-            desc = "Briefly highlight yanked text",
-            callback = function()
-                illuminate.pause()
-                vim.highlight.on_yank({ higroup = "YankPost", timeout = 500 })
-                illuminate.resume()
-            end,
-        })
 
         rikka.setKeymap("n", "gn", function()
             illuminate.goto_next_reference()
