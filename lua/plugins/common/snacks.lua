@@ -16,7 +16,10 @@ return {
             timeout = 2000, -- default timeout in ms
             style = "fancy",
         },
-        words = { enabled = true },
+        words = {
+            enabled = true,
+            modes = { "n" }, -- modes to show references
+        },
         statuscolumn = {
             enabled = true,
             right = { "git" }, -- priority of signs on the right (high to low)
