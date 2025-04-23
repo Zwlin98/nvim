@@ -1,9 +1,9 @@
----@diagnostic disable: undefined-global
 return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
     opts = {
+        quickfile = { enabled = true },
         input = {
             enabled = true,
             win = {
@@ -11,8 +11,22 @@ return {
                 row = 1,
             },
         },
+        notifier = {
+            enabled = true,
+            timeout = 2000, -- default timeout in ms
+            style = "fancy",
+        },
         scroll = { enabled = true },
         words = { enabled = true },
+        statuscolumn = {
+            enabled = true,
+            right = { "git" }, -- priority of signs on the right (high to low)
+
+            folds = {
+                open = false, -- show open fold icons
+                git_hl = true, -- use Git Signs hl for fold icons
+            },
+        },
         scope = {
             enabled = true,
             treesitter = {

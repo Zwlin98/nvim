@@ -128,9 +128,10 @@ function Rikka.isBigFile(bufnr)
 end
 
 Rikka.notify = function(msg, level, title)
-    local notify = Rikka.prequire("notify")
-    if notify then
-        notify(msg, level, { title = title, timeout = 1000 })
+    if Snacks then
+        Snacks.notifier(msg, level, {
+            title = title,
+        })
     else
         vim.notify(msg, level)
     end
