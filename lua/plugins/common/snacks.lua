@@ -16,7 +16,6 @@ return {
             timeout = 2000, -- default timeout in ms
             style = "fancy",
         },
-        scroll = { enabled = true },
         words = { enabled = true },
         statuscolumn = {
             enabled = true,
