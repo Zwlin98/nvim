@@ -16,10 +16,6 @@ return {
             timeout = 2000, -- default timeout in ms
             style = "fancy",
         },
-        words = {
-            enabled = true,
-            modes = { "n" }, -- modes to show references
-        },
         statuscolumn = {
             enabled = true,
             right = { "git" }, -- priority of signs on the right (high to low)
@@ -73,24 +69,6 @@ return {
                     },
                 },
             },
-        },
-    },
-    keys = {
-        {
-            "gn",
-            function()
-                Snacks.words.jump(vim.v.count1)
-            end,
-            desc = "Next Reference",
-            mode = { "n", "t" },
-        },
-        {
-            "gp",
-            function()
-                Snacks.words.jump(-vim.v.count1)
-            end,
-            desc = "Prev Reference",
-            mode = { "n", "t" },
         },
     },
     config = function(_, opts)

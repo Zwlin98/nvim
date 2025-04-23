@@ -1,7 +1,6 @@
 return {
     "RRethy/vim-illuminate",
     event = "VeryLazy",
-    cond = false,
     config = function()
         local rikka = require("rikka")
         local illuminate = require("illuminate")
@@ -34,7 +33,6 @@ return {
         for group, opts in pairs(customHighlightGroup) do
             rikka.setHightlight(group, opts)
         end
-
 
         rikka.setKeymap("n", "gn", function()
             illuminate.goto_next_reference()
