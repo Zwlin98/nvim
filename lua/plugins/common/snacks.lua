@@ -54,7 +54,7 @@ return {
                     ["[s"] = {
                         min_size = 2, -- allow single line scopes
                         bottom = false,
-                        cursor = true,
+                        cursor = false,
                         edge = true,
                         treesitter = { blocks = { enabled = true } },
                         desc = "jump to top edge of scope",
@@ -62,7 +62,7 @@ return {
                     ["]s"] = {
                         min_size = 2, -- allow single line scopes
                         bottom = true,
-                        cursor = true,
+                        cursor = false,
                         edge = true,
                         treesitter = { blocks = { enabled = true } },
                         desc = "jump to bottom edge of scope",
