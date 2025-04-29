@@ -26,20 +26,6 @@ local function showFloat(title, text)
         keys = {
             q = "close",
         }, -- 按 q 关闭
-        on_win = function(w)
-            -- if vim.fn.mode() == "n" then
-            --     api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufDelete" }, {
-            --         buffer = api.nvim_get_current_buf(),
-            --         once = true,
-            --         callback = function(opt)
-            --             if w:win_valid() then
-            --                 w:destroy()
-            --             end
-            --             api.nvim_del_autocmd(opt.id)
-            --         end,
-            --     })
-            -- end
-        end,
     }
 
     local win = Snacks.win(windowConfig)
@@ -49,46 +35,49 @@ local function showFloat(title, text)
     return win
 end
 
-local function magicHover(content)
-    local curWord = content or rikka.getCurrrentWord()
-
-    if not curWord or curWord == "" then
+local function magicHover(content, sysPrompt, title)
+    if not content or content == "" then
         return
     end
 
-    local win = showFloat("Explain", "Explaining...")
+    if not sysPrompt or sysPrompt == "" then
+        return
+    end
+
+    if not title then
+        title = "Magic Hover"
+    end
+
+    local win = showFloat(title, "Thinking...")
 
     if not win then
         return
     end
 
-    local Job = require("plenary.job")
-
-    local args = {
-        "-sS",
-        "-N", -- 必需，按 chunk 输出结果
-        "-H",
-        "Content-Type: application/json",
-        "-H",
-        "Authorization: Bearer 123456",
-        "-d",
-        vim.fn.json_encode({
-            model = "gpt-4.1",
-            stream = true,
-            messages = {
-                { role = "system", content = "你是一个专业的百科全书(特别是计算机/编程领域)，用户会给你一些文本，你需要简要翻译这些文本或解释文本的的含义概念用法等，按照 markdown 格式输出" },
-                { role = "user", content = curWord },
-            },
-        }),
-        "https://closeai.zwlin.io",
-    }
-
     local lines = { "" }
+
+    local Job = require("plenary.job")
 
     Job:new({
         command = "curl",
-        args = args,
-
+        args = {
+            "-sS",
+            "-N", -- 必需，按 chunk 输出结果
+            "-H",
+            "Content-Type: application/json",
+            "-H",
+            "Authorization: Bearer 123456",
+            "-d",
+            vim.fn.json_encode({
+                model = "gpt-4.1",
+                stream = true,
+                messages = {
+                    { role = "system", content = sysPrompt },
+                    { role = "user", content = content },
+                },
+            }),
+            "https://closeai.zwlin.io",
+        },
         on_stdout = function(_, line)
             if line and line:match("^data:") then
                 vim.schedule(function()
@@ -134,8 +123,14 @@ local function magicHover(content)
     }):start()
 end
 
-rikka.setKeymap("n", "<leader>s", magicHover, { desc = "Translate" })
+local quickExplain = function(content)
+    local sysPrompt = "你是一个专业的百科全书(特别是计算机/编程领域)，用户会给你一些文本，你需要简要翻译这些文本或解释文本的的含义概念用法等，按照 markdown 格式输出"
+    content = content or rikka.getCurrrentWord()
+    magicHover(content, sysPrompt, "Quick Explain")
+end
+
+rikka.setKeymap("n", "<leader>s", quickExplain, { desc = "Translate" })
 rikka.setKeymap("v", "<leader>s", function()
     local content = rikka.getVisualSelection()
-    magicHover(content)
+    quickExplain(content)
 end, { desc = "Explaining Visual Selection" })

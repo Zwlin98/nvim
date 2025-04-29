@@ -7,15 +7,8 @@ rikka.createCommand("GetFilePath", function()
 end, { desc = "Copy file path to clipboard" })
 
 rikka.createCommand("GetDiagnostic", function()
-    local line = vim.fn.line(".") - 1
-    local diagnostics = vim.diagnostic.get(0, { lnum = line })
-    if #diagnostics > 0 then
-        local text = table.concat(
-            vim.tbl_map(function(d)
-                return d.message
-            end, diagnostics),
-            " "
-        )
+    local text = rikka.getDiagnosticText()
+    if text then
         vim.fn.setreg("+", text)
         rikka.info("Diagnostic copied to clipboard", "Get Diagnostic")
     else

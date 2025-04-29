@@ -195,4 +195,17 @@ Rikka.vimCmd = function(cmd)
     vim.api.nvim_exec2(cmd, { output = false })
 end
 
+function Rikka.getDiagnosticText()
+    local line = vim.fn.line(".") - 1
+    local diagnostics = vim.diagnostic.get(0, { lnum = line })
+    if #diagnostics > 0 then
+        return table.concat(
+            vim.tbl_map(function(d)
+                return d.message
+            end, diagnostics),
+            " "
+        )
+    end
+end
+
 return Rikka

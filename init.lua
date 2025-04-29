@@ -12,4 +12,4 @@ require("commands")
 
 require("clipboard")
 
-require("hover")
+require("magicHover")
