@@ -11,3 +11,5 @@ require("autocmds")
 require("commands")
 
 require("clipboard")
+
+require("hover")
