@@ -31,7 +31,6 @@ vim.o.linebreak = true
 vim.o.signcolumn = "yes"
 vim.o.textwidth = 120
 vim.o.wrap = false
-vim.o.showbreak = ">>"
 vim.o.fillchars = "diff:╱"
 
 vim.o.scrolloff = 2

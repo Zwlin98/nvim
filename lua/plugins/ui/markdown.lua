@@ -8,6 +8,8 @@ return {
             heading = {
                 sign = false,
                 position = "inline",
+                width = "block",
+                min_width = 80,
             },
             code = {
                 width = "block",
@@ -15,15 +17,13 @@ return {
         })
 
         local customHighlightGroup = {
-
-            RenderMarkdownH1Bg = { bg = nil },
-            RenderMarkdownH2Bg = { bg = nil },
-            RenderMarkdownH3Bg = { bg = nil },
-            RenderMarkdownH4Bg = { bg = nil },
-            RenderMarkdownH5Bg = { bg = nil },
-            RenderMarkdownH6Bg = { bg = nil },
+            RenderMarkdownH1Bg = { fg = rikka.color.blue, bg = "#3b4252", bold = true }, -- nord9 on nord1
+            RenderMarkdownH2Bg = { fg = rikka.color.cyan, bg = "#434c5e", bold = true }, -- nord8 on nord2
+            RenderMarkdownH3Bg = { fg = rikka.color.green, bg = "#3b4252", bold = true }, -- nord14 on nord1
+            RenderMarkdownH4Bg = { fg = rikka.color.yellow, bg = "#434c5e", bold = true }, -- nord13 on nord2
+            RenderMarkdownH5Bg = { fg = rikka.color.violet, bg = "#3b4252", bold = true }, -- nord15 on nord1
+            RenderMarkdownH6Bg = { fg = rikka.color.orange, bg = "#434c5e", bold = true }, -- nord12 on nord2
         }
-
         vim.iter(customHighlightGroup):each(function(group, opts)
             rikka.setHightlight(group, opts)
         end)
