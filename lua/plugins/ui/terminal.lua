@@ -35,6 +35,7 @@ return {
             cmd = "aider",
             hidden = true,
             env = {
+                DISPLAY = ":0",
                 AZURE_API_KEY = "123456",
                 AZURE_API_VERSION = "2024-12-01-preview",
                 AZURE_API_BASE = "https://closeai.zwlin.io",

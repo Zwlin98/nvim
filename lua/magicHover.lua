@@ -124,7 +124,7 @@ local function magicHover(content, sysPrompt, title)
 end
 
 local quickExplain = function(content)
-    local sysPrompt = "你是一个专业的百科全书(特别是计算机/编程领域)，用户会给你一些文本，你需要简要翻译这些文本或解释文本的的含义概念用法等，按照 markdown 格式输出"
+    local sysPrompt = "你是一个编程专家，用户会给你一些文本(代码段/单词等)，你需要根据情况解释文本的的含义概念用法等，并按照 markdown 格式输出"
     content = content or rikka.getCurrrentWord()
     magicHover(content, sysPrompt, "Quick Explain")
 end
