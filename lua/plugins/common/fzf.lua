@@ -197,7 +197,7 @@ return {
         end, { desc = "Fzf current buffer lines" })
 
         rikka.setKeymap("n", "?", function()
-            fzf.grep_curbuf({ search = rikka.getCurrrentWord() })
+            fzf.grep_curbuf({ search = rikka.getCurrentWord() })
         end, { desc = "Grep word in current buffer" })
 
         rikka.setKeymap("v", "?", function()
@@ -221,7 +221,7 @@ return {
         end, { desc = "FzfLua Git file Commits history" })
 
         rikka.setKeymap("n", "gf", function()
-            fzf.files({ query = rikka.getCurrrentWord() })
+            fzf.files({ query = rikka.getCurrentWord() })
         end, { desc = "FzfLua Goto file" })
 
         rikka.setKeymap("n", "ge", fzf.diagnostics_document, { desc = "FzfLua Document Diagnostics" }) -- goto error

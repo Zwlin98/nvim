@@ -125,12 +125,18 @@ end
 
 local quickExplain = function(content)
     local sysPrompt = "你是一个编程专家，用户会给你一些文本(代码段/单词等)，你需要根据情况解释文本的的含义概念用法等，并按照 markdown 格式输出"
-    content = content or rikka.getCurrrentWord()
+    content = content or rikka.getCurrentWord()
     magicHover(content, sysPrompt, "Quick Explain")
 end
 
-rikka.setKeymap("n", "<leader>s", quickExplain, { desc = "Translate" })
+rikka.setKeymap("n", "<leader>s", quickExplain, { desc = "Explain" })
 rikka.setKeymap("v", "<leader>s", function()
     local content = rikka.getVisualSelection()
     quickExplain(content)
 end, { desc = "Explaining Visual Selection" })
+
+rikka.setKeymap("v", "<leader>r", function()
+    local sysPrompt = "你是一个编程专家，用户会给你部分代码段，你需要Review这部分代码，主要关注潜在的语法/拼写/逻辑错误等，并按照 markdown 格式输出你的建议"
+    local content = rikka.getVisualSelection()
+    magicHover(content, sysPrompt, "Quick Review")
+end, { desc = "Review Visual Selection" })

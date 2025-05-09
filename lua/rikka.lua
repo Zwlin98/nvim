@@ -36,7 +36,6 @@ function Rikka.getVisualSelection()
     local text = vim.fn.getreg("v")
     vim.fn.setreg("v", {})
 
-    text = string.gsub(text, "\n", "")
     if #text > 0 then
         return text
     else
@@ -56,7 +55,7 @@ function Rikka.getCurrentSelectionRange()
     return vstart, vend
 end
 
-function Rikka.getCurrrentWord()
+function Rikka.getCurrentWord()
     local ok, word = pcall(vim.fn.expand, "<cword>")
     if ok then
         return word
