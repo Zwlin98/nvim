@@ -167,6 +167,7 @@ return {
                 rg_opts = table.concat(rgOpts, " "),
                 actions = {
                     ["ctrl-o"] = customActions.openWithCode,
+                    ["ctrl-v"] = customActions.makeSmartVsplit(),
                 },
             },
             actions = {
@@ -224,7 +225,7 @@ return {
             fzf.files({ query = rikka.getCurrentWord() })
         end, { desc = "FzfLua Goto file" })
 
-        rikka.setKeymap("n", "ge", fzf.diagnostics_document, { desc = "FzfLua Document Diagnostics" }) -- goto error
+        rikka.setKeymap("n", "gq", fzf.diagnostics_document, { desc = "FzfLua Document Diagnostics" }) -- goto error
 
         rikka.setKeymap("n", "<M-z>", fzf.jumps, { desc = "FzfLua Jumplist" })
 
