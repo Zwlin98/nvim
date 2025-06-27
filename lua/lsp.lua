@@ -87,6 +87,7 @@ else
         "lua",
         "go",
         "c",
+        "ninja",
     }
 
     for _, language in ipairs(languages) do
