@@ -37,12 +37,12 @@ return {
                     if type(layout) ~= "table" then
                         return
                     end
-                    if layout[1] == "leaf" then
-                        table.insert(visible, layout[2])
-                    else
-                        for i = 2, #layout do
-                            traverse(layout[i])
+                    if layout[1] == "row" or layout[1] == "col" then
+                        for _, l in ipairs(layout[2]) do
+                            traverse(l)
                         end
+                    elseif layout[1] == "leaf" then
+                        table.insert(visible, layout[2])
                     end
                 end
                 traverse(vim.fn.winlayout())
@@ -61,6 +61,7 @@ return {
                 end
 
                 local wins = get_visible_windows()
+
                 local targetWins = {}
                 for _, win in ipairs(wins) do
                     local cfg = vim.api.nvim_win_get_config(win)
@@ -167,13 +168,14 @@ return {
                 rg_opts = table.concat(rgOpts, " "),
                 actions = {
                     ["ctrl-o"] = customActions.openWithCode,
+                    ["ctrl-s"] = fzfActions.file_vsplit,
                     ["ctrl-v"] = customActions.makeSmartVsplit(),
                 },
             },
             actions = {
                 files = {
                     ["default"] = fzfActions.file_edit_or_qf,
-                    ["ctrl-s"] = fzfActions.file_split,
+                    ["ctrl-s"] = fzfActions.file_vsplit,
                     ["ctrl-v"] = customActions.makeSmartVsplit(),
                     ["ctrl-t"] = fzfActions.file_tabedit,
                     ["alt-q"] = fzfActions.file_sel_to_qf,
