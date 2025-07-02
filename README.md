@@ -188,7 +188,7 @@ Add new language servers in the `lsp/` directory following the existing patterns
 ### Documentation
 - [Neovim Documentation](https://neovim.io/doc/)
 - [Lua Guide for Neovim](https://neovim.io/doc/user/lua-guide.html)
-- [Lazy.nvim Documentation](http,s://lazy.folke.io/)
+- [Lazy.nvim Documentation](https://lazy.folke.io/)
 
 ## 📄 License
 
