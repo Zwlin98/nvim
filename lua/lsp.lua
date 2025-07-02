@@ -65,6 +65,8 @@ else
         end,
     }
 
+    local supportMethodSet = {}
+
     rikka.createAutocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(args)
@@ -73,8 +75,9 @@ else
                 return
             end
             for method, func in pairs(supportMethodSetups) do
-                if client:supports_method(method) then
+                if not supportMethodSet[method] and client:supports_method(method) then
                     func(args)
+                    supportMethodSet[method] = true
                 end
             end
         end,
