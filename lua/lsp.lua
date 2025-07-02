@@ -32,10 +32,7 @@ else
         end,
         ["textDocument/definition"] = function(args)
             rikka.setBufKeymap(args.buf, "n", "gd", function()
-                fzf.lsp_definitions({
-                    sync = true,
-                    jump1 = true,
-                })
+                fzf.lsp_definitions()
             end, { desc = "Check definitions under cursor" })
         end,
         ["textDocument/inlayHints"] = function(args)
@@ -65,8 +62,6 @@ else
         end,
     }
 
-    local supportMethodSet = {}
-
     rikka.createAutocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(args)
@@ -74,6 +69,7 @@ else
             if not client then
                 return
             end
+            local supportMethodSet = {}
             for method, func in pairs(supportMethodSetups) do
                 if not supportMethodSet[method] and client:supports_method(method) then
                     func(args)

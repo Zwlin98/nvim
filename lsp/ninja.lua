@@ -261,7 +261,7 @@ local function ninjaLS(dispatchers, config)
             if method == "textDocument/definition" then
                 ---@cast params DefinitionParams
                 vim.schedule(function()
-                    callback(nil, getdefinitions() or {})
+                    callback(nil, getdefinitions())
                 end)
             end
             messageId = messageId + 1
