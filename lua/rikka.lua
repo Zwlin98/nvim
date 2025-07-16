@@ -136,16 +136,19 @@ Rikka.notify = function(msg, level, title)
     end
 end
 
-Rikka.info = function(msg, title)
-    Rikka.notify(msg, vim.log.levels.INFO, title)
+Rikka.info = function(format, ...)
+    local msg = string.format(format, ...)
+    Rikka.notify(msg, vim.log.levels.INFO, "INFO")
 end
 
-Rikka.warn = function(msg, title)
-    Rikka.notify(msg, vim.log.levels.WARN, title)
+Rikka.warn = function(format, ...)
+    local msg = string.format(format, ...)
+    Rikka.notify(msg, vim.log.levels.WARN, "WARNING")
 end
 
-Rikka.error = function(msg, title)
-    Rikka.notify(msg, vim.log.levels.ERROR, title)
+Rikka.error = function(format, ...)
+    local msg = string.format(format, ...)
+    Rikka.notify(msg, vim.log.levels.ERROR, "ERROR")
 end
 
 function Rikka.setKeymap(mode, lhs, rhs, opts)

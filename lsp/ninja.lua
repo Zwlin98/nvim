@@ -146,8 +146,32 @@ local function ninjaLS(dispatchers, config)
         return s
     end
 
+    local jump
+
     local jumpMethods = {
-        moduleCall = function(caller, args)
+        xpcall = function(caller, args)
+            local realFunc = removeQuote(args[1])
+            local realArgs = {}
+
+            for i = 3, #args do
+                table.insert(realArgs, args[i])
+            end
+
+            rikka.info("xpcall realFunc: %s, realArgs: %s", realFunc, vim.inspect(realArgs))
+
+            return jump(realFunc, realArgs)
+        end,
+        pcall = function(caller, args)
+            local realFunc = removeQuote(args[1])
+            local realArgs = {}
+
+            for i = 2, #args do
+                table.insert(realArgs, args[i])
+            end
+
+            return jump(realFunc, realArgs)
+        end,
+        [{ "moduleCall", "handle.moduleCall" }] = function(caller, args)
             local file = removeQuote(args[1])
             local func = removeQuote(args[2])
 
@@ -155,7 +179,7 @@ local function ninjaLS(dispatchers, config)
 
             return searchFunction(func, fname)
         end,
-        dcCall = function(caller, args)
+        [{ "dcCall", "handle.dcCall" }] = function(caller, args)
             local file = removeQuote(args[1])
             local func = removeQuote(args[2])
 
@@ -203,29 +227,31 @@ local function ninjaLS(dispatchers, config)
         end,
     }
 
+    function jump(caller, args)
+        for keyword, jumpFunc in pairs(jumpMethods) do
+            if type(keyword) == "table" then
+                for _, k in pairs(keyword) do
+                    if string.find(caller, k) then
+                        return jumpFunc(caller, args)
+                    end
+                end
+            elseif type(keyword) == "string" then
+                if caller == keyword then
+                    return jumpFunc(caller, args)
+                end
+            end
+        end
+    end
+
     local function getdefinitions()
         local args, caller = extractArgs()
         if not args or #args == 0 then
             return
         end
-
         if not caller or caller == "" then
             return
         end
-
-        for keyword, jump in pairs(jumpMethods) do
-            if type(keyword) == "table" then
-                for _, k in pairs(keyword) do
-                    if string.find(caller, k) then
-                        return jump(caller, args)
-                    end
-                end
-            elseif type(keyword) == "string" then
-                if string.find(caller, keyword) then
-                    return jump(caller, args)
-                end
-            end
-        end
+        return jump(caller, args)
     end
 
     ---@type vim.lsp.rpc.PublicClient
