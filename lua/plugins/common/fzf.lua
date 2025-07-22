@@ -170,6 +170,7 @@ return {
                     ["ctrl-o"] = customActions.openWithCode,
                     ["ctrl-s"] = fzfActions.file_vsplit,
                     ["ctrl-v"] = customActions.makeSmartVsplit(),
+                    ["ctrl-q"] = { fn = fzf.actions.file_sel_to_qf, prefix = "select-all" },
                 },
             },
             actions = {
@@ -178,6 +179,7 @@ return {
                     ["ctrl-s"] = fzfActions.file_vsplit,
                     ["ctrl-v"] = customActions.makeSmartVsplit(),
                     ["ctrl-t"] = fzfActions.file_tabedit,
+                    ["ctrl-q"] = { fn = fzf.actions.file_sel_to_qf, prefix = "select-all" },
                     ["alt-q"] = fzfActions.file_sel_to_qf,
                 },
             },
