@@ -69,7 +69,7 @@ local function magicHover(content, sysPrompt, title)
             "Authorization: Bearer 123456",
             "-d",
             vim.fn.json_encode({
-                model = "gpt-4.1",
+                model = "gpt-5-chat",
                 stream = true,
                 messages = {
                     { role = "system", content = sysPrompt },
