@@ -76,7 +76,7 @@ local function magicHover(content, sysPrompt, title)
                     { role = "user", content = content },
                 },
             }),
-            "https://closeai.zwlin.io",
+            "https://closeai.zwlin.io/v1/chat/completions",
         },
         on_stdout = function(_, line)
             if line and line:match("^data:") then
@@ -124,7 +124,7 @@ local function magicHover(content, sysPrompt, title)
 end
 
 local quickExplain = function(content)
-    local sysPrompt = "你是一个编程专家，用户会给你一些文本(代码段/单词等)，你需要根据情况解释文本的的含义概念用法等，并按照 markdown 格式输出"
+    local sysPrompt = "你是一个编程专家，用户会给你一些文本(代码段/单词等)，你需要根据情况解释文本的的含义概念用法等，并按照 markdown 格式输出, 你只有一次机会回答，用户不会再追问, 所以不要说“如果你有其他问题可以继续问我”等类似的话"
     content = content or rikka.getCurrentWord()
     magicHover(content, sysPrompt, "Quick Explain")
 end
@@ -136,7 +136,7 @@ rikka.setKeymap("v", "<leader>s", function()
 end, { desc = "Explaining Visual Selection" })
 
 rikka.setKeymap("v", "<leader>r", function()
-    local sysPrompt = "你是一个编程专家，用户会给你部分代码段，你需要Review这部分代码，主要关注潜在的语法/拼写/逻辑错误等，并按照 markdown 格式输出你的建议"
+    local sysPrompt = "你是一个编程专家，用户会给你部分代码段，你需要Review这部分代码，主要关注潜在的语法/拼写/逻辑错误等，并按照 markdown 格式输出你的建议, 你只有一次机会回答，用户不会再追问, 所以不要说“如果你有其他问题可以继续问我”等类似的话"
     local content = rikka.getVisualSelection()
     magicHover(content, sysPrompt, "Quick Review")
 end, { desc = "Review Visual Selection" })
