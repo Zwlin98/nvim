@@ -1,5 +1,3 @@
-local util = require("lspconfig.util")
-
 local root_files = {
     "pyproject.toml",
     "setup.py",
@@ -41,40 +39,17 @@ local function set_python_path(path)
 end
 
 return {
-    default_config = {
-        cmd = { "basedpyright-langserver", "--stdio" },
-        filetypes = { "python" },
-        root_dir = function(fname)
-            return util.root_pattern(unpack(root_files))(fname)
-        end,
-        single_file_support = true,
-        settings = {
-            basedpyright = {
-                analysis = {
-                    autoSearchPaths = true,
-                    useLibraryCodeForTypes = true,
-                    diagnosticMode = "openFilesOnly",
-                },
+    cmd = { "basedpyright-langserver", "--stdio" },
+    filetypes = { "python" },
+    root_markers = root_files,
+    single_file_support = true,
+    settings = {
+        basedpyright = {
+            analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "openFilesOnly",
             },
         },
-    },
-    commands = {
-        PyrightOrganizeImports = {
-            organize_imports,
-            description = "Organize Imports",
-        },
-        PyrightSetPythonPath = {
-            set_python_path,
-            description = "Reconfigure basedpyright with the provided python path",
-            nargs = 1,
-            complete = "file",
-        },
-    },
-    docs = {
-        description = [[
-https://detachhead.github.io/basedpyright
-
-`basedpyright`, a static type checker and language server for python
-]],
     },
 }
