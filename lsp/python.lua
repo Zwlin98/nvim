@@ -1,17 +1,38 @@
----@brief
----
---- https://github.com/microsoft/pyright
----
---- `pyright`, a static type checker and language server for python
+local util = require("lspconfig.util")
+
+local root_files = {
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    "Pipfile",
+    "pyrightconfig.json",
+    ".git",
+}
+
+local function organize_imports()
+    local params = {
+        command = "basedpyright.organizeimports",
+        arguments = { vim.uri_from_bufnr(0) },
+    }
+
+    local clients = vim.lsp.get_clients({
+        bufnr = vim.api.nvim_get_current_buf(),
+        name = "basedpyright",
+    })
+    for _, client in ipairs(clients) do
+        client.request("workspace/executeCommand", params, nil, 0)
+    end
+end
 
 local function set_python_path(path)
     local clients = vim.lsp.get_clients({
         bufnr = vim.api.nvim_get_current_buf(),
-        name = "pyright",
+        name = "basedpyright",
     })
     for _, client in ipairs(clients) do
         if client.settings then
-            client.settings.python = vim.tbl_deep_extend("force", client.settings.python, { pythonPath = path })
+            client.settings.python = vim.tbl_deep_extend("force", client.settings.python or {}, { pythonPath = path })
         else
             client.config.settings = vim.tbl_deep_extend("force", client.config.settings, { python = { pythonPath = path } })
         end
@@ -20,39 +41,40 @@ local function set_python_path(path)
 end
 
 return {
-    cmd = { "pyright-langserver", "--stdio" },
-    filetypes = { "python" },
-    root_markers = {
-        "pyproject.toml",
-        "setup.py",
-        "setup.cfg",
-        "requirements.txt",
-        "Pipfile",
-        "pyrightconfig.json",
-        ".git",
-    },
-    settings = {
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
-                diagnosticMode = "openFilesOnly",
+    default_config = {
+        cmd = { "basedpyright-langserver", "--stdio" },
+        filetypes = { "python" },
+        root_dir = function(fname)
+            return util.root_pattern(unpack(root_files))(fname)
+        end,
+        single_file_support = true,
+        settings = {
+            basedpyright = {
+                analysis = {
+                    autoSearchPaths = true,
+                    useLibraryCodeForTypes = true,
+                    diagnosticMode = "openFilesOnly",
+                },
             },
         },
     },
-    on_attach = function(client, bufnr)
-        vim.api.nvim_buf_create_user_command(bufnr, "LspPyrightOrganizeImports", function()
-            client:exec_cmd({
-                command = "pyright.organizeimports",
-                arguments = { vim.uri_from_bufnr(bufnr) },
-            })
-        end, {
-            desc = "Organize Imports",
-        })
-        vim.api.nvim_buf_create_user_command(bufnr, "LspPyrightSetPythonPath", set_python_path, {
-            desc = "Reconfigure pyright with the provided python path",
+    commands = {
+        PyrightOrganizeImports = {
+            organize_imports,
+            description = "Organize Imports",
+        },
+        PyrightSetPythonPath = {
+            set_python_path,
+            description = "Reconfigure basedpyright with the provided python path",
             nargs = 1,
             complete = "file",
-        })
-    end,
+        },
+    },
+    docs = {
+        description = [[
+https://detachhead.github.io/basedpyright
+
+`basedpyright`, a static type checker and language server for python
+]],
+    },
 }
