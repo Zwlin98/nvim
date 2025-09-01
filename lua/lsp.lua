@@ -85,6 +85,7 @@ else
         "c",
         "ninja",
         "python",
+        "rust",
     }
 
     for _, language in ipairs(languages) do
