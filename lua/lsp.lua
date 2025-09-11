@@ -8,7 +8,9 @@ else
     })
 
     vim.diagnostic.config({
-        virtual_text = { current_line = true },
+        -- virtual_text = { current_line = true },
+        virtual_text = false,
+        virtual_lines = { current_line = true },
         signs = {
             text = {
                 [vim.diagnostic.severity.ERROR] = "󰅚 ",
