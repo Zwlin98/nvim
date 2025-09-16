@@ -1,14 +1,7 @@
 return {
     "coder/claudecode.nvim",
     dependencies = { "folke/snacks.nvim" },
-    opts = {
-        env = {
-            ANTHROPIC_BASE_URL = "https://closeai.zwlin.io",
-            ANTHROPIC_AUTH_TOKEN = "123456",
-            ANTHROPIC_MODEL = "claude-sonnet-4",
-            ANTHROPIC_SMALL_FAST_MODEL = "claude-3-7-sonnet",
-        },
-    },
+    opts = {},
     keys = {
         { "<leader>a", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
         { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
