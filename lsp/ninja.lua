@@ -13,6 +13,11 @@ local function checkIsNinja(rootPath)
     return true
 end
 
+local function isGlobalServer(rootPath)
+    local stat = uv.fs_stat(rootPath .. "/area")
+    return stat ~= nil
+end
+
 ---@class DefinitionParams
 ---@field textDocument { uri: string }
 ---@field position { line: number, character: number }
@@ -24,6 +29,7 @@ local function ninjaLS(dispatchers, config)
     local closeing = false
     local messageId = 0
     local rootPath
+    local nodeRootPath
 
     local definitionCache = {}
 
@@ -157,8 +163,6 @@ local function ninjaLS(dispatchers, config)
                 table.insert(realArgs, args[i])
             end
 
-            rikka.info("xpcall realFunc: %s, realArgs: %s", realFunc, vim.inspect(realArgs))
-
             return jump(realFunc, realArgs)
         end,
         pcall = function(caller, args)
@@ -175,7 +179,7 @@ local function ninjaLS(dispatchers, config)
             local file = removeQuote(args[1])
             local func = removeQuote(args[2])
 
-            local fname = string.format("%s/node/%s.lua", rootPath, file)
+            local fname = string.format("%s/node/%s.lua", nodeRootPath, file)
 
             return searchFunction(func, fname)
         end,
@@ -188,12 +192,12 @@ local function ninjaLS(dispatchers, config)
         end,
         [{ "cross_call_other_agent", "call_other_agent" }] = function(caller, args)
             local func = removeQuote(args[1])
-            local fname = string.format("%s/node/agentonlinecmd.lua", rootPath)
+            local fname = string.format("%s/node/agentonlinecmd.lua", nodeRootPath)
             return searchFunction(func, fname)
         end,
         [{ "send_online_agent", "call_online_agent" }] = function(caller, args)
             local func = removeQuote(args[3])
-            local fname = string.format("%s/node/agentonlinecmd.lua", rootPath)
+            local fname = string.format("%s/node/agentonlinecmd.lua", nodeRootPath)
             return searchFunction(func, fname)
         end,
         [{ "callMatchCache", "sendMatchCache" }] = function(caller, args)
@@ -260,6 +264,10 @@ local function ninjaLS(dispatchers, config)
             if method == "initialize" then
                 if checkIsNinja(params.rootPath) then
                     rootPath = params.rootPath
+                    nodeRootPath = rootPath
+                    if isGlobalServer(rootPath) then
+                        nodeRootPath = rootPath .. "/area"
+                    end
                     callback(nil, {
                         serverInfo = {
                             name = "Ninja LS",

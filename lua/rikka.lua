@@ -136,17 +136,17 @@ Rikka.notify = function(msg, level, title)
     end
 end
 
-Rikka.info = function(format, ...)
+function Rikka.info(format, ...)
     local msg = string.format(format, ...)
     Rikka.notify(msg, vim.log.levels.INFO, "INFO")
 end
 
-Rikka.warn = function(format, ...)
+function Rikka.warn(format, ...)
     local msg = string.format(format, ...)
     Rikka.notify(msg, vim.log.levels.WARN, "WARNING")
 end
 
-Rikka.error = function(format, ...)
+function Rikka.error(format, ...)
     local msg = string.format(format, ...)
     Rikka.notify(msg, vim.log.levels.ERROR, "ERROR")
 end
