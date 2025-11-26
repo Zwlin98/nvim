@@ -110,7 +110,7 @@ return {
                     "fileformat",
                     "filetype",
                 },
-                lualine_y = { "grapple", "copilot", { hostname() }, { curTime } },
+                lualine_y = { "copilot", { hostname() }, { curTime } },
                 -- lualine_z = { "location" },
                 lualine_z = { {
                     "progress",
