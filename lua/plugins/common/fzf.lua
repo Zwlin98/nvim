@@ -9,7 +9,7 @@ return {
 
         local customActions = {}
 
-        function customActions.openWithCode(selected)
+        function customActions.openWithSublime(selected)
             if rikka.isRemote() then
                 return
             end
@@ -19,8 +19,8 @@ return {
             end
             local line = entry.line or 1
             local col = entry.col or 1
-            local vscodePathFormat = string.format("%s:%s:%s", entry.path, line, col)
-            vim.system({ "code", "--goto", vscodePathFormat })
+            local pathFormat = string.format("%s:%s:%s", entry.path, line, col)
+            vim.system({ "subl", pathFormat })
         end
 
         function customActions.makeSmartVsplit(options)
@@ -107,7 +107,7 @@ return {
             },
 
             actions = {
-                ["ctrl-o"] = customActions.openWithCode,
+                ["ctrl-o"] = customActions.openWithSublime,
             },
         }
 
@@ -167,7 +167,7 @@ return {
             grep = {
                 rg_opts = table.concat(rgOpts, " "),
                 actions = {
-                    ["ctrl-o"] = customActions.openWithCode,
+                    ["ctrl-o"] = customActions.openWithSublime,
                     ["ctrl-s"] = fzfActions.file_vsplit,
                     ["ctrl-v"] = customActions.makeSmartVsplit(),
                     ["ctrl-q"] = { fn = fzf.actions.file_sel_to_qf, prefix = "select-all" },
