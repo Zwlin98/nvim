@@ -8,12 +8,14 @@ rikka.setKeymap("n", "<M-x>", ":tabclose<CR>", { desc = "Close Tab" })
 
 rikka.setKeymap("n", "q:", ":q<CR>", { desc = "Quit" }) -- q: is useless and annoying
 
-rikka.setKeymap("n", "<leader>q", function()
-    local word = rikka.getCurrentWord()
-    vim.system({ "open", "dash://" .. word })
-end, { desc = "Search Dash for word under cursor" })
+if not rikka.isRemote() then
+    rikka.setKeymap("n", "<leader>q", function()
+        local word = rikka.getCurrentWord()
+        vim.system({ "open", "dash://" .. word })
+    end, { desc = "Search Dash for word under cursor" })
 
-rikka.setKeymap("v", "<leader>q", function()
-    local word = rikka.getVisualSelection()
-    vim.system({ "open", "dash://" .. word })
-end, { desc = "Search Dash for word under cursor" })
+    rikka.setKeymap("v", "<leader>q", function()
+        local word = rikka.getVisualSelection()
+        vim.system({ "open", "dash://" .. word })
+    end, { desc = "Search Dash for word under cursor" })
+end
