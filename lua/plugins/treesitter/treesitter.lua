@@ -5,32 +5,10 @@ return {
     config = function()
         local treesitter = require("nvim-treesitter")
 
-        local wanted = {
-            "bash",
-            "c",
-            "go",
-            "json",
-            "kdl",
-            "lua",
-            "markdown",
-            "markdown_inline",
-            "proto",
-            "regex",
-            "rust",
-            "yaml",
-            "php",
-            "beancount",
-            "comment",
-            "vim",
-            "vimdoc",
-            "html",
-            "python",
-        }
-
-        treesitter.install(wanted)
+        treesitter.install("stable")
 
         local languages = {}
-        for _, lang in ipairs(wanted) do
+        for _, lang in ipairs(treesitter.get_available()) do
             languages[lang] = true
         end
 
