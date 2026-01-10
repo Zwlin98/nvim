@@ -5,7 +5,9 @@ return {
     config = function()
         local treesitter = require("nvim-treesitter")
 
-        treesitter.install("all")
+        treesitter.install("all", {
+            max_jobs = 4,
+        })
 
         vim.api.nvim_create_autocmd("FileType", {
             group = vim.api.nvim_create_augroup("treesitter.setup", {}),
