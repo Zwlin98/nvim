@@ -1,1 +1,0 @@
-local rikka = require("rikka")
