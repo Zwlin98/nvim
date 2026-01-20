@@ -1,11 +1,9 @@
 return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
-        "SmiteshP/nvim-navic",
         "ofseed/copilot-status.nvim",
     },
     config = function()
-        local navic = require("nvim-navic")
         local rikka = require("rikka")
 
         local colors = {
@@ -95,14 +93,6 @@ return {
                 },
                 lualine_c = {
                     { "filename", path = 1 },
-                    {
-                        function()
-                            return navic.get_location()
-                        end,
-                        cond = function()
-                            return navic.is_available()
-                        end,
-                    },
                 },
                 lualine_x = {
 
