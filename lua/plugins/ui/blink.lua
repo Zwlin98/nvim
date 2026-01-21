@@ -27,6 +27,7 @@ return {
                     "snippet_forward",
                     "fallback",
                 },
+                ["<C-n>"] = false,
             },
 
             appearance = {
@@ -73,6 +74,7 @@ return {
                     },
                     ["<Down>"] = { "select_next", "fallback" },
                     ["<Up>"] = { "select_prev", "fallback" },
+                    ["<C-n>"] = false,
                 },
             },
 

@@ -1,8 +1,5 @@
 return {
     "nvim-lualine/lualine.nvim",
-    dependencies = {
-        "ofseed/copilot-status.nvim",
-    },
     config = function()
         local rikka = require("rikka")
 
@@ -100,7 +97,13 @@ return {
                     "fileformat",
                     "filetype",
                 },
-                lualine_y = { "copilot", { hostname() }, { curTime } },
+                lualine_y = {
+                    {
+                        require("minuet.lualine"),
+                    },
+                    { hostname() },
+                    { curTime },
+                },
                 -- lualine_z = { "location" },
                 lualine_z = { {
                     "progress",
