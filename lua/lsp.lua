@@ -32,7 +32,9 @@ else
         end,
         ["textDocument/definition"] = function(args)
             rikka.setBufKeymap(args.buf, "n", "gd", function()
-                fzf.lsp_definitions()
+                fzf.lsp_definitions({
+                    unique_line_items = true,
+                })
             end, { desc = "Check definitions under cursor" })
         end,
         ["textDocument/inlayHints"] = function(args)

@@ -72,7 +72,6 @@ return {
                 },
             },
             keys = {
-                ---@type table<string, snacks.scope.TextObject|{desc?:string}>
                 textobject = {
                     is = {
                         min_size = 2, -- minimum size of the scope
@@ -88,7 +87,6 @@ return {
                         desc = "full scope",
                     },
                 },
-                ---@type table<string, snacks.scope.Jump|{desc?:string}>
                 jump = {
                     ["[s"] = {
                         min_size = 2, -- allow single line scopes
