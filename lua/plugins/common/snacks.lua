@@ -11,6 +11,45 @@ return {
                 row = 1,
             },
         },
+        dashboard = {
+            preset = {
+                header = [[
+                                                                 
+                                                                 
+         ██████╗ ███████╗███╗   ███╗ █████╗ ██╗███╗   ██╗        
+         ██╔══██╗██╔════╝████╗ ████║██╔══██╗██║████╗  ██║        
+         ██████╔╝█████╗  ██╔████╔██║███████║██║██╔██╗ ██║        
+         ██╔══██╗██╔══╝  ██║╚██╔╝██║██╔══██║██║██║╚██╗██║        
+         ██║  ██║███████╗██║ ╚═╝ ██║██║  ██║██║██║ ╚████║        
+         ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝        
+                                                                 
+ ███████╗███████╗ █████╗ ██████╗ ██╗     ███████╗███████╗███████╗
+ ██╔════╝██╔════╝██╔══██╗██╔══██╗██║     ██╔════╝██╔════╝██╔════╝
+ █████╗  █████╗  ███████║██████╔╝██║     █████╗  ███████╗███████╗
+ ██╔══╝  ██╔══╝  ██╔══██║██╔══██╗██║     ██╔══╝  ╚════██║╚════██║
+ ██║     ███████╗██║  ██║██║  ██║███████╗███████╗███████║███████║
+ ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚══════╝
+                                                                 
+                                                                 
+       Consider everything deeply but still remain fearless.     
+                                                                 
+                                                                 
+                             Zwlin's NVIM                        ]],
+                keys = {
+                    { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+                    { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+                    { icon = " ", key = "e", desc = "Find File", action = "<cmd>FzfLua files<CR>" },
+                    { icon = " ", key = "f", desc = "Live Grep", action = "<cmd>FzfLua live_grep_native<CR>" },
+                    { icon = "󰒲 ", key = "s", desc = "Lazy", action = "<cmd>Lazy<CR>", enabled = package.loaded.lazy ~= nil },
+                    { icon = " ", key = "q", desc = "Quit", action = "<cmd>qa<CR>" },
+                },
+            },
+            enabled = true,
+            sections = {
+                { section = "header" },
+                { section = "keys", gap = 1, padding = 1 },
+            },
+        },
         notifier = {
             enabled = true,
             timeout = 2000, -- default timeout in ms
