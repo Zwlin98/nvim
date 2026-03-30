@@ -52,4 +52,7 @@ require("lazy").setup({
         border = rikka.border,
         backdrop = 100,
     },
+    rocks = {
+        enabled = false,
+    },
 })

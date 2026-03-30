@@ -15,6 +15,9 @@ return {
                 width = "block",
                 highlight_border = false,
             },
+            latex = {
+                enabled = false,
+            },
         })
 
         local customHighlightGroup = {
