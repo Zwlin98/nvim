@@ -16,17 +16,6 @@ rikka.createAutocmd("TermOpen", {
     end,
 })
 
-rikka.createAutocmd("BufReadPost", {
-    callback = function(args)
-        local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
-        for _, line in ipairs(lines) do
-            if line:match("^<<<<<<<") then
-                require("git-conflict")
-                return true -- delete this autocmd after first trigger
-            end
-        end
-    end,
-})
 
 rikka.createAutocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("highlight_on_yank", {}),
