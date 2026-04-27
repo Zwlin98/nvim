@@ -24,7 +24,7 @@ return {
         -- Highlight on yank
         -- conflict with vim-illuminate
         local customHighlightGroup = {
-            YankPost = { bg = "#7480A1", fg = nil },
+            YankPost = { bg = rikka.color.cursorGray, fg = nil },
             IlluminatedWordText = { bg = rikka.color.noVisualGray },
             IlluminatedWordRead = { bg = rikka.color.gray },
             IlluminatedWordWrite = { bg = rikka.color.lightGray },

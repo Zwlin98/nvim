@@ -14,8 +14,8 @@ local INCOMING_HL = "GitConflictIncoming"
 local CURRENT_LABEL_HL = "GitConflictCurrentLabel"
 local INCOMING_LABEL_HL = "GitConflictIncomingLabel"
 
-local DEFAULT_CURRENT_BG = 4218238 -- #405d7e
-local DEFAULT_INCOMING_BG = 3229523 -- #314753
+local DEFAULT_CURRENT_BG = nil
+local DEFAULT_INCOMING_BG = nil
 
 local conflict_start = "^<<<<<<<"
 local conflict_middle = "^======="
@@ -77,8 +77,9 @@ local visited_buffers = setmetatable({}, {
 -----------------------------------------------------------------------------
 
 local function set_highlights()
-    local cur_bg = get_hl_bg("DiffText") or DEFAULT_CURRENT_BG
-    local inc_bg = get_hl_bg("DiffAdd") or DEFAULT_INCOMING_BG
+    local rikka = require("rikka")
+    local cur_bg = get_hl_bg("DiffText") or rikka.color.blue
+    local inc_bg = get_hl_bg("DiffAdd") or rikka.color.green
     api.nvim_set_hl(0, CURRENT_HL, { bg = cur_bg, bold = true, default = true })
     api.nvim_set_hl(0, INCOMING_HL, { bg = inc_bg, bold = true, default = true })
     api.nvim_set_hl(0, CURRENT_LABEL_HL, { bg = shade_color(cur_bg, 60), default = true })

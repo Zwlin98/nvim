@@ -5,8 +5,8 @@ return {
     config = function()
         local rikka = require("rikka")
 
-        rikka.setHightlight("QuickScopePrimary", { fg = "#D5FF80", underline = true })
-        rikka.setHightlight("QuickScopeSecondary", { fg = "#73DDFF", underline = true })
+        rikka.setHightlight("QuickScopePrimary", { fg = rikka.color.green, underline = true })
+        rikka.setHightlight("QuickScopeSecondary", { fg = rikka.color.cyan, underline = true })
 
         vim.g.qs_filetype_blacklist = { "help", "dashboard", "NvimTree", "alpha" }
         vim.g.qs_buftype_blacklist = { "terminal", "nofile", "prompt" }

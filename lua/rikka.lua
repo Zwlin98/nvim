@@ -5,31 +5,57 @@ local Rikka = {}
 
 Rikka.border = "rounded"
 
-Rikka.color = {}
-Rikka.color.red = "#bf717a"
-Rikka.color.green = "#a3be8c"
-Rikka.color.yellow = "#ebcb8b"
-Rikka.color.blue = "#81a1c1"
-Rikka.color.violet = "#b48ead"
-Rikka.color.cyan = "#88c0d0"
-Rikka.color.orange = "#d08770"
+-- Color palette auto-extracted from current colorscheme.
+-- To override, set e.g. rikka.color.red = "#ff0000" in lua/custom/colorOverride.lua
+-- Mapping: rikka color name → { highlight_group, attribute }
+local colorSources = {
+    -- accents → fg
+    red     = { "DiagnosticError", "fg" },
+    green   = { "String", "fg" },
+    yellow  = { "DiagnosticWarn", "fg" },
+    blue    = { "DiagnosticInfo", "fg" },
+    violet  = { "DiagnosticHint", "fg" },
+    cyan    = { "Type", "fg" },
+    orange  = { "WarningMsg", "fg" },
 
-Rikka.color.black = "#2e3440"
-Rikka.color.lightBlack = "#3b4252"
+    -- backgrounds → bg
+    black      = { "Normal", "bg" },
+    lightBlack = { "CursorLine", "bg" },
+    gray       = { "Folded", "bg" },
+    lightGray  = { "FoldColumn", "bg" },
+    deepDark   = { "StatusLine", "bg" },
+    cursorGray = { "Visual", "bg" },
 
-Rikka.color.gray = "#434c5e"
-Rikka.color.lightGray = "#4c566a"
+    -- foregrounds → fg
+    white         = { "Normal", "fg" },
+    lightWhite    = { "NonText", "fg" },
+    grayWhite     = { "Comment", "fg" },
+    blameGray     = { "Comment", "fg" },
+    noVisualGray  = { "ColorColumn", "bg" },
+}
 
-Rikka.color.white = "#eceff4"
-Rikka.color.lightWhite = "#e5e9f0"
-Rikka.color.grayWhite = "#d8dee9"
+Rikka.color = setmetatable({}, {
+    __index = function(t, k)
+        local source = colorSources[k]
+        if not source then
+            return nil
+        end
+        local group, attr = source[1], source[2]
+        local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = group, link = false })
+        if ok and hl and hl[attr] then
+            local c = string.format("#%06x", hl[attr])
+            rawset(t, k, c)
+            return c
+        end
+        return nil
+    end,
+})
 
-Rikka.color.deepDark = "#1a1a1f"
-Rikka.color.cursorGray = "#444c5e"
-
-Rikka.color.blameGray = "#777777"
-
-Rikka.color.noVisualGray = "#3E4A59"
+function Rikka.refreshColors()
+    for k in pairs(colorSources) do
+        rawset(Rikka.color, k, nil)
+    end
+end
 
 function Rikka.getVisualSelection()
     vim.cmd([[noau normal! "vy"]])
