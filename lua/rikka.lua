@@ -88,6 +88,10 @@ function Rikka.getCurrentWord()
     end
 end
 
+function Rikka.isLinux()
+    return vim.fn.has("linux") == 1
+end
+
 function Rikka.isLocal()
     return not Rikka.isRemote()
 end

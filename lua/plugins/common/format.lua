@@ -20,6 +20,7 @@ return {
                 proto = { "clang-format" },
                 zsh = { "shfmt" },
                 bash = { "shfmt" },
+                kdl = { "kdlfmt" },
             },
         }
 
