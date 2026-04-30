@@ -39,7 +39,7 @@ return {
             DiagnosticVirtualTextHint = { fg = rikka.color.green, bg = nil },
             DiagnosticVirtualTextOk = { fg = rikka.color.blue, bg = nil },
 
-            LspInlayHint = { fg = rikka.color.lightGray, bg = nil },
+            LspInlayHint = { fg = rikka.color.grayWhite, bg = nil, italic = true },
 
             Pmenu = { bg = rikka.color.black },
             PmenuThumb = { bg = rikka.color.cursorGray },
