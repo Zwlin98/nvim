@@ -25,9 +25,9 @@ return {
         -- conflict with vim-illuminate
         local customHighlightGroup = {
             YankPost = { bg = rikka.color.cursorGray, fg = nil },
-            IlluminatedWordText = { bg = rikka.color.noVisualGray },
-            IlluminatedWordRead = { bg = rikka.color.gray },
-            IlluminatedWordWrite = { bg = rikka.color.lightGray },
+            IlluminatedWordText = { underline = true, sp = rikka.color.grayWhite },
+            IlluminatedWordRead = { underline = true, sp = rikka.color.green },
+            IlluminatedWordWrite = { underline = true, sp = rikka.color.yellow },
         }
 
         for group, opts in pairs(customHighlightGroup) do
