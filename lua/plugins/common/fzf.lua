@@ -111,6 +111,10 @@ return {
             },
         }
 
+        local cfgFiles = vim.tbl_deep_extend("force", cfgSmall, {
+            line_query = true,
+        })
+
         local rgOpts = {
             "--color=always",
             "--colors=match:fg:0xD0,0x87,0x70",
@@ -123,7 +127,7 @@ return {
         }
 
         fzf.setup({
-            files = cfgSmall,
+            files = cfgFiles,
             buffers = cfgSmall,
             tabs = cfgSmall,
             fzf_opts = {
