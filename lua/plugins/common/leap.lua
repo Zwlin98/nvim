@@ -13,9 +13,9 @@ return {
         -- LeapMatch
         -- LeapLabel
         local LeapColors = {
-            LeapLabelDimmed = { bg = rikka.color.lightGray, fg = rikka.color.white },
-            LeapMatch = { bg = rikka.color.orange, fg = rikka.color.black },
-            LeapLabel = { bg = rikka.color.green, fg = rikka.color.black },
+            LeapLabelDimmed = { bg = "NONE", fg = rikka.color.grayWhite, bold = true },
+            LeapMatch = { bg = "NONE", fg = rikka.color.orange, bold = true },
+            LeapLabel = { bg = "NONE", fg = rikka.color.green, bold = true },
         }
 
         for group, color in pairs(LeapColors) do
