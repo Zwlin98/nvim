@@ -62,30 +62,32 @@ local externalOpeners = {
     md = { "limn" },
 }
 
-rikka.createCommand("PreviewExternally", function()
-    local path = vim.fn.expand("%:p")
-    if path == "" then
-        rikka.warn("No file path for current buffer", "Open Externally")
-        return
-    end
+if rikka.isLocal() then
+    rikka.createCommand("PreviewExternally", function()
+        local path = vim.fn.expand("%:p")
+        if path == "" then
+            rikka.warn("No file path for current buffer", "Open Externally")
+            return
+        end
 
-    local ext = vim.fn.expand("%:e")
-    local opener = externalOpeners[ext]
-    if not opener then
-        rikka.warn("No external opener configured for .%s files", ext)
-        return
-    end
+        local ext = vim.fn.expand("%:e")
+        local opener = externalOpeners[ext]
+        if not opener then
+            rikka.warn("No external opener configured for .%s files", ext)
+            return
+        end
 
-    local executable = opener[1]
-    if vim.fn.executable(executable) ~= 1 then
-        rikka.warn("%s executable not found", executable)
-        return
-    end
+        local executable = opener[1]
+        if vim.fn.executable(executable) ~= 1 then
+            rikka.warn("%s executable not found", executable)
+            return
+        end
 
-    local cmd = vim.list_extend(vim.deepcopy(opener), { path })
-    local job = vim.fn.jobstart(cmd)
-    if job <= 0 then
-        rikka.error("Failed to open %s externally", path)
-        return
-    end
-end, { desc = "Open current file with an external app" })
+        local cmd = vim.list_extend(vim.deepcopy(opener), { path })
+        local job = vim.fn.jobstart(cmd)
+        if job <= 0 then
+            rikka.error("Failed to open %s externally", path)
+            return
+        end
+    end, { desc = "Open current file with an external app" })
+end
