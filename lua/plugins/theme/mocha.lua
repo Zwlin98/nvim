@@ -44,7 +44,10 @@ return {
             Pmenu = { bg = rikka.color.black },
             PmenuThumb = { bg = rikka.color.cursorGray },
 
-            YankPost = { bg = rikka.color.cursorGray, fg = nil },
+            Visual = { bg = rikka.color.visualGray, fg = nil },
+            VisualNOS = { bg = rikka.color.visualGrayDim, fg = nil },
+
+            YankPost = { bg = rikka.color.yankGray, fg = nil },
 
             NormalFloat = { bg = nil },
             FloatBorder = { bg = nil },

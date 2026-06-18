@@ -5,37 +5,49 @@ local Rikka = {}
 
 Rikka.border = "rounded"
 
+local colorOverrides = {
+    visualGray = "#585b70",
+    visualGrayDim = "#45475a",
+    yankGray = "#7f849c",
+}
+
 -- Color palette auto-extracted from current colorscheme.
 -- To override, set e.g. rikka.color.red = "#ff0000" in lua/custom/colorOverride.lua
 -- Mapping: rikka color name → { highlight_group, attribute }
 local colorSources = {
     -- accents → fg
-    red     = { "DiagnosticError", "fg" },
-    green   = { "String", "fg" },
-    yellow  = { "DiagnosticWarn", "fg" },
-    blue    = { "DiagnosticInfo", "fg" },
-    violet  = { "DiagnosticHint", "fg" },
-    cyan    = { "Type", "fg" },
-    orange  = { "WarningMsg", "fg" },
+    red = { "DiagnosticError", "fg" },
+    green = { "String", "fg" },
+    yellow = { "DiagnosticWarn", "fg" },
+    blue = { "DiagnosticInfo", "fg" },
+    violet = { "DiagnosticHint", "fg" },
+    cyan = { "Type", "fg" },
+    orange = { "WarningMsg", "fg" },
 
     -- backgrounds → bg
-    black      = { "Normal", "bg" },
+    black = { "Normal", "bg" },
     lightBlack = { "CursorLine", "bg" },
-    gray       = { "Folded", "bg" },
-    lightGray  = { "FoldColumn", "bg" },
-    deepDark   = { "StatusLine", "bg" },
+    gray = { "Folded", "bg" },
+    lightGray = { "FoldColumn", "bg" },
+    deepDark = { "StatusLine", "bg" },
     cursorGray = { "Visual", "bg" },
 
     -- foregrounds → fg
-    white         = { "Normal", "fg" },
-    lightWhite    = { "NonText", "fg" },
-    grayWhite     = { "Comment", "fg" },
-    blameGray     = { "Comment", "fg" },
-    noVisualGray  = { "ColorColumn", "bg" },
+    white = { "Normal", "fg" },
+    lightWhite = { "NonText", "fg" },
+    grayWhite = { "Comment", "fg" },
+    blameGray = { "Comment", "fg" },
+    noVisualGray = { "ColorColumn", "bg" },
 }
 
 Rikka.color = setmetatable({}, {
     __index = function(t, k)
+        local override = colorOverrides[k]
+        if override then
+            rawset(t, k, override)
+            return override
+        end
+
         local source = colorSources[k]
         if not source then
             return nil
