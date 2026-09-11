@@ -20,7 +20,6 @@ local rikka = require("rikka")
 local KittyScrollBackEnable = {
     ["lazy.nvim"] = true,
     ["kitty-scrollback.nvim"] = true,
-    ["nightfox.nvim"] = true,
     ["leap.nvim"] = true,
     ["nvim-hlslens"] = true,
     ["quick-scope"] = true,

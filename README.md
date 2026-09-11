@@ -131,7 +131,7 @@ For enhanced functionality, consider installing:
 ## 🎨 Themes and UI
 
 ### Color Scheme
-- **Primary**: Nightfox theme with custom modifications
+- **Primary**: Catppuccin Mocha theme with custom modifications
 - **Truecolor**: Full 24-bit color support
 - **Consistent**: Unified color palette across all UI elements
 
