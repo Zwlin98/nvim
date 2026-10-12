@@ -23,7 +23,7 @@ A modern, well-structured Neovim configuration optimized for development product
 ## 🚀 Installation
 
 ### Prerequisites
-Ensure you have Neovim 0.9+ installed:
+Ensure you have Neovim 0.11+ installed:
 ```bash
 nvim --version
 ```
@@ -83,20 +83,19 @@ For enhanced functionality, consider installing:
 │   ├── c.lua             # C/C++ LSP setup
 │   ├── go.lua            # Go LSP setup
 │   ├── lua.lua           # Lua LSP setup
-│   └── pyright.lua       # Python LSP setup
-├── lua/
-│   ├── basic.lua         # Basic Neovim settings
-│   ├── keymaps.lua       # Global keybindings
-│   ├── autocmds.lua      # Auto commands
-│   ├── lsp.lua           # LSP configuration
-│   ├── rikka.lua         # Custom utility functions
-│   └── plugins/          # Plugin configurations
-│       ├── common/       # General purpose plugins
-│       ├── git/          # Git-related plugins
-│       ├── theme/        # Color schemes and themes
-│       ├── treesitter/   # Syntax highlighting
-│       └── ui/           # User interface plugins
-└── syntax/               # Custom syntax files
+│   └── python.lua        # Python LSP setup
+└── lua/
+    ├── basic.lua         # Basic Neovim settings
+    ├── keymaps.lua       # Global keybindings
+    ├── autocmds.lua      # Auto commands
+    ├── lsp.lua           # LSP configuration
+    ├── rikka.lua         # Custom utility functions
+    └── plugins/          # Plugin configurations
+        ├── common/       # General purpose plugins
+        ├── git/          # Git-related plugins
+        ├── theme/        # Color schemes and themes
+        ├── treesitter/   # Syntax highlighting
+        └── ui/           # User interface plugins
 ```
 
 ## ⌨️ Key Bindings

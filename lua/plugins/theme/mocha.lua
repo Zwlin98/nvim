@@ -7,23 +7,6 @@ return {
             flavour = "mocha",
             transparent_background = true,
             dim_inactive = { enabled = false },
-            integrations = {
-                fzf = true,
-                cmp = true,
-                gitsigns = true,
-                nvimtree = true,
-                treesitter = true,
-                native_lsp = true,
-                noice = true,
-                which_key = true,
-                barbecue = { dim = false },
-                mason = true,
-                neotree = true,
-                semantic_tokens = true,
-                illuminate = true,
-                blink_cmp = true,
-                mini = true,
-            },
         })
         vim.cmd.colorscheme("catppuccin")
 
